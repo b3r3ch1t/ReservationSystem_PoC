@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Data.Context
 {
-    public sealed class ReservarionSystemDbContext : DbContext
+    public class ReservarionSystemDbContext : DbContext
     {
 
         public ReservarionSystemDbContext(DbContextOptions<ReservarionSystemDbContext> options) : base(options)

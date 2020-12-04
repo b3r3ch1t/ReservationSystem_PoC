@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
+using System;
 
 namespace ReservationSystem_PoC.Domain.Core.IoC
 {
@@ -18,5 +18,9 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
             return _serviceProvider.GetRequiredService<TDependencyType>();
         }
 
+        public IServiceProvider GetServiceProvider()
+        {
+            return _serviceProvider;
+        }
     }
 }
