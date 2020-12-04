@@ -5,8 +5,8 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
 {
     public class Reservation : EntityBase<Reservation>
     {
-        public const int MinDescriptionSize = 3;
-        public const int MaxDescriptionSize = 255;
+        public const int MinMessageSize = 3;
+        public const int MaxMessageSize = 255;
 
 
         public const int MinRanking = 1;

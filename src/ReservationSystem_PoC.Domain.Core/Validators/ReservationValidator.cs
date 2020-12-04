@@ -49,8 +49,8 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
                 .NotEmpty()
                 .WithMessage("The message of reservation can not be null.")
 
-                .Length(min: Reservation.MinDescriptionSize, max: Reservation.MaxDescriptionSize)
-                .WithMessage($"The name of contact be have between {Reservation.MinDescriptionSize} and {Reservation.MaxDescriptionSize}");
+                .Length(min: Reservation.MinMessageSize, max: Reservation.MaxMessageSize)
+                .WithMessage($"The name of contact be have between {Reservation.MinMessageSize} and {Reservation.MaxMessageSize}");
         }
     }
 }

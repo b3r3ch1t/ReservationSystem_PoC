@@ -9,11 +9,11 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
 
         internal static Reservation Get_Reservation_OK()
         {
-            var message = Faker.Lorem.Paragraph(min: Reservation.MinDescriptionSize);
+            var message = Faker.Lorem.Paragraph(min: Reservation.MinMessageSize);
 
-            if (message.Length >= Reservation.MaxDescriptionSize)
+            if (message.Length >= Reservation.MaxMessageSize)
             {
-                message = message.Substring(0, Reservation.MaxDescriptionSize);
+                message = message.Substring(0, Reservation.MaxMessageSize);
             }
 
             var contact = ContactFaker.Get_Contact_Ok();

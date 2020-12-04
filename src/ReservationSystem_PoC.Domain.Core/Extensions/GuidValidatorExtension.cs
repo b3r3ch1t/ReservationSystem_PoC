@@ -1,4 +1,5 @@
 ﻿using ReservationSystem_PoC.Domain.Core.Validators;
+using System;
 
 namespace ReservationSystem_PoC.Domain.Core.Extensions
 {
@@ -11,6 +12,12 @@ namespace ReservationSystem_PoC.Domain.Core.Extensions
 
             var result = new GuidValidator().Validate(guidCandidate).IsValid;
 
+            return result;
+        }
+
+        public static bool IsValidGuid(this Guid guidCandidate)
+        {
+            var result = guidCandidate.ToString().IsValidGuid();
             return result;
         }
 
