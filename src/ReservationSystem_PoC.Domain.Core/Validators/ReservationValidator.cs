@@ -11,6 +11,17 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
 
             ValidateMessage();
             ValidadeContact();
+
+            ValidadeRacking();
+        }
+
+        private void ValidadeRacking()
+        {
+            RuleFor(x => x.Ranking)
+                .GreaterThanOrEqualTo(Reservation.MinRanking)
+                .LessThanOrEqualTo(Reservation.MaxRanking)
+                .WithMessage($"The ranking must be between {Reservation.MinRanking} and {Reservation.MaxRanking}");
+
         }
 
         private void ValidadeContact()
@@ -39,7 +50,7 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
                 .WithMessage("The message of reservation can not be null.")
 
                 .Length(min: Reservation.MinDescriptionSize, max: Reservation.MaxDescriptionSize)
-                .WithMessage($"The name of contact must have between {Reservation.MinDescriptionSize} and {Reservation.MaxDescriptionSize}");
+                .WithMessage($"The name of contact be have between {Reservation.MinDescriptionSize} and {Reservation.MaxDescriptionSize}");
         }
     }
 }

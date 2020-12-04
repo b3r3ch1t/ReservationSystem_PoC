@@ -29,7 +29,6 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
             //act
             var result = contact.IsValid();
-
             //assert
             Assert.False(result);
 

@@ -2,7 +2,7 @@
 using System;
 using Xunit;
 
-namespace ReservationSystem_PoC.Domain.Test.EntityTests
+namespace ReservationSystem_PoC.Domain.Test.ValidatorTests
 {
     public class GuidValidatorTest
     {

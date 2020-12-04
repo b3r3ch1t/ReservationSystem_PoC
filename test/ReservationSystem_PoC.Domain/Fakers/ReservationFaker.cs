@@ -18,16 +18,22 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
 
             var contact = ContactFaker.Get_Contact_Ok();
 
+            var ranking = Faker.Random.Int(min: 1, max: 5);
+
+            var favorited = Faker.Random.Bool();
+
             var reservation = new Reservation(
                 message: message,
-                contact: contact
+                contact: contact,
+                ranking: ranking,
+                favorited: favorited
             );
 
             return reservation;
 
         }
 
-        public static Reservation Get_Reservation_MessageNull_False()
+        public static Reservation Get_Reservation_MessageNull()
         {
             var reservation = Get_Reservation_OK();
 
@@ -36,7 +42,7 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageEmpty_False()
+        public static Reservation Get_Reservation_MessageEmpty()
         {
             var reservation = Get_Reservation_OK();
 
@@ -45,7 +51,7 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageLess_False()
+        public static Reservation Get_Reservation_MessageLess()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(ContactType.MinDescriptionSize);
@@ -60,7 +66,7 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageGreater_False()
+        public static Reservation Get_Reservation_MessageGreater()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
@@ -76,6 +82,28 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
             var reservation = Get_Reservation_OK();
 
             reservation.ChangeMessage(message);
+
+            return reservation;
+        }
+
+        public static Reservation Get_Reservation_Ranking_Less()
+        {
+            var reservation = Get_Reservation_OK();
+
+            var ranking = Faker.Random.Int(min: 0, Reservation.MinRanking - 1);
+
+            reservation.ChangeRanking(ranking);
+
+            return reservation;
+        }
+
+        public static Reservation Get_Reservation_Ranking_Greater()
+        {
+            var reservation = Get_Reservation_OK();
+
+            var ranking = Faker.Random.Int(min: Reservation.MaxRanking, Reservation.MaxRanking + 10);
+
+            reservation.ChangeRanking(ranking);
 
             return reservation;
         }

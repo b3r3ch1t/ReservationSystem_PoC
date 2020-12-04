@@ -1,7 +1,7 @@
 ﻿using ReservationSystem_PoC.Domain.Core.Extensions;
 using Xunit;
 
-namespace ReservationSystem_PoC.Domain.Test.EntityTests
+namespace ReservationSystem_PoC.Domain.Test.ValidatorTests
 {
     public class PhoneValidatorTest
     {
