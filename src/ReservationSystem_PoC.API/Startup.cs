@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using ReservationSystem_PoC.API.Configurations;
 using ReservationSystem_PoC.Data.IoC;
 using ReservationSystem_PoC.Domain.Core.IoC;
 
@@ -12,9 +12,34 @@ namespace ReservationSystem_PoC.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath);
+
+            if (env.IsStaging() || env.IsProduction())
+            {
+                builder.AddEnvironmentVariables();
+            }
+
+            if (env.IsDevelopment())
+            {
+
+                //Try to use the userSecrets, if does not have a userSecrets use appsettings.json
+                try
+                {
+                    builder.AddUserSecrets<Startup>();
+
+                }
+                catch
+                {
+                    builder.AddJsonFile("appsettings.json", true, true);
+
+                }
+
+            }
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,10 +49,9 @@ namespace ReservationSystem_PoC.API
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReservationSystem_PoC.API", Version = "v1" });
-            });
+
+            // Swagger Config
+            services.AddSwaggerConfiguration();
 
 
             // Adding MediatR for Domain Events and Notifications
