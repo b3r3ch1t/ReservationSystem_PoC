@@ -107,8 +107,7 @@ namespace ReservationSystem_PoC.Data.Context
 
             modelBuilder.Ignore<ValidationResult>();
 
-
-
+             
         }
 
 

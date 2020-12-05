@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Text;
 
 namespace ReservationSystem_PoC.Data.Migrations
 {
@@ -154,6 +155,31 @@ namespace ReservationSystem_PoC.Data.Migrations
                 name: "IX_Reservations_Valid",
                 table: "Reservations",
                 column: "Valid");
+
+            AddStoreProcedure(migrationBuilder);
+        }
+
+        private void AddStoreProcedure(MigrationBuilder migrationBuilder)
+        {
+
+            var sb = new StringBuilder();
+
+            sb.AppendLine(" CREATE PROCEDURE UpdateContactType @Description nvarchar(512), @Valid BIT,@DateOfChange DATETIME2 (7), @DateOfCreation  DATETIME2 (7), @Id UNIQUEIDENTIFIER ");
+            sb.AppendLine(" AS ");
+            sb.AppendLine(" BEGIN ");
+            sb.AppendLine("	SET NOCOUNT ON; ");
+            sb.AppendLine(" 	UPDATE [dbo].[ContactType] ");
+            sb.AppendLine("                SET ");
+            sb.AppendLine(" 					[Description] = @Description,");
+            sb.AppendLine("					    [Valid] = @Valid,  ");
+            sb.AppendLine("					    [DateOfChange] = @DateOfChange , ");
+            sb.AppendLine("					    [DateOfCreation] = @DateOfCreation");
+            sb.AppendLine("                WHERE (Id = @Id)");
+            sb.AppendLine("END");
+            sb.AppendLine("GO");
+
+            migrationBuilder.Sql(sb.ToString());
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

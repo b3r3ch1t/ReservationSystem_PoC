@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.Common.Identities;
 using ReservationSystem_PoC.Common.IoC;
+using ReservationSystem_PoC.Common.Repositories;
 using ReservationSystem_PoC.Data.Context;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
@@ -21,7 +22,7 @@ namespace ReservationSystem_PoC.Data.Test
 
             _db = dependencyResolver.Resolve<ReservarionSystemDbContext>();
 
-            _contactTypeRepository = dependencyResolver.Resolve<IRepositoryBase<ContactType>>();
+            _contactTypeRepository = ContactTypeRepositoryFaker.GetContactTypeRepository();
 
         }
 
@@ -49,11 +50,7 @@ namespace ReservationSystem_PoC.Data.Test
         [Fact]
         public async Task GetByIdAsyncOk()
         {
-            var contactType = ContactTypeFaker.GetContactTypeOk();
-
-            await _db.ContactTypes.AddAsync(contactType);
-
-            await _db.SaveChangesAsync();
+            var contactType = _db.ContactTypes.First();
 
             var result = await _contactTypeRepository.GetByIdAsync(contactType.Id);
 

@@ -15,7 +15,6 @@ namespace ReservationSystem_PoC.Common.IoC
         {
             var dependencyResolver = new Mock<IDependencyResolver>();
 
-
             var dbContextInMemory = ReservarionSystemDbContextFaker.GetDatabaseInMemory();
 
             dependencyResolver.Setup(resolver =>
@@ -35,6 +34,8 @@ namespace ReservationSystem_PoC.Common.IoC
                     resolver.Resolve<IRepositoryBase<ContactType>>())
                 .Returns(getContactTypeRepository);
 
+
+
             return dependencyResolver.Object;
 
         }
@@ -45,5 +46,6 @@ namespace ReservationSystem_PoC.Common.IoC
 
             return result;
         }
+
     }
 }

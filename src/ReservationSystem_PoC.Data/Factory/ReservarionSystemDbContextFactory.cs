@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 using ReservationSystem_PoC.Data.Context;
+using System.IO;
 
 namespace ReservationSystem_PoC.Data.Factory
 {
@@ -10,6 +10,8 @@ namespace ReservationSystem_PoC.Data.Factory
     {
         public ReservarionSystemDbContext CreateDbContext(string[] args)
         {
+
+            // Debugger.Launch();
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
