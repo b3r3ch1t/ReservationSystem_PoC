@@ -11,7 +11,7 @@ namespace ReservationSystem_PoC.API
     {
         public static int Main(string[] args)
         {
-
+            //https://github.com/serilog/serilog
             var config = new FastConsoleSinkOptions { UseJson = true };
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
@@ -39,7 +39,7 @@ namespace ReservationSystem_PoC.API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog() // <-- Add this line
+                .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

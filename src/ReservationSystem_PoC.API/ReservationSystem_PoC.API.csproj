@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ReservationSystem_PoC.Data\ReservationSystem_PoC.Data.csproj" />
     <ProjectReference Include="..\ReservationSystem_PoC.Domain.Core\ReservationSystem_PoC.Domain.Core.csproj" />
   </ItemGroup>

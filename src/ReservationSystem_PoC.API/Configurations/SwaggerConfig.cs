@@ -5,10 +5,12 @@ using System;
 
 namespace ReservationSystem_PoC.API.Configurations
 {
-    public static class SwaggerConfig
+    internal static class SwaggerConfig
     {
-        public static void AddSwaggerConfiguration(this IServiceCollection services)
+        internal static void AddSwaggerConfiguration(this IServiceCollection services)
         {
+
+            //https://github.com/domaindrivendev/Swashbuckle.AspNetCore
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             services.AddSwaggerGen(s =>

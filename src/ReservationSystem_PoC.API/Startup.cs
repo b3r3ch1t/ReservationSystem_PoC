@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -53,9 +52,12 @@ namespace ReservationSystem_PoC.API
             // Swagger Config
             services.AddSwaggerConfiguration();
 
-
             // Adding MediatR for Domain Events and Notifications
-            services.AddMediatR(typeof(Startup));
+
+            services.AddMediatRConfiguration();
+
+            // AutoMapper Settings
+            services.AddAutoMapperConfiguration();
 
             // Register Services for each Layer.
             RegisterServices(services, Configuration);
