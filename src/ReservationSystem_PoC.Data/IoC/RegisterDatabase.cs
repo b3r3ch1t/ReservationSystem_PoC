@@ -7,7 +7,7 @@ namespace ReservationSystem_PoC.Data.IoC
 {
     public static class RegisterDatabase
     {
-        public static IServiceCollection RegisterDataBaseSqlServe(
+        public static IServiceCollection RegisterDataBaseSqlServer(
             this IServiceCollection services,
             IConfiguration configuration
         )

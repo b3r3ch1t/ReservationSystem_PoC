@@ -6,7 +6,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
     public class Reservation : EntityBase<Reservation>
     {
         public const int MinMessageSize = 3;
-        public const int MaxMessageSize = 255;
+        public const int MaxMessageSize = 30;
 
 
         public const int MinRanking = 1;
