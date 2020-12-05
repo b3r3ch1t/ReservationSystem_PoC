@@ -1,13 +1,13 @@
 ﻿using Bogus;
 using ReservationSystem_PoC.Domain.Core.Entities;
 
-namespace ReservationSystem_PoC.Domain.Test.Fakers
+namespace ReservationSystem_PoC.Common.Identities
 {
-    internal static class ReservationFaker
+    public static class ReservationFaker
     {
         private static readonly Faker Faker = new Faker();
 
-        internal static Reservation Get_Reservation_OK()
+        public static Reservation Get_Reservation_OK()
         {
             var message = Faker.Lorem.Paragraph(min: Reservation.MinMessageSize);
 

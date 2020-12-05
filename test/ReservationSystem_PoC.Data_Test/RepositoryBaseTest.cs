@@ -1,5 +1,7 @@
 ﻿using ReservationSystem_PoC.Data.Context;
 using System.Linq;
+using ReservationSystem_PoC.Common;
+using ReservationSystem_PoC.Common.Context;
 using Xunit;
 
 namespace ReservationSystem_PoC.Data.Test

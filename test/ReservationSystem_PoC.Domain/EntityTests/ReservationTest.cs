@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using ReservationSystem_PoC.Domain.Test.Fakers;
+using ReservationSystem_PoC.Common.Identities;
 using Xunit;
 
 namespace ReservationSystem_PoC.Domain.Test.EntityTests

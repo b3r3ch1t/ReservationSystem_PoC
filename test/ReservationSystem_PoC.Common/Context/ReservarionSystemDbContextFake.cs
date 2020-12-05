@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.Data.Context;
 
-namespace ReservationSystem_PoC.Data.Test
+namespace ReservationSystem_PoC.Common.Context
 {
-    static class ReservarionSystemDbContextFaker
+    public class ReservarionSystemDbContextFaker
     {
         public static ReservarionSystemDbContext GetDatabaseInMemory()
         {

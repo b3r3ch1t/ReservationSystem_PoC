@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ReservationSystem_PoC.Domain.Core.IoC;
 
-namespace ReservationSystem_PoC.Data.Test
+namespace ReservationSystem_PoC.Common.IoC
 {
     internal static class DependencyResolverFaker
     {

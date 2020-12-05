@@ -2,15 +2,15 @@
 using ReservationSystem_PoC.Domain.Core.Entities;
 using System.Collections.Generic;
 
-namespace ReservationSystem_PoC.Domain.Test.Fakers
+namespace ReservationSystem_PoC.Common.Identities
 {
-    internal static class ContactFaker
+    public static class ContactFaker
     {
 
         private static readonly Faker Faker = new Faker();
 
 
-        internal static Contact Get_Contact_Ok()
+        public static Contact Get_Contact_Ok()
         {
             var faker = new Faker();
 

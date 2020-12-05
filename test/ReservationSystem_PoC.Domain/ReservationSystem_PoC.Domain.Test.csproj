@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ReservationSystem_PoC.Domain.Core\ReservationSystem_PoC.Domain.Core.csproj" />
+    <ProjectReference Include="..\ReservationSystem_PoC.Common\ReservationSystem_PoC.Common.csproj" />
   </ItemGroup>
 
 </Project>

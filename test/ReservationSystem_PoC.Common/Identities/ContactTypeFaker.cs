@@ -1,11 +1,11 @@
 ﻿using Bogus;
 using ReservationSystem_PoC.Domain.Core.Entities;
 
-namespace ReservationSystem_PoC.Domain.Test.Fakers
+namespace ReservationSystem_PoC.Common.Identities
 {
-    internal static class ContactTypeFaker
+    public static class ContactTypeFaker
     {
-        internal static ContactType Get_ContactType_Ok()
+        public static ContactType Get_ContactType_Ok()
         {
             var faker = new Faker();
 
@@ -21,15 +21,15 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
 
             return new ContactType(description: description);
         }
-        internal static ContactType Get_ContactType_MessageNull()
+        public static ContactType Get_ContactType_MessageNull()
         {
             return new ContactType(description: null);
         }
-        internal static ContactType Get_ContactType_MessageEmpty()
+        public static ContactType Get_ContactType_MessageEmpty()
         {
             return new ContactType(description: null);
         }
-        internal static ContactType Get_ContactType_MessageMessageGreaterThanLimit()
+        public static ContactType Get_ContactType_MessageMessageGreaterThanLimit()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
@@ -44,7 +44,7 @@ namespace ReservationSystem_PoC.Domain.Test.Fakers
 
             return new ContactType(description: description);
         }
-        internal static ContactType Get_ContactType_MessageGreaterLessLimite()
+        public static ContactType Get_ContactType_MessageGreaterLessLimite()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(ContactType.MinDescriptionSize);

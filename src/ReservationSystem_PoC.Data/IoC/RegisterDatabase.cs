@@ -26,24 +26,5 @@ namespace ReservationSystem_PoC.Data.IoC
 
         }
 
-
-        public static IServiceCollection RegisterDataBaseInMemoryDependencies(
-            this IServiceCollection services
-        )
-        {
-
-
-            services.AddDbContext<ReservarionSystemDbContext>
-            (opt =>
-
-                opt.UseInMemoryDatabase(databaseName: "InMemoryDb")
-
-            );
-
-
-
-            return services;
-
-        }
     }
 }
