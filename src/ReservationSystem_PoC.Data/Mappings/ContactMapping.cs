@@ -40,10 +40,6 @@ namespace ReservationSystem_PoC.Data.Mappings
 
 
 
-
-
-            builder.HasQueryFilter(x => x.Valid);
-
         }
     }
 }

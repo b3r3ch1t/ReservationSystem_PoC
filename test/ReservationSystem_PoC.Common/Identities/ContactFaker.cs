@@ -10,14 +10,14 @@ namespace ReservationSystem_PoC.Common.Identities
         private static readonly Faker Faker = new Faker();
 
 
-        public static Contact Get_Contact_Ok()
+        public static Contact GetContactOk()
         {
             var faker = new Faker();
 
             var name = faker.Name.FullName();
             var phoneNumer = "555 555 1212";
             var birthDate = faker.Date.Past();
-            var contactType = ContactTypeFaker.Get_ContactType_Ok();
+            var contactType = ContactTypeFaker.GetContactTypeOk();
 
 
             return new Contact(name: name,
@@ -26,45 +26,45 @@ namespace ReservationSystem_PoC.Common.Identities
                 contactType: contactType);
         }
 
-        public static Contact Get_Contact_ContactNameEmpty()
+        public static Contact GetContactContactNameEmpty()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangeName(string.Empty);
 
             return contact;
         }
 
-        public static Contact Get_Contact_ContactNameNull()
+        public static Contact GetContactContactNameNull()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangeName(null);
 
             return contact;
         }
 
-        public static Contact Get_Contact_ContactPhoneNull()
+        public static Contact GetContactContactPhoneNull()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangePhoneNumber(null);
 
             return contact;
         }
 
-        public static Contact Get_Contact_ContactNameWhiteSpace()
+        public static Contact GetContactContactNameWhiteSpace()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangeName(" ");
 
             return contact;
         }
 
-        public static Contact Get_Contact_ContactBirthDateGreaterToday()
+        public static Contact GetContactContactBirthDateGreaterToday()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             var birthDate = Faker.Date.Future();
 
@@ -73,11 +73,11 @@ namespace ReservationSystem_PoC.Common.Identities
             return contact;
         }
 
-        public static Contact Get_Contact_Contact_ContactTypeInvalid()
+        public static Contact GetContactContactContactTypeInvalid()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
-            var contactType = ContactTypeFaker.Get_ContactType_MessageEmpty();
+            var contactType = ContactTypeFaker.GetContactTypeMessageEmpty();
 
             return Contact.Factory.GetContact(
                 name: contact.Name,
@@ -88,11 +88,11 @@ namespace ReservationSystem_PoC.Common.Identities
             );
         }
 
-        public static Contact Get_Contact_Contact_Reservation_Null()
+        public static Contact GetContactContactReservationNull()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
-            var contactType = ContactTypeFaker.Get_ContactType_Ok();
+            var contactType = ContactTypeFaker.GetContactTypeOk();
 
             return Contact.Factory.GetContact(
                 name: contact.Name,
@@ -103,9 +103,9 @@ namespace ReservationSystem_PoC.Common.Identities
             );
         }
 
-        public static Contact Get_Contact_Contact_ContactTypeNull()
+        public static Contact GetContactContactContactTypeNull()
         {
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
 
             return Contact.Factory.GetContact(
@@ -117,7 +117,7 @@ namespace ReservationSystem_PoC.Common.Identities
             );
         }
 
-        public static Contact Get_Contact_ContactNameGreater()
+        public static Contact GetContactContactNameGreater()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
@@ -130,14 +130,14 @@ namespace ReservationSystem_PoC.Common.Identities
             //Create a random text with min=3 and ContactType.MaxDescriptionSize
             var name = faker.Random.String2(length: length);
 
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangeName(name);
 
             return contact;
         }
 
-        public static Contact Get_Contact_ContactNameLess()
+        public static Contact GetContactContactNameLess()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(Contact.MinNameSize);
@@ -145,7 +145,7 @@ namespace ReservationSystem_PoC.Common.Identities
             //Create a random text with max=3  
             var name = faker.Random.String2(length: length);
 
-            var contact = Get_Contact_Ok();
+            var contact = GetContactOk();
 
             contact.ChangeName(name);
 

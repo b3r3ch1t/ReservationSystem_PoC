@@ -8,10 +8,12 @@ namespace ReservationSystem_PoC.Common.Context
         public static ReservarionSystemDbContext GetDatabaseInMemory()
         {
             var builder = new DbContextOptionsBuilder<ReservarionSystemDbContext>();
-            builder.UseInMemoryDatabase(databaseName: "LibraryDbInMemory");
+            builder.UseInMemoryDatabase(databaseName: "ReservarionSystemDbContext");
 
             var dbContextOptions = builder.Options;
             var dbContextInMemory = new ReservarionSystemDbContext(dbContextOptions);
+           
+            
             // Delete existing db before creating a new one
             dbContextInMemory.Database.EnsureDeleted();
             dbContextInMemory.Database.EnsureCreated();

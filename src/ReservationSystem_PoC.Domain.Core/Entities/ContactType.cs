@@ -21,5 +21,10 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
         {
             ValidationResult = new ContactTypeValidator().Validate(this);
         }
+
+        public void ChangeDescription(string description)
+        {
+            Description = description;
+        }
     }
 }

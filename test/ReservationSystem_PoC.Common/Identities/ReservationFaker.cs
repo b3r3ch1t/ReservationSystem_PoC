@@ -7,7 +7,7 @@ namespace ReservationSystem_PoC.Common.Identities
     {
         private static readonly Faker Faker = new Faker();
 
-        public static Reservation Get_Reservation_OK()
+        public static Reservation GetReservationOk()
         {
             var message = Faker.Lorem.Paragraph(min: Reservation.MinMessageSize);
 
@@ -16,7 +16,7 @@ namespace ReservationSystem_PoC.Common.Identities
                 message = message.Substring(0, Reservation.MaxMessageSize);
             }
 
-            var contact = ContactFaker.Get_Contact_Ok();
+            var contact = ContactFaker.GetContactOk();
 
             var ranking = Faker.Random.Int(min: 1, max: 5);
 
@@ -33,25 +33,25 @@ namespace ReservationSystem_PoC.Common.Identities
 
         }
 
-        public static Reservation Get_Reservation_MessageNull()
+        public static Reservation GetReservationMessageNull()
         {
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             reservation.ChangeMessage(null);
 
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageEmpty()
+        public static Reservation GetReservationMessageEmpty()
         {
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             reservation.ChangeMessage(string.Empty);
 
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageLess()
+        public static Reservation GetReservationMessageLess()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(ContactType.MinDescriptionSize);
@@ -59,14 +59,14 @@ namespace ReservationSystem_PoC.Common.Identities
             //Create a random text with max=3  
             var message = faker.Random.String2(length: length);
 
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             reservation.ChangeMessage(message);
 
             return reservation;
         }
 
-        public static Reservation Get_Reservation_MessageGreater()
+        public static Reservation GetReservationMessageGreater()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
@@ -79,16 +79,16 @@ namespace ReservationSystem_PoC.Common.Identities
             //Create a random text with min=3 and ContactType.MaxDescriptionSize
             var message = faker.Random.String2(length: length);
 
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             reservation.ChangeMessage(message);
 
             return reservation;
         }
 
-        public static Reservation Get_Reservation_Ranking_Less()
+        public static Reservation GetReservationRankingLess()
         {
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             var ranking = Faker.Random.Int(min: 0, Reservation.MinRanking - 1);
 
@@ -97,9 +97,9 @@ namespace ReservationSystem_PoC.Common.Identities
             return reservation;
         }
 
-        public static Reservation Get_Reservation_Ranking_Greater()
+        public static Reservation GetReservationRankingGreater()
         {
-            var reservation = Get_Reservation_OK();
+            var reservation = GetReservationOk();
 
             var ranking = Faker.Random.Int(min: Reservation.MaxRanking, Reservation.MaxRanking + 10);
 

@@ -30,6 +30,7 @@ namespace ReservationSystem_PoC.Data.Mappings
                 new ContactType("Contact Type 2"),
                 new ContactType("Contact Type 3"),
             });
+
         }
     }
 }

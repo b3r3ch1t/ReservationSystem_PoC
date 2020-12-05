@@ -29,6 +29,7 @@ namespace ReservationSystem_PoC.Data.Mappings
                 .WithMany(g => g.Reservations)
                 .HasForeignKey(s => s.ContactId);
 
+
         }
     }
 }

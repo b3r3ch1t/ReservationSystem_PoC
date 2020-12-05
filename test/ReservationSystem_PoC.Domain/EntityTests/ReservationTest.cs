@@ -9,7 +9,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_OK()
         {
-            var reservation = ReservationFaker.Get_Reservation_OK();
+            var reservation = ReservationFaker.GetReservationOk();
 
             var result = reservation.IsValid();
 
@@ -19,7 +19,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_ChangeMessage()
         {
-            var reservation = ReservationFaker.Get_Reservation_OK();
+            var reservation = ReservationFaker.GetReservationOk();
 
             var oldMessage = reservation.Message;
 
@@ -31,7 +31,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_MessageNull_False()
         {
-            var reservation = ReservationFaker.Get_Reservation_MessageNull();
+            var reservation = ReservationFaker.GetReservationMessageNull();
 
             var result = reservation.IsValid();
 
@@ -41,7 +41,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_MessageEmpty_False()
         {
-            var reservation = ReservationFaker.Get_Reservation_MessageEmpty();
+            var reservation = ReservationFaker.GetReservationMessageEmpty();
 
             var result = reservation.IsValid();
 
@@ -51,7 +51,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_MessageLess_False()
         {
-            var reservation = ReservationFaker.Get_Reservation_MessageLess();
+            var reservation = ReservationFaker.GetReservationMessageLess();
 
             var result = reservation.IsValid();
 
@@ -61,7 +61,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_MessageGreater_False()
         {
-            var reservation = ReservationFaker.Get_Reservation_MessageGreater();
+            var reservation = ReservationFaker.GetReservationMessageGreater();
 
             var result = reservation.IsValid();
 
@@ -71,7 +71,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_Ranking_Less()
         {
-            var reservation = ReservationFaker.Get_Reservation_Ranking_Less();
+            var reservation = ReservationFaker.GetReservationRankingLess();
 
             var result = reservation.IsValid();
 
@@ -82,7 +82,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_ChangeRanking_True()
         {
-            var reservation = ReservationFaker.Get_Reservation_OK();
+            var reservation = ReservationFaker.GetReservationOk();
 
             var ranking = new Faker().Random.Int();
 
@@ -96,7 +96,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_Ranking_Greater()
         {
-            var reservation = ReservationFaker.Get_Reservation_Ranking_Greater();
+            var reservation = ReservationFaker.GetReservationRankingGreater();
 
             var ranking = new Faker().Random.Int();
 
@@ -110,7 +110,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         [Fact]
         public void Reservation_Ranking_ChangeFavorited_True()
         {
-            var reservation = ReservationFaker.Get_Reservation_OK();
+            var reservation = ReservationFaker.GetReservationOk();
 
             var favorited = reservation.Favorited;
 

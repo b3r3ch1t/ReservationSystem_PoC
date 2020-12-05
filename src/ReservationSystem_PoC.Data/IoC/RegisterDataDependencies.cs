@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ReservationSystem_PoC.Data.Repositories;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
 
 namespace ReservationSystem_PoC.Data.IoC
 {
@@ -10,11 +8,6 @@ namespace ReservationSystem_PoC.Data.IoC
         public static IServiceCollection RegisterDataDependencies(
             this IServiceCollection services)
         {
-            services.AddScoped<IContactRepository, ContactRepository>();
-
-            services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
-
-
 
             return services;
         }

@@ -10,7 +10,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         public void ContactType_Valid()
         {
             //arrange
-            var contactType = ContactTypeFaker.Get_ContactType_Ok();
+            var contactType = ContactTypeFaker.GetContactTypeOk();
 
             //act
             var result = contactType.IsValid();
@@ -24,7 +24,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         public void ContactType_MessageNull_False()
         {
             //arrange
-            var contactType = ContactTypeFaker.Get_ContactType_MessageNull();
+            var contactType = ContactTypeFaker.GetContactTypeMessageNull();
 
             //act
             var result = contactType.IsValid();
@@ -38,7 +38,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         public void ContactType_MessageEmpty_False()
         {
             //arrange
-            var contactType = ContactTypeFaker.Get_ContactType_MessageEmpty();
+            var contactType = ContactTypeFaker.GetContactTypeMessageEmpty();
 
             //act
             var result = contactType.IsValid();
@@ -53,7 +53,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         public void ContactType_MessageGreaterThanLimit_False()
         {
             //arrange
-            var contactType = ContactTypeFaker.Get_ContactType_MessageMessageGreaterThanLimit();
+            var contactType = ContactTypeFaker.GetContactTypeMessageMessageGreaterThanLimit();
 
             //act
             var result = contactType.IsValid();
@@ -67,7 +67,7 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         public void ContactType_MessageGreaterLessLimite_False()
         {
             //arrange
-            var contactType = ContactTypeFaker.Get_ContactType_MessageGreaterLessLimite();
+            var contactType = ContactTypeFaker.GetContactTypeMessageGreaterLessLimite();
 
             //act
             var result = contactType.IsValid();

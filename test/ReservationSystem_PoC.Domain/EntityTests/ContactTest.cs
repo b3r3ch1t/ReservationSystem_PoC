@@ -7,10 +7,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
     public class ContactTest
     {
         [Fact]
-        public void Contact_Ok()
+        public void ContactOk()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_Ok();
+            var contact = ContactFaker.GetContactOk();
 
             //act
             var result = contact.IsValid();
@@ -22,10 +22,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
 
         [Fact]
-        public void ContactNameNull_False()
+        public void ContactNameNullFalse()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_ContactNameNull();
+            var contact = ContactFaker.GetContactContactNameNull();
 
             //act
             var result = contact.IsValid();
@@ -36,25 +36,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
 
         [Fact]
-        public void ContactNameEmpty_False()
+        public void ContactNameEmptyFalse()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_ContactNameEmpty();
-
-            //act
-            var result = contact.IsValid();
-
-            //assert
-            Assert.False(result);
-
-        }
-
-
-        [Fact]
-        public void ContactNameWhiteSpace_False()
-        {
-            //arrange
-            var contact = ContactFaker.Get_Contact_ContactNameWhiteSpace();
+            var contact = ContactFaker.GetContactContactNameEmpty();
 
             //act
             var result = contact.IsValid();
@@ -66,38 +51,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
 
         [Fact]
-        public void ContactPhone_False()
+        public void ContactNameWhiteSpaceFalse()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_ContactPhoneNull();
-
-            //act
-            var result = contact.IsValid();
-
-            //assert
-            Assert.False(result);
-
-        }
-
-        [Fact]
-        public void ContactBirthDateGreaterToday_False()
-        {
-            //arrange
-            var contact = ContactFaker.Get_Contact_ContactBirthDateGreaterToday();
-
-            //act
-            var result = contact.IsValid();
-
-            //assert
-            Assert.False(result);
-
-        }
-
-        [Fact]
-        public void Contact_ContactTypeInvalid_False()
-        {
-            //arrange
-            var contact = ContactFaker.Get_Contact_Contact_ContactTypeInvalid();
+            var contact = ContactFaker.GetContactContactNameWhiteSpace();
 
             //act
             var result = contact.IsValid();
@@ -109,10 +66,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
 
         [Fact]
-        public void Contact_Reservation_Null_False()
+        public void ContactPhoneFalse()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_Contact_Reservation_Null();
+            var contact = ContactFaker.GetContactContactPhoneNull();
 
             //act
             var result = contact.IsValid();
@@ -123,10 +80,24 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         }
 
         [Fact]
-        public void Contact_ContactTypeNull_False()
+        public void ContactBirthDateGreaterTodayFalse()
         {
             //arrange
-            var contact = ContactFaker.Get_Contact_Contact_ContactTypeNull();
+            var contact = ContactFaker.GetContactContactBirthDateGreaterToday();
+
+            //act
+            var result = contact.IsValid();
+
+            //assert
+            Assert.False(result);
+
+        }
+
+        [Fact]
+        public void ContactContactTypeInvalidFalse()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactContactContactTypeInvalid();
 
             //act
             var result = contact.IsValid();
@@ -138,9 +109,38 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
 
         [Fact]
-        public void Contact_ChangeName_True()
+        public void ContactReservationNullFalse()
         {
-            var contact = ContactFaker.Get_Contact_Ok();
+            //arrange
+            var contact = ContactFaker.GetContactContactReservationNull();
+
+            //act
+            var result = contact.IsValid();
+
+            //assert
+            Assert.False(result);
+
+        }
+
+        [Fact]
+        public void ContactContactTypeNullFalse()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactContactContactTypeNull();
+
+            //act
+            var result = contact.IsValid();
+
+            //assert
+            Assert.False(result);
+
+        }
+
+
+        [Fact]
+        public void ContactChangeNameTrue()
+        {
+            var contact = ContactFaker.GetContactOk();
 
             var newName = new Faker().Name.FullName();
 
@@ -150,10 +150,10 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         }
 
         [Fact]
-        public void Contact_ChangePhone_True()
+        public void ContactChangePhoneTrue()
         {
 
-            var contact = ContactFaker.Get_Contact_Ok();
+            var contact = ContactFaker.GetContactOk();
 
             var newPhoneNumber = new Faker().Phone.PhoneNumber();
 
@@ -165,9 +165,9 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         }
 
         [Fact]
-        public void Contact_ChangeBirthDate_Ok()
+        public void ContactChangeBirthDateOk()
         {
-            var contact = ContactFaker.Get_Contact_Ok();
+            var contact = ContactFaker.GetContactOk();
 
             var newBirthDate = new Faker().Date.Future();
 
@@ -177,9 +177,9 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         }
 
         [Fact]
-        public void Contact_NameGreater_False()
+        public void ContactNameGreaterFalse()
         {
-            var contact = ContactFaker.Get_Contact_ContactNameGreater();
+            var contact = ContactFaker.GetContactContactNameGreater();
 
             var result = contact.IsValid();
 
@@ -187,9 +187,9 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
         }
 
         [Fact]
-        public void Contact_NameLess_False()
+        public void ContactNameLessFalse()
         {
-            var contact = ContactFaker.Get_Contact_ContactNameLess();
+            var contact = ContactFaker.GetContactContactNameLess();
 
             var result = contact.IsValid();
 

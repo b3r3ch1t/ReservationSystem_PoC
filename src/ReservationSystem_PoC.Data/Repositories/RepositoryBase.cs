@@ -6,6 +6,7 @@ using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
 using ReservationSystem_PoC.Domain.Core.Responses;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Data.Repositories
@@ -26,7 +27,6 @@ namespace ReservationSystem_PoC.Data.Repositories
         public void Dispose()
         {
             Db.Dispose();
-            GC.SuppressFinalize(this);
         }
 
         public async Task AddAsync(TEntity obj)
@@ -36,7 +36,9 @@ namespace ReservationSystem_PoC.Data.Repositories
 
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await DbSet.FindAsync(id);
+            return await DbSet.Where(x => x.Valid)
+                .FirstOrDefaultAsync(x => id == x.Id);
+
         }
 
         public void Update(TEntity obj)
@@ -49,12 +51,20 @@ namespace ReservationSystem_PoC.Data.Repositories
             var obj = DbSet.Find(id);
             if (obj == null) return;
 
-            DbSet.Remove(obj);
+
+            // The system do not remove from database, just mark the flag valid as false
+
+            obj.Remove();
+
+            DbSet.Update(obj);
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await DbSet.ToListAsync();
+
+            return await DbSet
+                .Where(p => p.Valid)
+                .ToListAsync(); ;
         }
 
         public async Task<CommitResponse> CommitAsync()

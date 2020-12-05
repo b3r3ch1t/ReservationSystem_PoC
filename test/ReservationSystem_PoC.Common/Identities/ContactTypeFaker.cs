@@ -5,7 +5,7 @@ namespace ReservationSystem_PoC.Common.Identities
 {
     public static class ContactTypeFaker
     {
-        public static ContactType Get_ContactType_Ok()
+        public static ContactType GetContactTypeOk()
         {
             var faker = new Faker();
 
@@ -21,15 +21,15 @@ namespace ReservationSystem_PoC.Common.Identities
 
             return new ContactType(description: description);
         }
-        public static ContactType Get_ContactType_MessageNull()
+        public static ContactType GetContactTypeMessageNull()
         {
             return new ContactType(description: null);
         }
-        public static ContactType Get_ContactType_MessageEmpty()
+        public static ContactType GetContactTypeMessageEmpty()
         {
             return new ContactType(description: null);
         }
-        public static ContactType Get_ContactType_MessageMessageGreaterThanLimit()
+        public static ContactType GetContactTypeMessageMessageGreaterThanLimit()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
@@ -44,7 +44,7 @@ namespace ReservationSystem_PoC.Common.Identities
 
             return new ContactType(description: description);
         }
-        public static ContactType Get_ContactType_MessageGreaterLessLimite()
+        public static ContactType GetContactTypeMessageGreaterLessLimite()
         {
             var faker = new Faker();
             var length = Randomizer.Seed.Next(ContactType.MinDescriptionSize);

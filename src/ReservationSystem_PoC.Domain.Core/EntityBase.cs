@@ -53,7 +53,7 @@ namespace ReservationSystem_PoC.Domain.Core
             DateOfChange = DateTime.UtcNow;
         }
 
-        public void ChangeDateOfDateOfCreation()
+        public void ChangeDateOfCreation()
         {
             DateOfCreation = DateTime.UtcNow;
         }

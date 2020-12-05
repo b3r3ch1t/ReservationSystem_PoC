@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Data.Context
 {
-    public class ReservarionSystemDbContext : DbContext
+    public sealed  class ReservarionSystemDbContext : DbContext
     {
 
         public ReservarionSystemDbContext(DbContextOptions<ReservarionSystemDbContext> options) : base(options)
@@ -72,7 +72,7 @@ namespace ReservationSystem_PoC.Data.Context
 
                     case EntityState.Added:
 
-                        trackable.ChangeDateOfDateOfCreation();
+                        trackable.ChangeDateOfCreation();
                         trackable.ChangeDateOfChange();
                         trackable.Ativate();
 

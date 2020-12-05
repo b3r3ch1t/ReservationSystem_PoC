@@ -13,7 +13,7 @@ namespace ReservationSystem_PoC.Domain.Core.Interfaces
 
         ValidationResult ValidationResult { get; }
         void ChangeDateOfChange();
-        void ChangeDateOfDateOfCreation();
+        void ChangeDateOfCreation();
 
         void Ativate();
 
