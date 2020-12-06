@@ -42,7 +42,7 @@ namespace ReservationSystem_PoC.Domain.Test.ValidatorTests
             var guidCandidate = string.Empty;
 
             //act
-            var result = guidCandidate.ToString().IsValidGuid();
+            var result = guidCandidate.IsValidGuid();
 
             //assert
             Assert.False(result);

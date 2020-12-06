@@ -1,7 +1,9 @@
 ﻿// 10:55
 
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using ReservationSystem_PoC.Domain.Core.Bus;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
 
@@ -19,6 +21,7 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
             #region Domain Bus (Mediator)
 
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+            services.AddTransient<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             #endregion
 

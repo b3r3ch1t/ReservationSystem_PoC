@@ -18,9 +18,5 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
             return _serviceProvider.GetRequiredService<TDependencyType>();
         }
 
-        public IServiceProvider GetServiceProvider()
-        {
-            return _serviceProvider;
-        }
     }
 }

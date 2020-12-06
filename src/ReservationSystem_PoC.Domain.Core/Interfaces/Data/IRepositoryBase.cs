@@ -1,6 +1,6 @@
 ﻿using ReservationSystem_PoC.Domain.Core.Responses;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Domain.Core.Interfaces.Data
@@ -11,7 +11,7 @@ namespace ReservationSystem_PoC.Domain.Core.Interfaces.Data
         Task<TEntity> GetByIdAsync(Guid id);
         void Update(TEntity obj);
         void Remove(Guid id);
-        Task<IEnumerable<TEntity>> GetAllAsync();
+        IQueryable<TEntity>  GetAll();
         Task<CommitResponse> CommitAsync();
 
     }

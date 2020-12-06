@@ -67,7 +67,8 @@ namespace ReservationSystem_PoC.API
         {
             services
                 .RegisterDomainCoreDependencies()
-                .RegisterDataBaseSqlServer(configuration);
+                .RegisterDataBaseSqlServer(configuration)
+                .RegisterDataDependencies();
 
         }
 
@@ -91,6 +92,8 @@ namespace ReservationSystem_PoC.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwaggerSetup();
         }
     }
 }

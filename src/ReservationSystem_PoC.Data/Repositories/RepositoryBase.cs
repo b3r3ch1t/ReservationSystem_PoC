@@ -5,7 +5,6 @@ using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
 using ReservationSystem_PoC.Domain.Core.Responses;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +20,7 @@ namespace ReservationSystem_PoC.Data.Repositories
         public RepositoryBase(IDependencyResolver dependencyResolver)
         {
             Db = dependencyResolver.Resolve<ReservarionSystemDbContext>();
-            DbSet = dependencyResolver.Resolve<DbSet<TEntity>>();
+            DbSet = Db.Set<TEntity>();
         }
 
         public void Dispose()
@@ -59,12 +58,13 @@ namespace ReservationSystem_PoC.Data.Repositories
             DbSet.Update(obj);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public IQueryable<TEntity> GetAll()
         {
 
-            return await DbSet
-                .Where(p => p.Valid)
-                .ToListAsync(); ;
+            return DbSet
+                    .Where(p => p.Valid)
+                    .AsQueryable()
+                ;
         }
 
         public async Task<CommitResponse> CommitAsync()

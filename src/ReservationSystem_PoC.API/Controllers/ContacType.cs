@@ -1,12 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ReservationSystem_PoC.API.ViewModels;
+using ReservationSystem_PoC.Domain.Core.Interfaces;
+using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.API.Controllers
 {
-    public class ContacType : Controller
+
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class ContacTypeController : ApiBaseController
     {
-        public IActionResult Index()
+        private readonly IMapper _mapper;
+        private readonly IContactTypeRepository _contactTypeRepository;
+        public ContacTypeController(IDependencyResolver dependencyResolver)
+            : base(dependencyResolver)
         {
-            return View();
+
+            _mapper = dependencyResolver.Resolve<IMapper>();
+            _contactTypeRepository = dependencyResolver.Resolve<IContactTypeRepository>();
         }
+
+        /// <summary>
+        /// Get all Contact Type.
+        /// </summary>
+        /// <returns>List of <see cref="ContactTypeViewModel"/></returns>
+        [HttpGet()]
+        public async Task<ActionResult<List<ContactTypeViewModel>>> GetAll()
+        {
+
+            var model = _contactTypeRepository.GetAll();
+
+            var result = await _mapper.ProjectTo<ContactTypeViewModel>(model).ToListAsync();
+
+            return ResponseGet(result);
+        }
+
     }
 }

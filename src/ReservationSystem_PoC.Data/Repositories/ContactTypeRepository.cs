@@ -25,13 +25,13 @@ namespace ReservationSystem_PoC.Data.Repositories
 
             try
             {
-                var count = Db.Database.ExecuteSqlRaw("UpdateContactType",
-                    descriptionParameter,
-                    validParameter,
-                    dateOfChangeParameter,
-                    dateOfCreationParameter,
-                    idParameter
-                );
+                Db.Database.ExecuteSqlRaw("UpdateContactType",
+                  descriptionParameter,
+                  validParameter,
+                  dateOfChangeParameter,
+                  dateOfCreationParameter,
+                  idParameter
+              );
             }
             catch (Exception e)
             {

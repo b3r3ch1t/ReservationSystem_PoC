@@ -15,7 +15,7 @@ namespace ReservationSystem_PoC.Data.Factory
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile($"appsettings.json", optional: true)
+                .AddJsonFile("appsettings.json", optional: true)
                 .Build();
 
             var connectionString = config.GetConnectionString("DefaultConnection");

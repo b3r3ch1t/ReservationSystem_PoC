@@ -120,7 +120,7 @@ namespace ReservationSystem_PoC.Data.Test
                 await CreateListOfContactType();
             }
 
-            var listFromRepository = await _contactTypeRepository.GetAllAsync();
+            var listFromRepository =    _contactTypeRepository.GetAll();
 
             var listFromDatabase = _db.ContactTypes.Where(x => x.Valid);
 
@@ -131,16 +131,6 @@ namespace ReservationSystem_PoC.Data.Test
         private async Task CreateListOfContactType()
         {
             var faker = new Faker();
-
-            //Create a random text with min=3 and ContactType.MaxDescriptionSize
-            var description = faker
-                    .Lorem.Paragraph(min: 3)
-                ;
-
-            if (description.Length >= ContactType.MaxDescriptionSize)
-            {
-                description = description.Substring(0, ContactType.MaxDescriptionSize);
-            }
 
             var fakerType = new Faker<ContactType>()
                 .RuleFor(p => p.Description,

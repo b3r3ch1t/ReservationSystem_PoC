@@ -26,7 +26,6 @@ namespace ReservationSystem_PoC.Domain.Core.Responses
 
 
         public bool Success { get; }
-        public bool Failure => !Success;
 
         public IList<string> Message { get; }
 

@@ -62,21 +62,7 @@ namespace ReservationSystem_PoC.Domain.Test.ValidatorTests
         }
 
 
-        [Fact]
-        public void PhoneNull_False()
-        {
-
-            //arrange
-            var phoneCandidate = (string)null;
-
-            //act
-            var result = phoneCandidate.IsPhoneValid();
-
-            //assert
-            Assert.False(result);
-        }
-
-        [Fact]
+        [Fact] 
         public void PhoneWhiteSpace_False()
         {
 

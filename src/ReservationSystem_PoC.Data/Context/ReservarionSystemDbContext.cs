@@ -138,8 +138,7 @@ namespace ReservationSystem_PoC.Data.Context
                     Console.WriteLine(ex);
                 }
             }
-
-            return;
+             
         }
     }
 

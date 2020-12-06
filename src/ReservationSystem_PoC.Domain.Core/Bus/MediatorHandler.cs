@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
 using ReservationSystem_PoC.Domain.Core.Responses;
@@ -26,6 +27,12 @@ namespace ReservationSystem_PoC.Domain.Core.Bus
         {
             return _mediator.Publish(@event);
         }
+
+        public Task NotifyDomainNotification<T>(T domainNotification) where T : DomainNotification
+        {
+            return _mediator.Publish(domainNotification);
+        }
+
 
 
     }
