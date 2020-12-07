@@ -82,11 +82,6 @@
         "named": "never"
       }
     },
-     
-      "scripts": {
-        "postinstall": "ngcc"
-      },
-    
     "typedef": [
       true,
       "call-signature"

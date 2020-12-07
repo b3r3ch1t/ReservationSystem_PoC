@@ -12,6 +12,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
             CreateMap<ContactType, ContactTypeViewModel>();
 
             CreateMap<Reservation, ReservationViewModel>()
+                .ForMember(dest => dest.Id, o => o.MapFrom(map => map.Id))
 
                 .ForMember(dest => dest.Message, o => o.MapFrom(map => map.Message))
                 .ForMember(dest => dest.DateOfChange, o => o.MapFrom(map => map.DateOfChange))

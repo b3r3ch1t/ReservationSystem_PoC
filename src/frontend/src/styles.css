@@ -1,1 +1,162 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+	background: #ddd;
+}
+nav{
+	background: white;
+	padding: 8px;
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+.header_backgroud{
+	padding: 81px 30px;
+	background-image: url('assets/img/bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.left_side{
+	color: red;
+	font-weight: bold;
+}
+.col-md-4.middle_content {
+    font-size: 13px;
+}
+
+button.extra.float-right.btn.btn-secondary {
+    border-radius: 0px !important;
+    padding: 7px 23px;
+}
+.content_header_form.container {
+    background: white;
+    padding-top: 17px;
+}
+
+.content_edit.container {
+    border: 1px solid #7d7676;
+    margin-top: 30px;
+    background: white;
+}
+.img {
+    width: 457px;
+}
+.content_edit {
+    font-size: 16px;
+    margin-top: 25px;
+}
+
+button.btn.btn-primary {
+    background: red !important;
+    border-radius: 0px !important;
+    padding: 12px 48px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+}
+
+.html_edit_nav {
+    width: 1136px;
+    margin-left: -15px;
+}
+
+.input_size{
+	padding-top: 12px;
+}
+ul{
+	list-style: none;
+}
+ul li{
+	list-style: none;
+}
+.list_style{
+	background: #ddd;
+}
+li.list_style {
+    height: 52px;
+    padding-right: 7px;
+    padding-top: 5px;
+	margin-bottom: 14px
+}
+
+.list_title {
+  width: 165px;
+  float: right;
+  margin-top: 1px;
+}
+
+.list_title h4 {
+  font-size: 17px;
+  margin-bottom: 1px;
+}
+
+.list_title p {
+  font-size: 11px;
+}
+
+.img_list {
+    width: 63px;
+    float: left;
+    height: 52px;
+    margin-top: -5px;
+}
+
+.list_title {
+    width: 165px;
+    float: right;
+    margin-top: 1px;
+}
+
+.list_title h4 {
+    font-size: 17px;
+    margin-bottom: 1px;
+}
+
+.list_title p {
+    font-size: 11px;
+}
+
+.rate h4 {
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+.rate {
+    text-align: center;
+}
+.star {
+    font-size: 11px;
+    color: orange;
+}
+
+p.list_p {
+    text-align: center;
+}
+
+li.page-item {
+    padding-right: 13px;
+}
+
+a.page-link.secondary_chage {
+    background: #ddd;
+    color: black;
+}
+
+span#absolute_man {
+        position: absolute;
+    left: 10px;
+    font-size: 22px;
+    top: 0px;
+}
+
+@media (max-width: 760px){
+	.list_style{
+		height: 187px !important;
+	}
+	.rate{
+		text-align: left;
+	}
+	.list_p{
+		text-align: left !important;
+	}
+	.float-right.btn.btn-secondary{
+		float: left !important;
+	}
+}

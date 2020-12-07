@@ -11,6 +11,6 @@ namespace ReservationSystem_PoC.API.ViewModels
         public int Ranking { get; set; }
 
         public bool Favorited { get; set; }
-
+        public Guid Id { get; set; }
     }
 }

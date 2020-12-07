@@ -1,20 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReservationListComponent } from './reservation-list/reservation-list.component';
+
+
+
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent,
+    ReservationListComponent
+   ],
   imports: [
     BrowserModule,
-    BsDropdownModule,
-    TooltipModule,
-    ModalModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

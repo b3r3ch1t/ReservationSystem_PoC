@@ -48,6 +48,16 @@ namespace ReservationSystem_PoC.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddCors(config =>
+            {
+                config.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddControllers();
 
             // Swagger Config
@@ -90,6 +100,8 @@ namespace ReservationSystem_PoC.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
