@@ -36,13 +36,12 @@ namespace ReservationSystem_PoC.Data.Test
 
             await _contactTypeRepository.AddAsync(contactType);
 
-            await _contactTypeRepository.CommitAsync();
+            var rowsAffected = await _contactTypeRepository.CommitAsync();
 
-            var countNew = await _db.ContactTypes.CountAsync();
 
-            var contactFromDatabase = await _db.ContactTypes.FindAsync(contactType.Id);
+            var contactFromDatabase = await _contactTypeRepository.GetByIdAsync(contactType.Id);
 
-            Assert.True(countNew == count + 1);
+            Assert.True(rowsAffected.QuantityOfRecordsAffecteds == 1);
 
             Assert.NotNull(contactFromDatabase);
         }
@@ -55,37 +54,6 @@ namespace ReservationSystem_PoC.Data.Test
             var result = await _contactTypeRepository.GetByIdAsync(contactType.Id);
 
             Assert.Equal(contactType.Id, result.Id);
-
-        }
-
-        [Fact]
-        public async Task UpdateOk()
-        {
-            var contactType = ContactTypeFaker.GetContactTypeOk();
-
-            await _db.ContactTypes.AddAsync(contactType);
-
-            await _db.SaveChangesAsync();
-
-            var newContactType = ContactTypeFaker.GetContactTypeOk();
-
-            var dateOfchange = contactType.DateOfChange;
-            var dateOfCreation = contactType.DateOfCreation;
-
-
-
-            contactType.ChangeDateOfChange();
-            contactType.ChangeDateOfCreation();
-            contactType.ChangeDescription(newContactType.Description);
-
-            _contactTypeRepository.Update(contactType);
-
-            await _contactTypeRepository.CommitAsync();
-
-
-            Assert.NotEqual(contactType.DateOfChange, dateOfchange);
-            Assert.NotEqual(contactType.DateOfCreation, dateOfCreation);
-            Assert.Equal(contactType.Description, newContactType.Description);
 
         }
 
@@ -120,7 +88,7 @@ namespace ReservationSystem_PoC.Data.Test
                 await CreateListOfContactType();
             }
 
-            var listFromRepository =    _contactTypeRepository.GetAll();
+            var listFromRepository = _contactTypeRepository.GetAll();
 
             var listFromDatabase = _db.ContactTypes.Where(x => x.Valid);
 
@@ -144,5 +112,7 @@ namespace ReservationSystem_PoC.Data.Test
 
             await _db.SaveChangesAsync();
         }
+
+
     }
 }

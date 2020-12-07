@@ -33,7 +33,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
             bool favorited)
         {
             Message = message;
-            Contact = contact;
+
             Ranking = ranking;
             Favorited = favorited;
 

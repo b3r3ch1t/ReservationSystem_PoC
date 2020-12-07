@@ -34,7 +34,8 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
             Name = name;
             PhoneNumber = phoneNumber;
             BirthDate = birthDate;
-            ContactType = contactType;
+
+
             if (contactType != null) ContactTypeId = contactType.Id;
 
             Reservations = new List<Reservation>();

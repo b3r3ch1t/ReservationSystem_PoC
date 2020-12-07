@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReservationSystem_PoC.API.Configurations;
+using ReservationSystem_PoC.Data;
 using ReservationSystem_PoC.Data.IoC;
 using ReservationSystem_PoC.Domain.Core.IoC;
 
@@ -80,6 +81,10 @@ namespace ReservationSystem_PoC.API
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReservationSystem_PoC.API v1"));
+
+                //Create database and seed some data
+
+                app.UseSeedDatabase();
             }
 
             app.UseHttpsRedirection();

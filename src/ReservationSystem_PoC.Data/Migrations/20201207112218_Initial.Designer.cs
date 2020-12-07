@@ -10,8 +10,8 @@ using ReservationSystem_PoC.Data.Context;
 namespace ReservationSystem_PoC.Data.Migrations
 {
     [DbContext(typeof(ReservarionSystemDbContext))]
-    [Migration("20201204201327_initial")]
-    partial class initial
+    [Migration("20201207112218_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -102,6 +102,32 @@ namespace ReservationSystem_PoC.Data.Migrations
                     b.HasIndex("Valid");
 
                     b.ToTable("ContactType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ea190d3f-6288-4277-93d6-8dd72cd7c76b"),
+                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9113),
+                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9678),
+                            Description = "Contact Type 1",
+                            Valid = true
+                        },
+                        new
+                        {
+                            Id = new Guid("bea4bd1a-0c70-421a-95f7-4822855c1a09"),
+                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(802),
+                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(803),
+                            Description = "Contact Type 2",
+                            Valid = true
+                        },
+                        new
+                        {
+                            Id = new Guid("e3c2843d-909c-4a27-a941-7749f3d5ea9c"),
+                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(808),
+                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(809),
+                            Description = "Contact Type 3",
+                            Valid = true
+                        });
                 });
 
             modelBuilder.Entity("ReservationSystem_PoC.Domain.Core.Entities.Reservation", b =>
@@ -124,8 +150,8 @@ namespace ReservationSystem_PoC.Data.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<int>("Ranking")
                         .HasColumnType("int");

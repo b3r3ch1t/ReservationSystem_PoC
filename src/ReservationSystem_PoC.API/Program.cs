@@ -12,7 +12,7 @@ namespace ReservationSystem_PoC.API
         public static int Main(string[] args)
         {
             //https://github.com/serilog/serilog
-            var config = new FastConsoleSinkOptions { UseJson = true };
+            var config = new FastConsoleSinkOptions { UseJson = false };
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)

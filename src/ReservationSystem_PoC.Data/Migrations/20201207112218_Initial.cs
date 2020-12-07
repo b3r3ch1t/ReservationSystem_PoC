@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Text;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ReservationSystem_PoC.Data.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,7 +52,7 @@ namespace ReservationSystem_PoC.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContactId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Ranking = table.Column<int>(type: "int", nullable: false),
                     Favorited = table.Column<bool>(type: "bit", nullable: false),
                     Valid = table.Column<bool>(type: "bit", nullable: false),
@@ -70,6 +69,21 @@ namespace ReservationSystem_PoC.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "ContactType",
+                columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
+                values: new object[] { new Guid("ea190d3f-6288-4277-93d6-8dd72cd7c76b"), new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9113), new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9678), "Contact Type 1", true });
+
+            migrationBuilder.InsertData(
+                table: "ContactType",
+                columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
+                values: new object[] { new Guid("bea4bd1a-0c70-421a-95f7-4822855c1a09"), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(802), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(803), "Contact Type 2", true });
+
+            migrationBuilder.InsertData(
+                table: "ContactType",
+                columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
+                values: new object[] { new Guid("e3c2843d-909c-4a27-a941-7749f3d5ea9c"), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(808), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(809), "Contact Type 3", true });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contacts_BirthDate",
@@ -155,31 +169,6 @@ namespace ReservationSystem_PoC.Data.Migrations
                 name: "IX_Reservations_Valid",
                 table: "Reservations",
                 column: "Valid");
-
-            AddStoreProcedure(migrationBuilder);
-        }
-
-        private void AddStoreProcedure(MigrationBuilder migrationBuilder)
-        {
-
-            var sb = new StringBuilder();
-
-            sb.AppendLine(" CREATE PROCEDURE UpdateContactType @Description nvarchar(512), @Valid BIT,@DateOfChange DATETIME2 (7), @DateOfCreation  DATETIME2 (7), @Id UNIQUEIDENTIFIER ");
-            sb.AppendLine(" AS ");
-            sb.AppendLine(" BEGIN ");
-            sb.AppendLine("	SET NOCOUNT ON; ");
-            sb.AppendLine(" 	UPDATE [dbo].[ContactType] ");
-            sb.AppendLine("                SET ");
-            sb.AppendLine(" 					[Description] = @Description,");
-            sb.AppendLine("					    [Valid] = @Valid,  ");
-            sb.AppendLine("					    [DateOfChange] = @DateOfChange , ");
-            sb.AppendLine("					    [DateOfCreation] = @DateOfCreation");
-            sb.AppendLine("                WHERE (Id = @Id)");
-            sb.AppendLine("END");
-            sb.AppendLine("GO");
-
-            migrationBuilder.Sql(sb.ToString());
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
