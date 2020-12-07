@@ -13,6 +13,8 @@ namespace ReservationSystem_PoC.Data.IoC
 
             services.AddScoped<IContactTypeRepository, ContactTypeRepository>();
 
+
+            services.AddScoped<IReservationRepository, ReservationRepository>();
             return services;
         }
     }
