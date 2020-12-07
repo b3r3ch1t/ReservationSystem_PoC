@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.Domain.Test", "test\ReservationSystem_PoC.Domain\ReservationSystem_PoC.Domain.Test.csproj", "{01DEF60E-0C68-4FAC-8857-4B11B5D25FC4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4) Tests", "4) Tests", "{96370F05-15EF-47F4-A854-F0D028ED3FA9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5) Tests", "5) Tests", "{96370F05-15EF-47F4-A854-F0D028ED3FA9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2) Domain", "2) Domain", "{0CE8FED2-BFA5-45A8-AD07-1BBE2806E0A8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4) Domain", "4) Domain", "{0CE8FED2-BFA5-45A8-AD07-1BBE2806E0A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3) Data", "3) Data", "{29E85CE9-0E8C-48F8-BEF4-C8B0581E8D63}"
 EndProject
@@ -17,11 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.Data"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.Data.Test", "test\ReservationSystem_PoC.Data_Test\ReservationSystem_PoC.Data.Test.csproj", "{52858B46-ED06-47CC-A5D5-A78A3EBA972C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationSystem_PoC.Common", "test\ReservationSystem_PoC.Common\ReservationSystem_PoC.Common.csproj", "{9C6ACC18-DD46-4937-9219-2E7682EAA430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.Common", "test\ReservationSystem_PoC.Common\ReservationSystem_PoC.Common.csproj", "{9C6ACC18-DD46-4937-9219-2E7682EAA430}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1) API", "1) API", "{32CC083F-5131-49C3-90B1-9C2C7F35D263}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2) API", "2) API", "{32CC083F-5131-49C3-90B1-9C2C7F35D263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReservationSystem_PoC.API", "src\ReservationSystem_PoC.API\ReservationSystem_PoC.API.csproj", "{84E049E1-4998-4A4C-A907-7C2E9C294757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReservationSystem_PoC.API", "src\ReservationSystem_PoC.API\ReservationSystem_PoC.API.csproj", "{84E049E1-4998-4A4C-A907-7C2E9C294757}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
