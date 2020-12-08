@@ -30,7 +30,7 @@ namespace ReservationSystem_PoC.Data
             AddStoreProcedure(context);
         }
 
-        private static void CreateReservations(ReservarionSystemDbContext context)
+        public static void CreateReservations(ReservarionSystemDbContext context)
         {
             if (context.Reservations.Any()) return;
 
@@ -38,7 +38,7 @@ namespace ReservationSystem_PoC.Data
 
             var faker = new Faker();
 
-            var quantity = faker.Random.Int(min: 10, max: 50);
+            var quantity = faker.Random.Int(min: 100, max: 500);
 
 
             for (var i = 0; i < quantity - 1; i++)
@@ -71,7 +71,7 @@ namespace ReservationSystem_PoC.Data
 
         }
 
-        private static void CreateContacts(ReservarionSystemDbContext context)
+        public static void CreateContacts(ReservarionSystemDbContext context)
         {
             if (!context.ContactTypes.Any()) CreateContactType(context);
 
@@ -110,7 +110,7 @@ namespace ReservationSystem_PoC.Data
 
         }
 
-        private static void CreateContactType(ReservarionSystemDbContext context)
+        public static void CreateContactType(ReservarionSystemDbContext context)
         {
             if (!context.ContactTypes.Any()) return;
             var faker = new Faker();
@@ -120,18 +120,21 @@ namespace ReservationSystem_PoC.Data
             var lengthDescription =
                 faker.Random.Int(min: ContactType.MinDescriptionSize, max: ContactType.MaxDescriptionSize);
 
-            var fakerContactType = new Faker<ContactType>()
-                .RuleFor(p => p.Description,
-                    f =>
-                        faker.Random.AlphaNumeric(length: lengthDescription)
-                        )
-                ;
 
-            var listContactType = fakerContactType.Generate(quantity);
 
-            context.ContactTypes.AddRange(listContactType);
+            for (var i = 1; i < quantity; i++)
+            {
+                faker = new Faker();
+                var description = faker.Random.AlphaNumeric(length: lengthDescription);
+                var contactType = new ContactType(description);
+                context.ContactTypes.Add(contactType);
+
+            }
+
+
 
             context.SaveChanges();
+
         }
 
         private static void AddStoreProcedure(ReservarionSystemDbContext context)

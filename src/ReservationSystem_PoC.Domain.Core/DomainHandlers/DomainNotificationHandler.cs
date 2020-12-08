@@ -1,11 +1,11 @@
 ﻿using MediatR;
-using System;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ReservationSystem_PoC.Domain.Core.DomainNotifications
+namespace ReservationSystem_PoC.Domain.Core.DomainHandlers
 {
 
     public class DomainNotificationHandler : INotificationHandler<DomainNotification>
@@ -25,12 +25,16 @@ namespace ReservationSystem_PoC.Domain.Core.DomainNotifications
 
         public virtual Dictionary<string, string[]> GetNotificationsByKey()
         {
-            var strings = _notifications.Select(s => s.Key).Distinct();
+            var strings = _notifications.Select(s => s.DomainNotificationId).Distinct();
             var dictionary = new Dictionary<string, string[]>();
             foreach (var str in strings)
             {
                 var key = str;
-                dictionary[key] = _notifications.Where(w => w.Key.Equals(key, StringComparison.Ordinal)).Select(s => s.Value).ToArray();
+                dictionary[key.ToString()] = _notifications
+                    .Where(w => w.DomainNotificationId == key)
+                    .Select(s => s.Value)
+
+                    .ToArray();
             }
             return dictionary;
         }

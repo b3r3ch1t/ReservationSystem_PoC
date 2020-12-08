@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ReservationSystem_PoC.Data;
 using ReservationSystem_PoC.Data.Context;
 
 namespace ReservationSystem_PoC.Common.Context
@@ -26,6 +27,10 @@ namespace ReservationSystem_PoC.Common.Context
             context.Database.EnsureDeleted();
 
             context.Database.EnsureCreated();
+
+            DataSeeder.CreateContactType(context);
+            DataSeeder.CreateContacts(context);
+            DataSeeder.CreateReservations(context);
 
             return context;
         }
