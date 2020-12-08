@@ -56,7 +56,7 @@
         </div>
           </li>
 
-          <li class="list_style" *ngFor="let reservation of reservations">
+          <li class="list_style" *ngFor="let reservation of reservations | slice: (page-1) * pageSize : page * pageSize">
             <div class="row">
               <div class="sm_size_one col-md-3">
               <div class="edit_div">
@@ -107,11 +107,16 @@
 
           </li>
 
+<li>
+
+<ngb-pagination [collectionSize]="70"
+[pageSize]=8 [(page)]="page" aria-label="Default pagination"></ngb-pagination>
+
+</li>
 
 
 
-
-            <li style="margin-bottom: 51px">
+            <!-- <li style="margin-bottom: 51px">
 
 
                   <nav style="    padding: 0px;
@@ -130,7 +135,7 @@
   </nav>
 
             </li>
-
+ -->
 
 
           </ul>

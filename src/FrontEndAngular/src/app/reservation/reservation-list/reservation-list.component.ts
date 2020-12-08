@@ -14,11 +14,22 @@ export class ReservationListComponent implements OnInit {
 
   reservations: Reservation[] = [];
 
+  collectionSize :number ;
+
+  pageSize :number;
+  page :number;
+
   constructor( public reservationService: ReservationService) { }
 
   ngOnInit(): void {
 
     this.getReservations();
+
+    this.collectionSize = this.reservations.length;
+    this.pageSize = 8;
+    this.page=1;
+
+
   }
 
   getReservations() {

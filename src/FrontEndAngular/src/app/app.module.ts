@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule, HttpErrorResponse, HttpHeaders } from '@a
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReservationListComponent } from './reservation/reservation-list/reservation-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -18,6 +19,7 @@ import { ReservationListComponent } from './reservation/reservation-list/reserva
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
