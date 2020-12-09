@@ -73,8 +73,7 @@ namespace ReservationSystem_PoC.Data.Repositories
             {
                 var rowsAffected = await Db.SaveChangesAsync();
 
-                return CommitResponse.Ok(rowsAffected);
-
+                return rowsAffected > 0 ? CommitResponse.Ok(rowsAffected) : CommitResponse.Fail();
             }
             catch (Exception ex)
             {

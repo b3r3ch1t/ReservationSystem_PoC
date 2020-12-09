@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
 using ReservationSystem_PoC.Domain.Core.Responses;
@@ -23,6 +24,8 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
 
             if (reservation == null)
             {
+
+
                 return CommandResponse.Fail("The reservation is invalid !");
             }
 
@@ -30,8 +33,16 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
 
             if (!reservation.IsValid())
             {
+
+                foreach (var error in reservation.ValidationResult.Errors)
+                {
+                    await MediatorHandler.NotifyDomainNotification(
+                          domainNotification: DomainNotification.Fail(error.ErrorMessage));
+                }
                 return CommandResponse.Fail("The reservation value is not  invalid !");
             }
+
+            _reservationRepository.Update(reservation);
 
             var result = await _reservationRepository.CommitAsync();
 

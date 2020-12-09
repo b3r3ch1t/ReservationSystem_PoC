@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using ReservationSystem_PoC.Domain.Core.Entities;
-using ReservationSystem_PoC.Domain.Core.Extensions;
 
 namespace ReservationSystem_PoC.Domain.Core.Validators
 {
@@ -10,7 +9,6 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
         {
 
             ValidateMessage();
-            ValidadeContact();
 
             ValidadeRacking();
         }
@@ -21,24 +19,6 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
                 .GreaterThanOrEqualTo(Reservation.MinRanking)
                 .LessThanOrEqualTo(Reservation.MaxRanking)
                 .WithMessage($"The ranking must be between {Reservation.MinRanking} and {Reservation.MaxRanking}");
-
-        }
-
-        private void ValidadeContact()
-        {
-            RuleFor(x => x.Contact)
-                .NotNull()
-                .WithMessage("The Contact is not valid .");
-
-
-
-
-            When(x => x.Contact != null, () =>
-           {
-               RuleFor(x => x.ContactId.ToString())
-                   .Must(x => x.IsValidGuid())
-                   .WithMessage("The contact is not valid .");
-           });
 
         }
 

@@ -6,7 +6,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
 {
     public class EntityToCommandsMappingProfile : Profile
     {
-        //Create the  from ViewModel  to  DomainCommands
+        //Create the  from Entity  to  DomainCommands
         public EntityToCommandsMappingProfile()
         {
             CreateMap<Reservation, UpdateRankingOfReservationCommand>()

@@ -7,7 +7,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             //Create the  from ViewModel  to  Domain
-            //CreateMap< ViewModel, Domain>();
+
         }
     }
 }

@@ -47,8 +47,8 @@ namespace ReservationSystem_PoC.API.Controllers
         /// </summary>
         /// <param name="command"><see cref="ChangeRankingReservationModel"/></param>
         /// <returns><see cref="ReservationViewModel"/></returns>
-        [HttpPost("")]
-        [Route("api/v1/updatereservationRaking/{NewRanking}")]
+        [HttpPost]
+        [Route("api/v1/updatereservationRaking/")]
         public async Task<ActionResult<ReservationViewModel>> UpdateReservationRaking([FromBody] ChangeRankingReservationModel command)
         {
             if (!ModelState.IsValid)
@@ -71,14 +71,16 @@ namespace ReservationSystem_PoC.API.Controllers
 
             var result = await Mediator.SendCommandAsync(updateRankingOfReservationCommand);
 
+
             var reservationResult = _mapper.Map<ReservationViewModel>(reservation);
+
+            reservationResult.Ranking = command.NewRanking;
 
             return ResponsePost(
                 nameof(UpdateReservationRaking),
-                  GetActualRoute(),
                 reservationResult);
-        }
 
+        }
 
     }
 }

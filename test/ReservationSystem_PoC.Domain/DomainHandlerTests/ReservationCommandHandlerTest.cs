@@ -65,7 +65,7 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
 
             Assert.True(commandResponse.Success);
             repository.Verify(x => x.GetByIdAsync(command.ReservationId), Times.Once);
-
+            repository.Verify(x => x.Update(reservation), Times.Once);
 
             repository.Verify(x => x.CommitAsync(), Times.Once);
 

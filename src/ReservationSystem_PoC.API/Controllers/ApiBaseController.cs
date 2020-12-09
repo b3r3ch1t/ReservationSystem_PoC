@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
@@ -54,30 +53,21 @@ namespace ReservationSystem_PoC.API.Controllers
             return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
         }
 
-        protected ActionResult<T> ResponsePost<T>(string action, object route, T result)
+        protected ActionResult<T> ResponsePost<T>(string action, T result)
         {
-            if (IsValidOperation())
-            {
-                if (result == null)
-                    return NoContent();
 
-                return CreatedAtAction(action, route, result);
-            }
+            var route = GetActualRoute();
 
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
-        }
 
-        protected ActionResult<T> ResponsePost<T>(string action, string controller, object route, T result)
-        {
-            if (IsValidOperation())
-            {
-                if (result == null)
-                    return NoContent();
+            if (!IsValidOperation())
+                return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
 
-                return CreatedAtAction(action, controller, route, result);
-            }
 
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
+            if (result == null)
+                return NoContent();
+
+            return CreatedAtAction(action, route, result);
+
         }
         protected ActionResult<IEnumerable<T>> ResponseGet<T>(IEnumerable<T> result)
         {
@@ -119,8 +109,9 @@ namespace ReservationSystem_PoC.API.Controllers
 
         protected string GetActualRoute()
         {
-            var endpoint = HttpContext.GetEndpoint();
-            return endpoint?.Metadata.GetMetadata<EndpointNameMetadata>()?.EndpointName;
+            var endpoint = HttpContext.Request.Path.Value;
+
+            return endpoint;
         }
 
     }
