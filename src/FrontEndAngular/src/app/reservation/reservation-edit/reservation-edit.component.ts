@@ -4,8 +4,6 @@ import { FormGroup, FormControl} from '@angular/forms'
 
 import {ReservationService } from '../../Services/reservation.service';
 
-import {IReservation} from '../models/IReservation'
-
 
 @Component({
   selector: 'app-reservation-edit',

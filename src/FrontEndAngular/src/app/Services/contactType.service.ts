@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { IReservation } from './../models/IReservation'
+import { IContactType } from '../models/IContactType'
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class ReservationService {
+export class ContactTypeService {
 
-  urlReservation = 'http://localhost:5000/api/v1/Reservation';
+  urlContactType = 'http://localhost:5000/api/v1/ContacType';
 
   // injecting  o HttpClient
   constructor(private httpClient: HttpClient) { }
@@ -18,23 +18,6 @@ export class ReservationService {
   // Headers
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  }
-
-  // Get All Reservations
-  getReservations(): Observable<IReservation[]> {
-    return this.httpClient.get<IReservation[]>(this.urlReservation)
-      .pipe(
-        retry(2),
-        catchError(this.handleError))
-  }
-
-
-  // Get reservation by Id
-  getReservationById(id: string): Observable<IReservation> {
-    return this.httpClient.get<IReservation>(`${this.urlReservation}/${id}`)
-      .pipe(
-        retry(2),
-        catchError(this.handleError))
   }
 
   //handle Erro
@@ -50,5 +33,14 @@ export class ReservationService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
+
+  getContatType(): Observable<IContactType[]> {
+
+    return this.httpClient.get<IContactType[]>(this.urlContactType)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+  }
+
 
 }

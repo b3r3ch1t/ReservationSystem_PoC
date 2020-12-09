@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ReservationModule} from './Modules/reservation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     NgbModule,
     ReservationModule,
     BrowserAnimationsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

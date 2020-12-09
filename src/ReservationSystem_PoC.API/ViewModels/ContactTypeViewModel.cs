@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReservationSystem_PoC.API.ViewModels
 {
@@ -6,6 +7,8 @@ namespace ReservationSystem_PoC.API.ViewModels
     {
 
         [Display(Name = "Description of Contact")]
-        public string Description { get; set; }
+        public string ContactTypeName { get; set; }
+
+        public Guid ContactTypeId { get; set; }
     }
 }

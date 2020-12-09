@@ -5,6 +5,7 @@ using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.API.Controllers
@@ -34,7 +35,7 @@ namespace ReservationSystem_PoC.API.Controllers
 
             var model = _contactTypeRepository.GetAll();
 
-            var result = await _mapper.ProjectTo<ContactTypeViewModel>(model).ToListAsync();
+            var result = await _mapper.ProjectTo<ContactTypeViewModel>(model).OrderBy(x => x.ContactTypeName).ToListAsync();
 
             return ResponseGet(result);
         }

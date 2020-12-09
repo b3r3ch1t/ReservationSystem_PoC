@@ -1,37 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl} from '@angular/forms'
+import { FormGroup, FormControl } from '@angular/forms'
+import { IReservation } from '../../models/IReservation';
+import { IContactType } from '../../models/IContactType';
+import { ContactTypeService } from '../../Services/contactType.service'
+
 
 @Component({
   selector: 'app-reservation-create',
   templateUrl: './reservation-create.component.html',
   styleUrls: ['./reservation-create.component.css']
 })
+
+
+
 export class ReservationCreateComponent implements OnInit {
 
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
 
-  reservationForm:FormGroup;
+  contactTypes: IContactType[] ;
 
+  contactTypeName  = 'contactTypeName';
 
-
-  constructor() { }
+  constructor(public contactTypeService: ContactTypeService  ) {  }
 
   ngOnInit() {
+    this.getReservations();
+}
 
-    this.reservationForm = new FormGroup(
-      {
-        description : new FormControl(),
-        dateOfChange : new FormControl(),
-        ranking : new FormControl(),
-        favorited: new FormControl(),
-        clientId: new  FormControl(),
-        clientName : new FormControl(),
-        ContactTypeId:new FormControl(),
-        ContactTypeName:new FormControl(),
-        ClientBirthDate :new FormControl(),
-      }
-    )
-  }
+getReservations() {
+  this.contactTypeService.getContatType().subscribe((reserv: any) => {
+    this.contactTypes = reserv;
+  });
+
+  // this.contactTypes = [
+  //   {contactTypeId:"98789", contactTypeName:"contact name 1"},
+  //   {contactTypeId: "88090", contactTypeName:"contact name 2 "}
+  // ];
 
 
+
+}
 
 }

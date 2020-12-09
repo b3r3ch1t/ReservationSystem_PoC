@@ -9,7 +9,10 @@ namespace ReservationSystem_PoC.API.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             //Create the Maps from Domain to ViewModel
-            CreateMap<ContactType, ContactTypeViewModel>();
+            CreateMap<ContactType, ContactTypeViewModel>()
+                .ForMember(dest => dest.ContactTypeId, o => o.MapFrom(map => map.Id))
+                .ForMember(dest => dest.ContactTypeName, o => o.MapFrom(map => map.Description))
+                ;
 
             CreateMap<Reservation, ReservationViewModel>()
                 .ForMember(dest => dest.Id, o => o.MapFrom(map => map.Id))

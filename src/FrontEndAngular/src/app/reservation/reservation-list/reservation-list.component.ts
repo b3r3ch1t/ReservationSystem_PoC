@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
 
-import { IReservation } from '../models/IReservation';
+import { IReservation } from '../../models/IReservation';
 import {ReservationService } from '../../Services/reservation.service';
-import {SortByReservation} from '../models/SortByReservation';
+import {SortByReservation} from '../../models/SortByReservation';
 
 @Component({
   selector: 'app-reservation-list',
   templateUrl: './reservation-list.component.html',
   styleUrls: ['./reservation-list.component.scss']
 })
+
+
 export class ReservationListComponent implements OnInit {
 
   reservations: IReservation[] = [];
@@ -51,7 +52,6 @@ export class ReservationListComponent implements OnInit {
   getReservations() {
     this.reservationService.getReservations().subscribe((reserv: any) => {
       this.reservations = reserv;
-      console.log(this.reservations);
     });
   }
 

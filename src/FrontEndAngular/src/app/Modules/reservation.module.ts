@@ -7,19 +7,15 @@ import { ReservationListComponent } from '../reservation/reservation-list/reserv
 import { SortPipeModule } from '../Modules/sortPipe.module'
 import { ReservationEditComponent } from '../reservation/reservation-edit/reservation-edit.component';
 import { ReservationCreateComponent } from '../reservation/reservation-create/reservation-create.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
-import {MatInputModule} from '@angular/material/input';
-
-import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
     SortPipeModule,
-    MatInputModule,
-
-    MatIconModule,
+    MatAutocompleteModule
   ],
   declarations:
   [
@@ -29,7 +25,8 @@ import {MatIconModule} from '@angular/material/icon';
   ],
   exports: [
     ReservationListComponent,
-    ReservationEditComponent
+    ReservationEditComponent,
+    ReservationCreateComponent
   ]
 })
 

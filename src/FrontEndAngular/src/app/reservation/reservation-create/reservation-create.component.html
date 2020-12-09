@@ -40,17 +40,34 @@
       </div>
 
 
-      <div class="col-md-3 col-sm-2">
+     <!--  <div class="col-md-3 col-sm-2">
         <div class="form-group">
           <div class="input-group mb-3">
             <div class="inputWithIcon">
-              <input type="text" placeholder="Contact name">
+              <input type="text" placeholder="Contact Type">
               <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
+      <div class="inputWithIcon">
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto">
+
+                 <i class="fa fa-id-card" aria-hidden="true"></i>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of contactTypes" [value]="option.contactTypeName">
+              {{option.contactTypeName}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
 
       <div class="col-md-3 col-sm-2">
         <div class="form-group">
@@ -72,14 +89,14 @@
 <section>
   <div class="content_edit container">
     <div class="html_edit_nav">
-      <img src="img/header.png" alt="" class="header_icon" />
+      <img src="assets/img/header.png" alt="" class="header_icon" />
     </div>
     <div class="edit_content">
       <div class="title">
         <h3> Keep that nois down </h3>
       </div>
       <div class="img">
-        <img src="img/speaker.png" alt="" />
+        <img src="assets/img/speaker.png" alt="" />
       </div>
       <div class="content_edit">
         <p>This is will content This is will content This is will content This is will content This is will content This
