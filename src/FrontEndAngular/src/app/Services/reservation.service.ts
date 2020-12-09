@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Reservation } from '../reservation/models/reservation.model';
+import { IReservation } from '../reservation/models/IReservation'
 
 @Injectable({
   providedIn: 'root'
@@ -21,17 +21,17 @@ httpOptions = {
 }
 
 // Get All Reservations
-getReservations(): Observable<Reservation[]> {
-  return this.httpClient.get<Reservation[]>(this.url)
+getReservations(): Observable<IReservation[]> {
+  return this.httpClient.get<IReservation[]>(this.url)
     .pipe(
       retry(2),
       catchError(this.handleError))
 }
 
 
-// Get All Reservations
-getReservationById(id: string): Observable<Reservation[]> {
-  return this.httpClient.get<Reservation[]>(this.url)
+// Get reservation by Id
+getReservationById(id: string): Observable<IReservation> {
+  return this.httpClient.get<IReservation>(`${this.url}/${id}`)
     .pipe(
       retry(2),
       catchError(this.handleError))

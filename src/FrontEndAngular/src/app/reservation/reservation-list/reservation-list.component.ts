@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
-
-import { Reservation } from '../models/reservation.model';
+import { IReservation } from '../models/IReservation';
 import {ReservationService } from '../../Services/reservation.service';
 import {SortByReservation} from '../models/SortByReservation';
 
@@ -12,7 +12,7 @@ import {SortByReservation} from '../models/SortByReservation';
 })
 export class ReservationListComponent implements OnInit {
 
-  reservations: Reservation[] = [];
+  reservations: IReservation[] = [];
 
   collectionSize :number ;
 
@@ -24,7 +24,7 @@ export class ReservationListComponent implements OnInit {
   direction : boolean =false;
   column : string ='';
 
-  constructor( public reservationService: ReservationService) { }
+  constructor( public reservationService: ReservationService  ) { }
 
   ngOnInit(): void {
 
@@ -56,6 +56,7 @@ export class ReservationListComponent implements OnInit {
   }
 
   onOptionsSelected(event){
+
     const value = event.target.value;
 
 
@@ -97,4 +98,7 @@ export class ReservationListComponent implements OnInit {
 
 
 }
+
+
+
 }

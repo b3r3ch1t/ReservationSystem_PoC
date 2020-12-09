@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {ReservationModule} from './Modules/reservation.module'
+import {ReservationModule} from './Modules/reservation.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {ReservationModule} from './Modules/reservation.module'
     HttpClientModule,
     NgbModule,
     ReservationModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
