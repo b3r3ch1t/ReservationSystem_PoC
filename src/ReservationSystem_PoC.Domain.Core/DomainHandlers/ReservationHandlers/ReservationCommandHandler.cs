@@ -1,0 +1,42 @@
+﻿using MediatR;
+using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.Interfaces;
+using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Responses;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
+{
+    public class ReservationCommandHandler : CommandHandler,
+        IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>
+    {
+        private readonly IReservationRepository _reservationRepository;
+        public ReservationCommandHandler(IDependencyResolver dependencyResolver) : base(dependencyResolver)
+        {
+            _reservationRepository = dependencyResolver.Resolve<IReservationRepository>();
+        }
+
+        public async Task<CommandResponse> Handle(UpdateRankingOfReservationCommand request, CancellationToken cancellationToken)
+        {
+            var reservation = await _reservationRepository.GetByIdAsync(request.ReservationId);
+
+            if (reservation == null)
+            {
+                return CommandResponse.Fail("The reservation is invalid !");
+            }
+
+            reservation.ChangeRanking(request.Ranking);
+
+            if (!reservation.IsValid())
+            {
+                return CommandResponse.Fail("The reservation value is not  invalid !");
+            }
+
+            var result = await _reservationRepository.CommitAsync();
+
+
+            return result.Success ? CommandResponse.Ok() : CommandResponse.Fail();
+        }
+    }
+}

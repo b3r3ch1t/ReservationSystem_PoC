@@ -15,7 +15,8 @@ namespace ReservationSystem_PoC.API.Configurations
 
             services.AddAutoMapper(
                 typeof(DomainToViewModelMappingProfile),
-                typeof(ViewModelToDomainMappingProfile)
+                typeof(ViewModelToDomainMappingProfile),
+                typeof(EntityToCommandsMappingProfile)
                 );
         }
     }

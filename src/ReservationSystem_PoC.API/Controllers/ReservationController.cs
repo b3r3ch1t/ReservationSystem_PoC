@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
+using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
 using System.Collections.Generic;
@@ -38,6 +40,45 @@ namespace ReservationSystem_PoC.API.Controllers
 
             return ResponseGet(result);
         }
+
+
+        /// <summary>
+        /// Create new Applicant
+        /// </summary>
+        /// <param name="command"><see cref="ChangeRankingReservationModel"/></param>
+        /// <returns><see cref="ReservationViewModel"/></returns>
+        [HttpPost("")]
+        [Route("api/v1/updatereservationRaking/{NewRanking}")]
+        public async Task<ActionResult<ReservationViewModel>> UpdateReservationRaking([FromBody] ChangeRankingReservationModel command)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return ModelStateErrorResponseError();
+            }
+
+            var reservation = await _reservationRepository
+                .GetByIdAsync(command.ReservationId)
+                .ConfigureAwait(false);
+
+            if (reservation == null)
+            {
+                NotifyError(message: "The reservation is invalid !");
+                return ModelStateErrorResponseError();
+            }
+
+            var updateRankingOfReservationCommand = _mapper.Map<UpdateRankingOfReservationCommand>(reservation);
+
+            var result = await Mediator.SendCommandAsync(updateRankingOfReservationCommand);
+
+            var reservationResult = _mapper.Map<ReservationViewModel>(reservation);
+
+            return ResponsePost(
+                nameof(UpdateReservationRaking),
+                  GetActualRoute(),
+                reservationResult);
+        }
+
 
     }
 }

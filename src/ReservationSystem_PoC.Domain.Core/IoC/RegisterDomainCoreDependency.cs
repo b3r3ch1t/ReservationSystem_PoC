@@ -3,9 +3,13 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using ReservationSystem_PoC.Domain.Core.Bus;
+using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.DomainHandlers;
+using ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
+using ReservationSystem_PoC.Domain.Core.Responses;
 
 namespace ReservationSystem_PoC.Domain.Core.IoC
 {
@@ -24,6 +28,11 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
             services.AddTransient<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             #endregion
+
+            services
+                .AddScoped<IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>,
+                    ReservationCommandHandler>();
+
 
             return services;
         }

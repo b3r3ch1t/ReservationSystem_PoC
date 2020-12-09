@@ -1,5 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
@@ -12,13 +15,12 @@ namespace ReservationSystem_PoC.API.Controllers
     public abstract class ApiBaseController : ControllerBase
     {
         private readonly DomainNotificationHandler _notifications;
-        private readonly IMediatorHandler _mediator;
-
+        protected readonly IMediatorHandler Mediator;
         protected ApiBaseController(IDependencyResolver dependencyResolver)
         {
             _notifications = (DomainNotificationHandler)dependencyResolver.Resolve<INotificationHandler<DomainNotification>>();
 
-            _mediator = dependencyResolver.Resolve<IMediatorHandler>();
+            Mediator = dependencyResolver.Resolve<IMediatorHandler>();
 
         }
 
@@ -100,18 +102,26 @@ namespace ReservationSystem_PoC.API.Controllers
             foreach (var erro in erros)
             {
                 var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
-                NotifyError(string.Empty, erroMsg);
+                NotifyError(erroMsg);
             }
         }
+
 
         protected ActionResult ModelStateErrorResponseError()
         {
             return BadRequest(new ValidationProblemDetails(ModelState));
         }
 
-        protected void NotifyError(string code, string message)
+        protected void NotifyError(string message)
         {
-            _mediator.NotifyDomainNotification(new DomainNotification(code, message));
+            Mediator.NotifyDomainNotification(DomainNotification.Fail(message));
         }
+
+        protected string GetActualRoute()
+        {
+            var endpoint = HttpContext.GetEndpoint();
+            return endpoint?.Metadata.GetMetadata<EndpointNameMetadata>()?.EndpointName;
+        }
+
     }
 }

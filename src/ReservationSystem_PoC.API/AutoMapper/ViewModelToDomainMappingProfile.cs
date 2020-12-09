@@ -1,6 +1,8 @@
-﻿namespace ReservationSystem_PoC.API.AutoMapper
+﻿using AutoMapper;
+
+namespace ReservationSystem_PoC.API.AutoMapper
 {
-    internal class ViewModelToDomainMappingProfile
+    internal class ViewModelToDomainMappingProfile : Profile
     {
         public ViewModelToDomainMappingProfile()
         {
