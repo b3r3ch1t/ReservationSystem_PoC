@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^4.5.3",
     "font-awesome": "^4.7.0",
+    "fontawesome-actions": "^0.17.0",
     "jquery": "^3.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

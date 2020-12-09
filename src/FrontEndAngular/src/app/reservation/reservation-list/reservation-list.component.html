@@ -79,23 +79,39 @@
                 <div class="star">
 
                   <ngb-rating [max]="5" [rate]="reservation.ranking" [readonly]=true ></ngb-rating>
-                  <!--
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i> -->
-
-
 
                 </div>
 
               </div>
                 </div>
 
-              <div class="sm_size_two col-md-3">
-                <p class="list_p">Add Favourite <span style="font-size: 22px"><i class="fa fa-heart"></i></span></p>
+              <div class="sm_size_two col-md-3" *ngIf="reservation.favorited  else elseBlock">
+                <p  class="list_p">
+                  Add Favorite
+                  <span style="font-size: 22px">
+                    <i class="fa fa-heart-o-plus">
+
+                    </i>
+                  </span>
+                </p>
               </div>
+
+
+                <ng-template #elseBlock>
+                  <div class="sm_size_two col-md-3">
+                    <p class="list_p">
+                      Remove Favorite
+                      <span style="font-size: 22px">
+                        <i class="fa fa-heart-o-minus" style="color:red">
+
+                        </i>
+                      </span>
+
+                    </p>
+                  </div>
+
+                </ng-template>
+
 
               <div class="sm_size_two col-md-3">
                 <button class="float-right btn btn-secondary">
