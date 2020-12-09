@@ -4,10 +4,13 @@ import { ReservationComponent } from './reservation.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
-  declarations: [ReservationComponent],
-  exports : [ReservationComponent]
+  declarations:
+  [
+    ReservationComponent,
+  ],
+  exports : [ReservationComponent  ]
 })
 
 

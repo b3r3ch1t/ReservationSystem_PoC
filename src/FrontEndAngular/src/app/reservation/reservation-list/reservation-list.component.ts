@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Reservation } from '../reservation.model';
 import {ReservationService } from '../reservation.service';
-
+import {SortByReservation} from '../SortByReservation';
 
 @Component({
   selector: 'app-reservation-list',
@@ -19,6 +19,11 @@ export class ReservationListComponent implements OnInit {
   pageSize :number;
   page :number;
 
+  allSortByReservation: SortByReservation[];
+
+  direction : boolean =false;
+  column : string ='';
+
   constructor( public reservationService: ReservationService) { }
 
   ngOnInit(): void {
@@ -30,6 +35,17 @@ export class ReservationListComponent implements OnInit {
     this.page=1;
 
 
+    this.allSortByReservation = [
+      new SortByReservation('dateAsc', 'by Date Ascending'),
+      new SortByReservation('dateDesc', 'by Date Descending'),
+      new SortByReservation('alphAsc',  'by Alphabetic Ascending'),
+      new SortByReservation('alphDesc', 'by Alphabetic Descending'),
+      new SortByReservation('rankAsc',  'by Ranking Ascending'),
+      new SortByReservation('rankDesc', 'by Ranking Descending')
+       ]
+
+
+
   }
 
   getReservations() {
@@ -38,4 +54,47 @@ export class ReservationListComponent implements OnInit {
       console.log(this.reservations);
     });
   }
+
+  onOptionsSelected(event){
+    const value = event.target.value;
+
+
+    switch(value){
+
+    case 'dateAsc':
+         this.direction = false;
+         this.column = 'dateOfChange';
+    break;
+
+    case 'dateDesc':
+      this.direction = true;
+      this.column = 'dateOfChange';
+    break;
+
+
+    case 'alphAsc':
+      this.direction = false;
+      this.column = 'message';
+    break;
+
+   case 'alphDesc':
+      this.direction = true;
+      this.column = 'message';
+   break;
+
+   case 'rankAsc':
+      this.direction = false;
+      this.column = 'ranking';
+   break;
+
+   case 'rankDesc':
+      this.direction = true;
+      this.column = 'ranking';
+   break;
+
+
+    }
+
+
+}
 }

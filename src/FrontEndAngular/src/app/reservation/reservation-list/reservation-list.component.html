@@ -45,9 +45,23 @@
 
               <i style="    margin-left: 16px;  margin-top: 8px;" class="fa fa-sort-amount-down"></i>
             </span>
-            <select style="padding-left: 39px;" class="form-control">
-  <option>Sort by</option>
-  </select>
+
+
+
+
+              <select  class="fa form-control"   (change)='onOptionsSelected($event)'>
+                <option selected=true value="&#xf160; Sort by">&#xf160; Sort by</option>
+                <option *ngFor="let srt of allSortByReservation" value="{{ srt.sId }}" >
+                  {{ srt.sName }}
+                </option>
+
+              </select>
+
+
+
+
+
+
           </div>
           </div>
 
@@ -56,7 +70,7 @@
         </div>
           </li>
 
-          <li class="list_style" *ngFor="let reservation of reservations | slice: (page-1) * pageSize : page * pageSize">
+          <li class="list_style" *ngFor="let reservation of reservations  | sort: column : direction | slice: (page-1) * pageSize : page * pageSize  ">
             <div class="row">
               <div class="sm_size_one col-md-3">
               <div class="edit_div">
@@ -128,34 +142,10 @@
 
 <li>
 
-<ngb-pagination [collectionSize]="70"
+<ngb-pagination [collectionSize]="70" *ngIf="reservations.length>0"
 [pageSize]=8 [(page)]="page" aria-label="Default pagination"></ngb-pagination>
 
 </li>
-
-
-
-            <!-- <li style="margin-bottom: 51px">
-
-
-                  <nav style="    padding: 0px;
-    margin-top: 135px;" aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">1</a></li>
-    <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">2</a></li>
-    <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">3</a></li>
-  <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">4</a></li>
-  <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">5</a></li>
-  <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">6</a></li>
-  <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">7</a></li>
-    <li class="page-item"><a class="page-link btn btn-secondary secondary_chage" href="#">Next</a></li>
-  </ul>
-  </nav>
-
-            </li>
- -->
-
 
           </ul>
         </div>
