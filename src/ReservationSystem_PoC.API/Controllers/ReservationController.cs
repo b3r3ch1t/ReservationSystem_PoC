@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
 using System.Collections.Generic;
@@ -80,6 +81,36 @@ namespace ReservationSystem_PoC.API.Controllers
                 nameof(UpdateReservationRaking),
                 reservationResult);
 
+        }
+
+
+        /// <summary>
+        /// Get Min value of Reservation Ranking.
+        /// </summary>
+        /// <returns>List of <see cref="int"/></returns>
+        [HttpGet()]
+        [Route("api/v1/GetMinValueOfReservationRanking/")]
+        public ActionResult<int> GetMinValueOfReservationRanking()
+        {
+
+            var result = Reservation.MinRanking;
+
+            return ResponseGet(result);
+        }
+
+
+        /// <summary>
+        /// Get Max value of Reservation Ranking.
+        /// </summary>
+        /// <returns>List of <see cref="int"/></returns>
+        [HttpGet()]
+        [Route("api/v1/GetMaxValueOfReservationRanking/")]
+        public ActionResult<int> GetMaxValueOfReservationRanking()
+        {
+
+            var result = Reservation.MaxRanking;
+
+            return ResponseGet(result);
         }
 
     }

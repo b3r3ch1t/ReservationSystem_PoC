@@ -64,8 +64,8 @@
                   <img src="assets/img/speaker.png" alt="" />
                 </div>
                 <div class="list_title">
-                  <h4>{{ reservation.message}}</h4>
-                  <p>{{ reservation.dateOfChange}}</p>
+                  <h4>{{reservation.message}}</h4>
+                  <p>{{reservation.dateOfChange}}</p>
                 </div>
 
               </div>
@@ -77,11 +77,14 @@
                   <div class="rate">
                 <h4>Ranking</h4>
                 <div class="star">
+
+                  <ngb-rating [max]="5" [rate]="reservation.ranking" [readonly]=true ></ngb-rating>
+                  <!--
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> -->
 
 
 
