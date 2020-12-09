@@ -25,5 +25,21 @@ namespace ReservationSystem_PoC.Common.Commands
             return result;
 
         }
+
+        public static UpdateRankingOfReservationCommand UpdateRankingOfReservationCommandRakingGreater()
+        {
+            var faker = new Faker();
+
+            var context = ReservarionSystemDbContextFaker.GetDatabaseInMemory();
+
+            var reservation = faker.PickRandom<Reservation>(context.Reservations.ToList());
+
+            var ranking = faker.Random.Int(min: Reservation.MaxRanking, max: Reservation.MaxRanking + 10);
+
+            var result = new UpdateRankingOfReservationCommand(reservationId: reservation.Id,
+                ranking: ranking);
+
+            return result;
+        }
     }
 }
