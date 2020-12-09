@@ -4,23 +4,21 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReservationListComponent } from './reservation/reservation-list/reservation-list.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {SortPipe} from './sort'
-
+import {ReservationModule} from './Modules/reservation.module'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ReservationListComponent,
-    SortPipe
+    AppComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReservationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
