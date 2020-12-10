@@ -8,6 +8,9 @@ import { SortPipeModule } from '../Modules/sortPipe.module'
 import { ReservationEditComponent } from '../reservation/reservation-edit/reservation-edit.component';
 import { ReservationCreateComponent } from '../reservation/reservation-create/reservation-create.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -15,7 +18,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     CommonModule,
     NgbModule,
     SortPipeModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMaskModule.forRoot(),
   ],
   declarations:
   [
