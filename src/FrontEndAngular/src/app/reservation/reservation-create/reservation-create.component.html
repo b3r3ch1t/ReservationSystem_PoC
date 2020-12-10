@@ -28,56 +28,60 @@
 
     <div class="row">
 
-      <mat-autocomplete #contacts="matAutocomplete">
-        <mat-option *ngFor="let option of contacts" [value]="contacts">
-          {{option.contactName}}
-        </mat-option>
-      </mat-autocomplete>
 
 
-      <div class="col-md-3 col-sm-2">
+      <div class="col-md-4 col-sm-2">
         <div class="form-group">
           <div class="input-group mb-3">
             <div class="inputWithIcon">
-            <input type="text" placeholder="Pick one" aria-label="Number" matInput   [matAutocomplete]="contacts">
-            <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of contacts" [value]="option.contactName">
+                  {{option.contactName}}
+                </mat-option>
+              </mat-autocomplete>
+
+              <input type="text" placeholder="Pick one" aria-label="Number"  matInput [matAutocomplete]="auto">
+              <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
       </div>
 
 
-      <mat-autocomplete #contactType="matAutocomplete">
-        <mat-option *ngFor="let option of contactTypes" [value]="option.contactTypeName">
-          {{option.contactTypeName}}
-        </mat-option>
-      </mat-autocomplete>
-      <div class="col-md-3 col-sm-2">
+
+
+      <div class="col-md-4 col-sm-2">
         <div class="form-group">
           <div class="input-group mb-3">
             <div class="inputWithIcon">
-            <input type="text" placeholder="Pick one" aria-label="Number" matInput   [matAutocomplete]="contactType">
-            <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
-          </div>
-          </div>
-        </div>
-      </div>
 
-        <div class="col-md-3 col-sm-2">
-          <div class="form-group">
-            <div class="input-group mb-3">
-              <div class="inputWithIcon">
-                <input type="text" placeholder="Phone" mask="(000) 000-0000">
-                <i class="fa fa-phone" aria-hidden="true"></i>
+              <div class="form-group">
+                <select class="fa form-control">
+                  <option selected=true value="&#xf160;">&#xf2c2; Contact Type</option>
+                  <option *ngFor="let srt of contactTypes" value="{{ srt.contactTypeName }}">{{ srt.contactTypeName }}</option>
+                 </select>
+
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
 
+      <div class="col-md-4 col-sm-2">
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="inputWithIcon">
+              <input type="text" placeholder="Phone" mask="(000) 000-0000">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
+
+  </div>
 </section>
 
 <section>

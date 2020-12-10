@@ -37,7 +37,7 @@ export class ContactService {
     return throwError(errorMessage);
   };
 
-  getContatType(): Observable<IContactView[]> {
+  getContat():Observable<IContactView[]> {
 
     return this.httpClient.get<IContactView[]>(this.urlContact)
       .pipe(

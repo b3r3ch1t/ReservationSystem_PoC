@@ -28,19 +28,26 @@ export class ReservationCreateComponent implements OnInit {
   constructor(public contactTypeService: ContactTypeService, public contactService : ContactService ) { }
 
   ngOnInit() {
-    this.getReservations();
+
+    this.getContactTypes();
+
+    this.getContacts();
   }
 
-  getReservations() {
-    this.contactTypeService.getContatType().subscribe((reserv: any) => {
-      this.contactTypes = reserv;
-    });
-
-  }
 
   getContacts() {
-    this.contactService.getContatType().subscribe((cont: any) => {
+     this.contactService.getContat().subscribe((cont: any) => {
+
       this.contacts = cont;
+
+    });
+  }
+
+  getContactTypes() {
+    this.contactTypeService.getContatType().subscribe((cont: any) => {
+
+      this.contactTypes = cont;
+
     });
   }
 
