@@ -28,7 +28,7 @@ export class ReservationCreateComponent implements OnInit {
     {
       contactName: new FormControl(),
       contactPhone: new FormControl(),
-      // contactBirthdate: new FormControl(),
+      contactBirthdate: new FormControl(),
       contactTypeId: new FormControl()
     }
   );
@@ -73,7 +73,7 @@ export class ReservationCreateComponent implements OnInit {
 
     this.contactForm.patchValue({ contactTypeId: contact[0].contactTypeId });
     this.contactForm.patchValue({ contactPhone: contact[0].contactPhone });
-
+    this.contactForm.patchValue({ contactBirthdate: contact[0].contactBirthdate });
 
   }
 
