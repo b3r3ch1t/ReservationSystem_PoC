@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace ReservationSystem_PoC.API.Controllers
 {
@@ -31,12 +30,11 @@ namespace ReservationSystem_PoC.API.Controllers
         public async Task<ActionResult<List<ContactViewModel>>> GetAll()
         {
 
-            var model = _contactRepository.GetAllDto() ;
+            var model = _contactRepository.GetAllDto()
+                .OrderBy(x => x.ContactName);
 
-            Console.WriteLine(model);
+            var result = await _mapper.ProjectTo<ContactViewModel>(model).ToListAsync();
 
-            var result =await  _mapper.ProjectTo < ContactViewModel >(model).ToListAsync( );
- 
             return ResponseGet(result);
         }
 

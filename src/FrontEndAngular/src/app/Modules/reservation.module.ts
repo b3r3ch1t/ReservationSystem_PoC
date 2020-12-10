@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { ReservationListComponent } from 'src/app/reservation/reservation-list/reservation-list.component';
 import { SortPipeModule } from 'src/app/Modules/sortPipe.module'
@@ -14,7 +15,6 @@ import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
@@ -29,7 +29,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 
     MatAutocompleteModule,
     FormsModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ReactiveFormsModule
   ],
   declarations:
   [
