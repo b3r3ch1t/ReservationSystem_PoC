@@ -50,15 +50,12 @@
           <div class="form-group">
             <div class="input-group mb-3">
               <div class="inputWithIcon">
+                <select class="fa form-control" formControlName="contactTypeId">
+                  <option selected='true' value="&#xf160;">&#xf2c2; Contact Type</option>
+                  <option *ngFor="let srt of contactTypes" value="{{ srt.contactTypeId }}">{{ srt.contactTypeName }}
+                  </option>
+                </select>
 
-                <div class="form-group">
-                  <select class="fa form-control" formControlName="contactTypeId">
-                    <option selected='true' value="&#xf160;">&#xf2c2; Contact Type</option>
-                    <option *ngFor="let srt of contactTypes" value="{{ srt.contactTypeId }}">{{ srt.contactTypeName }}
-                    </option>
-                  </select>
-
-                </div>
               </div>
             </div>
           </div>
@@ -75,21 +72,41 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-sm-2">
+        <!-- <div class="col-md-3 col-sm-2">
           <div class="form-group">
             <div class="input-group mb-3">
               <div class="inputWithIcon">
-                <input type="text" formControlName="contactBirthdate" placeholder="Birth Date">
+                <input type="text" placeholder="Birth Date">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
               </div>
+
+
+              <div class="input-group">
+
+
+              </div>
+
             </div>
+
+          </div>
+        </div> -->
+
+
+        <div class="col-md-3 col-sm-2">
+          <div class="form-group">
+
+            <mat-form-field color="accent" appearance="fill">
+              <input matInput [matDatepicker]="picker2" formControlName="contactBirthdate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 color="primary"></mat-datepicker>
+            </mat-form-field>
           </div>
         </div>
+
+
       </div>
 
-
     </div>
-
 
   </section>
 </form>

@@ -47,3 +47,14 @@ input[type="text"]:focus {
   color: #fff;
   background-color: dodgerBlue;
 }
+
+
+.input-group-prepend {
+  margin-right: -1px;
+}
+
+
+.input-group-append, .input-group-prepend {
+  display: -ms-flexbox;
+  display: flex;
+}

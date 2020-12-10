@@ -18,6 +18,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     MatAutocompleteModule,
     FormsModule,
     AngularEditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations:
   [
