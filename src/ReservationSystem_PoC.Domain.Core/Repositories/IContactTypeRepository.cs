@@ -1,7 +1,6 @@
 ﻿using ReservationSystem_PoC.Domain.Core.Entities;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
 
-namespace ReservationSystem_PoC.Domain.Core.Interfaces.Repositories
+namespace ReservationSystem_PoC.Domain.Core.Repositories
 {
     public interface IContactTypeRepository : IRepositoryBase<ContactType>
     {

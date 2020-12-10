@@ -2,7 +2,7 @@
 using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using ReservationSystem_PoC.Domain.Core.Responses;
 using System.Threading;
 using System.Threading.Tasks;

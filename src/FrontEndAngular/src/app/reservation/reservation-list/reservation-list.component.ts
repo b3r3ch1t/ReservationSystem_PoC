@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { IReservation } from '../../models/IReservation';
-import {ReservationService } from '../../Services/reservation.service';
-import {SortByReservation} from '../../models/SortByReservation';
+import { IReservation } from 'src/app/models/IReservation';
+import { ReservationService } from 'src/app/Services/reservation.service';
+import { SortByReservation } from 'src/app/models/SortByReservation';
 
 @Component({
   selector: 'app-reservation-list',

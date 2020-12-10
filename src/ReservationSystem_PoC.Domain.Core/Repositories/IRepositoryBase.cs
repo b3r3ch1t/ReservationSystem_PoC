@@ -1,9 +1,9 @@
-﻿using ReservationSystem_PoC.Domain.Core.Responses;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ReservationSystem_PoC.Domain.Core.Responses;
 
-namespace ReservationSystem_PoC.Domain.Core.Interfaces.Data
+namespace ReservationSystem_PoC.Domain.Core.Repositories
 {
     public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
     {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-import { SortPipe } from '../Pipes/sortPipe';
+import { SortPipe } from 'src/app/Pipes/sortPipe';
 
 
 @NgModule({

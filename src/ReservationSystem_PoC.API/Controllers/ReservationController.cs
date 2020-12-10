@@ -6,7 +6,7 @@ using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

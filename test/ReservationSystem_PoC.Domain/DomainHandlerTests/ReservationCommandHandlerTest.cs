@@ -7,7 +7,7 @@ using ReservationSystem_PoC.Data.Context;
 using ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using ReservationSystem_PoC.Domain.Core.Responses;
 using System.Linq;
 using System.Threading;

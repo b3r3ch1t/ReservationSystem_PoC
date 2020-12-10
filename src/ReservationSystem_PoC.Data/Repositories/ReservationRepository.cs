@@ -1,6 +1,6 @@
 ﻿using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 
 namespace ReservationSystem_PoC.Data.Repositories
 {

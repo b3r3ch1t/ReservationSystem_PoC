@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms'
-import { IReservation } from '../../models/IReservation';
-import { IContactType } from '../../models/IContactType';
-import { ContactTypeService } from '../../Services/contactType.service'
+
+
+import { IContactType } from 'src/app/models/IContactType';
+import { ContactTypeService } from 'src/app/Services/contactType.service'
+import { ContactService } from 'src/app/Services/contact.service'
+import { IContactView } from 'src/app/models/IContactView';
 
 
 @Component({
@@ -16,30 +19,31 @@ import { ContactTypeService } from '../../Services/contactType.service'
 export class ReservationCreateComponent implements OnInit {
 
   myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
 
-  contactTypes: IContactType[] ;
+  contactTypes: IContactType[];
+  contacts: IContactView[];
 
-  contactTypeName  = 'contactTypeName';
+  contactTypeName = 'contactTypeName';
 
-  constructor(public contactTypeService: ContactTypeService  ) {  }
+  constructor(public contactTypeService: ContactTypeService, public contactService : ContactService ) { }
 
   ngOnInit() {
     this.getReservations();
+  }
+
+  getReservations() {
+    this.contactTypeService.getContatType().subscribe((reserv: any) => {
+      this.contactTypes = reserv;
+    });
+
+  }
+
+  getContacts() {
+    this.contactService.getContatType().subscribe((cont: any) => {
+      this.contacts = cont;
+    });
+  }
+
 }
 
-getReservations() {
-  this.contactTypeService.getContatType().subscribe((reserv: any) => {
-    this.contactTypes = reserv;
-  });
 
-  // this.contactTypes = [
-  //   {contactTypeId:"98789", contactTypeName:"contact name 1"},
-  //   {contactTypeId: "88090", contactTypeName:"contact name 2 "}
-  // ];
-
-
-
-}
-
-}

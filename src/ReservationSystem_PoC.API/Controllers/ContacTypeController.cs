@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

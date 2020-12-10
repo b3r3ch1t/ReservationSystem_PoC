@@ -2,11 +2,11 @@
 using ReservationSystem_PoC.Data.Context;
 using ReservationSystem_PoC.Domain.Core;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
 using ReservationSystem_PoC.Domain.Core.Responses;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 
 namespace ReservationSystem_PoC.Data.Repositories
 {
@@ -14,18 +14,18 @@ namespace ReservationSystem_PoC.Data.Repositories
     //Repository Generic
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : EntityBase<TEntity>
     {
-        protected readonly ReservarionSystemDbContext Db;
+        protected readonly ReservarionSystemDbContext Context;
         protected readonly DbSet<TEntity> DbSet;
 
         public RepositoryBase(IDependencyResolver dependencyResolver)
         {
-            Db = dependencyResolver.Resolve<ReservarionSystemDbContext>();
-            DbSet = Db.Set<TEntity>();
+            Context = dependencyResolver.Resolve<ReservarionSystemDbContext>();
+            DbSet = Context.Set<TEntity>();
         }
 
         public void Dispose()
         {
-            Db.Dispose();
+            Context.Dispose();
         }
 
         public async Task AddAsync(TEntity obj)
@@ -71,7 +71,7 @@ namespace ReservationSystem_PoC.Data.Repositories
         {
             try
             {
-                var rowsAffected = await Db.SaveChangesAsync();
+                var rowsAffected = await Context.SaveChangesAsync();
 
                 return rowsAffected > 0 ? CommitResponse.Ok(rowsAffected) : CommitResponse.Fail();
             }

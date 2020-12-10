@@ -5,9 +5,9 @@ using ReservationSystem_PoC.Common.IoC;
 using ReservationSystem_PoC.Common.Repositories;
 using ReservationSystem_PoC.Data.Context;
 using ReservationSystem_PoC.Domain.Core.Entities;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using Xunit;
 
 namespace ReservationSystem_PoC.Data.Test

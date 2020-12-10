@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
-using ReservationSystem_PoC.Domain.Core.Interfaces.Repositories;
+using ReservationSystem_PoC.Domain.Core.Repositories;
 using System;
 
 namespace ReservationSystem_PoC.Data.Repositories
@@ -25,7 +25,7 @@ namespace ReservationSystem_PoC.Data.Repositories
 
             try
             {
-                Db.Database.ExecuteSqlRaw("UpdateContactType",
+                Context.Database.ExecuteSqlRaw("UpdateContactType",
                   descriptionParameter,
                   validParameter,
                   dateOfChangeParameter,
