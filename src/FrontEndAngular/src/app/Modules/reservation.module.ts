@@ -7,19 +7,24 @@ import { ReservationListComponent } from '../reservation/reservation-list/reserv
 import { SortPipeModule } from '../Modules/sortPipe.module'
 import { ReservationEditComponent } from '../reservation/reservation-edit/reservation-edit.component';
 import { ReservationCreateComponent } from '../reservation/reservation-create/reservation-create.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 
-export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
     SortPipeModule,
-    MatAutocompleteModule,
     NgxMaskModule.forRoot(),
+
+    MatAutocompleteModule,
+    FormsModule
   ],
   declarations:
   [
@@ -31,7 +36,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     ReservationListComponent,
     ReservationEditComponent,
     ReservationCreateComponent
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 

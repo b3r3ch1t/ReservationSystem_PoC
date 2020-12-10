@@ -40,50 +40,56 @@
       </div>
 
 
-     <!--  <div class="col-md-3 col-sm-2">
-        <div class="form-group">
-          <div class="input-group mb-3">
-            <div class="inputWithIcon">
-              <input type="text" placeholder="Contact Type">
-              <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
-      <div class="inputWithIcon">
-        <mat-form-field class="example-full-width">
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="myControl"
-                 [matAutocomplete]="auto">
-
-                 <i class="fa fa-id-card" aria-hidden="true"></i>
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of contactTypes" [value]="option.contactTypeName">
-              {{option.contactTypeName}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
-
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of contactTypes" [value]="contactTypes">
+          {{option.contactTypeName}}
+        </mat-option>
+      </mat-autocomplete>
       <div class="col-md-3 col-sm-2">
         <div class="form-group">
           <div class="input-group mb-3">
             <div class="inputWithIcon">
-              <input type="text" placeholder="Contact name"  mask="(000) 000-0000" >
-              <i class="fa fa-phone" aria-hidden="true"></i>
-            </div>
+            <input type="text" placeholder="Pick one" aria-label="Number" matInput   [matAutocomplete]="auto">
+            <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
+          </div>
           </div>
         </div>
       </div>
 
 
-    </div>
+        <!-- <div class="col-md-3 col-sm-2">
+        <div class="form-group">
+          <div class="input-group mb-3">
+              <div class="ng-autocomplete">
+                <div class="inputWithIcon">
+                <ng-autocomplete [data]="contactTypes" [searchKeyword]="contactTypeName" [itemTemplate]="itemTemplate">
+                </ng-autocomplete>
 
-  </div>
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.contactTypeName"></a>
+                </ng-template>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div> -->
+
+        <div class="col-md-3 col-sm-2">
+          <div class="form-group">
+            <div class="input-group mb-3">
+              <div class="inputWithIcon">
+                <input type="text" placeholder="Phone" mask="(000) 000-0000">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
 </section>
 
 <section>
