@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using RandomDataGenerator.FieldOptions;
+using RandomDataGenerator.Randomizers;
 using ReservationSystem_PoC.Data.Context;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using System;
@@ -87,7 +89,15 @@ namespace ReservationSystem_PoC.Data
                 faker = new Faker();
 
                 var name = faker.Person.FullName;
-                var phoneNumber = "555 555 1212";
+
+                var randomizerTextRegex = RandomizerFactory
+                    .GetRandomizer(new FieldOptionsTextRegex
+                    {
+                        Pattern = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$"
+                    });
+
+                var phoneNumber = randomizerTextRegex.Generate().ToUpper();
+
                 var birthDate = faker.Person.DateOfBirth;
                 var contactType = context.ContactTypes.AsNoTracking().FirstOrDefault();
 
@@ -98,6 +108,7 @@ namespace ReservationSystem_PoC.Data
                     contactType: contactType
                 );
 
+                var x = contact.IsValid();
 
                 context.Contacts.Add(contact);
 

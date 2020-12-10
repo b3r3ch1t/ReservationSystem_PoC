@@ -12,7 +12,6 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
             ValidateName();
             ValidatePhoneNumber();
             ValidateBirthDate();
-            ValidateContactType();
             ValidateReservations();
         }
 
@@ -21,23 +20,6 @@ namespace ReservationSystem_PoC.Domain.Core.Validators
             RuleFor(x => x.Reservations)
                 .NotNull()
                 .WithMessage("The list of reservation can not be null; ");
-        }
-
-        private void ValidateContactType()
-        {
-
-            RuleFor(x => x.ContactType)
-                .NotNull()
-                .WithMessage("The Type of Contact is not valid .");
-
-
-            When(x => x.ContactType != null, () =>
-            {
-                RuleFor(x => x.ContactType)
-                    .Must(x => x.IsValid())
-                    .WithMessage("The Type of Contact is not valid .");
-            });
-
         }
 
         private void ValidateBirthDate()
