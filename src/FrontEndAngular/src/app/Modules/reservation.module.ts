@@ -16,6 +16,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     NgxMaskModule.forRoot(),
 
     MatAutocompleteModule,
-    FormsModule
+    FormsModule,
+    AngularEditorModule
   ],
   declarations:
   [

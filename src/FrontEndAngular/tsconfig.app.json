@@ -8,7 +8,6 @@
   "files": [
     "src/main.ts",
     "src/polyfills.ts",
-    "./src/app/reservation/models/IReservation.ts"
   ],
   "include": [
     "src/**/*.d.ts"
