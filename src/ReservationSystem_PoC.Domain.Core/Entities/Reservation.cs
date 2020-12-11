@@ -6,7 +6,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
     public class Reservation : EntityBase<Reservation>
     {
         public const int MinMessageSize = 3;
-        public const int MaxMessageSize = 30;
+        public const int MaxMessageSize = 2048;
 
 
         public const int MinRanking = 1;
@@ -27,6 +27,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
         }
 
         public Reservation(
+            Guid id,
             string message,
             Contact contact,
             int ranking,
@@ -38,6 +39,8 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
             Favorited = favorited;
 
             if (contact != null) ContactId = contact.Id;
+
+            Id = id;
         }
 
 

@@ -14,9 +14,9 @@
           description</p>
       </div>
       <div class="col-md-4 float-right">
-        <button class="float-right btn btn-secondary">
+        <a class="extra float-right btn btn-secondary" [routerLink]="['/list']">
           RESERVATION LIST
-        </button>
+        </a>
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
   <section>
     <div class="content_edit container">
       <div>
-        <angular-editor [placeholder]="'Enter text here...'" formControlName="contactMessage" [(ngModel)]="controlNameContent"></angular-editor>
+        <angular-editor [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent"></angular-editor>
       </div>
 
     </div>

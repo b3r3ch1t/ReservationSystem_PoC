@@ -43,7 +43,9 @@ export class ReservationCreateComponent implements OnInit {
       contactPhone: new FormControl(),
       contactBirthdate: new FormControl(),
       contactTypeId: new FormControl(),
-      formControlName: new FormControl()
+      formControlName: new FormControl(),
+      message : new FormControl(),
+      contactId : new FormControl()
     }
   );
 
@@ -73,7 +75,8 @@ export class ReservationCreateComponent implements OnInit {
       contactPhone: ['', Validators.required],
       contactBirthdate: ['', Validators.required],
       contactTypeId: ['Contact Type', Validators.required],
-      contactMessage: this.controlNameContent
+      message: this.controlNameContent,
+      contactId : ''
     });
 
 
@@ -125,6 +128,11 @@ export class ReservationCreateComponent implements OnInit {
     {
       this.submitted = true;
       if (this.contactForm.valid) {
+
+        let contact = this.contacts.find(
+          contact => this.contactForm.controls['contactName'].value);
+
+        this.contactForm.patchValue({ contactId: contact.contactId });
 
         this.reservationService.CreateReservation(this.contactForm.value).subscribe(
           b => alert(`Reservation created Successfully`),

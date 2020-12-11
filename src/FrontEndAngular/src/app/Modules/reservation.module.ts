@@ -21,7 +21,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { Routes, RouterModule } from '@angular/router';
 
+
+import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
 @NgModule({
   imports: [
@@ -29,7 +32,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     NgbModule,
     SortPipeModule,
     NgxMaskModule.forRoot(),
-
+    RouterModule,
     MatAutocompleteModule,
     FormsModule,
     AngularEditorModule,
@@ -41,7 +44,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   [
     ReservationListComponent,
     ReservationEditComponent,
-    ReservationCreateComponent
+    ReservationCreateComponent,
+    TruncatePipe
   ],
   exports: [
     ReservationListComponent,

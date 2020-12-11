@@ -57,6 +57,7 @@ namespace ReservationSystem_PoC.Data
                 var favorited = faker.Random.Bool();
 
                 var reservation = new Reservation(
+                    id: Guid.NewGuid(),
                     message: message,
                     contact: contact,
                     ranking: ranking,

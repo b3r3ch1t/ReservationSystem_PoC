@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using ReservationSystem_PoC.Domain.Core.Entities;
+using System;
 
 namespace ReservationSystem_PoC.Common.Identities
 {
@@ -23,6 +24,7 @@ namespace ReservationSystem_PoC.Common.Identities
             var favorited = Faker.Random.Bool();
 
             var reservation = new Reservation(
+                id: Guid.NewGuid(),
                 message: message,
                 contact: contact,
                 ranking: ranking,

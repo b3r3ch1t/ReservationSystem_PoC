@@ -104,25 +104,25 @@ namespace ReservationSystem_PoC.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ea190d3f-6288-4277-93d6-8dd72cd7c76b"),
-                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9113),
-                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9678),
+                            Id = new Guid("044ba27e-e1c4-4f90-bd6c-e9407c29a270"),
+                            DateOfChange = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(7309),
+                            DateOfCreation = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(7969),
                             Description = "Contact Type 1",
                             Valid = true
                         },
                         new
                         {
-                            Id = new Guid("bea4bd1a-0c70-421a-95f7-4822855c1a09"),
-                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(802),
-                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(803),
+                            Id = new Guid("08d214bc-6d93-4a8d-9cd3-20c40b292298"),
+                            DateOfChange = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9326),
+                            DateOfCreation = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9327),
                             Description = "Contact Type 2",
                             Valid = true
                         },
                         new
                         {
-                            Id = new Guid("e3c2843d-909c-4a27-a941-7749f3d5ea9c"),
-                            DateOfChange = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(808),
-                            DateOfCreation = new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(809),
+                            Id = new Guid("f1faac37-c05b-41f6-a3c6-8635f6dc6b86"),
+                            DateOfChange = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9332),
+                            DateOfCreation = new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9333),
                             Description = "Contact Type 3",
                             Valid = true
                         });
@@ -148,8 +148,8 @@ namespace ReservationSystem_PoC.Data.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
 
                     b.Property<int>("Ranking")
                         .HasColumnType("int");

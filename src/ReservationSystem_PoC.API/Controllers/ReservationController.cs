@@ -7,6 +7,7 @@ using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -117,11 +118,11 @@ namespace ReservationSystem_PoC.API.Controllers
         /// <summary>
         /// Create new Reservation
         /// </summary>
-        /// <param name="Create Reservation Raking"><see cref="CreateReservationModel"/></param>
+        /// <param name="Create Reservation Raking"><see cref="CreateReservationViewModel"/></param>
         /// <returns><see cref="ReservationViewModel"/></returns>
         [HttpPost]
-        [Route("api/v1/createreservationRaking/")]
-        public async Task<ActionResult<ReservationViewModel>> CreateReservationRaking([FromBody] CreateReservationModel model)
+        [Route("create")]
+        public async Task<ActionResult<ReservationViewModel>> CreateReservationRaking([FromBody] CreateReservationViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -129,11 +130,15 @@ namespace ReservationSystem_PoC.API.Controllers
                 return ModelStateErrorResponseError();
             }
 
+            model.ContactId ??= Guid.NewGuid();
+
             var createReservationCommand = _mapper.Map<CreateReservationCommand>(model);
 
-            var reservation = _reservationRepository.GetByIdAsync(model.ContactId.Value);
-
             var result = await Mediator.SendCommandAsync(createReservationCommand);
+
+
+
+            var reservation = await _reservationRepository.GetByIdAsync(createReservationCommand.ReservationId);
 
             var returnModel = _mapper.Map<ReservationViewModel>(reservation);
 

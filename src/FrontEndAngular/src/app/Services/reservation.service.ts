@@ -54,6 +54,9 @@ export class ReservationService {
   };
 
   CreateReservation(request: InsertReservationRequest) {
+
+    console.log(`${this.urlReservation}/create`);
+
     return this.httpClient.post<InsertReservationRequest>(`${this.urlReservation}/create`, request);
   }
 

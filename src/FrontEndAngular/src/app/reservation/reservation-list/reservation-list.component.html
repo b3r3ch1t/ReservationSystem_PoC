@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 left_side">
-        <h2>Create Reservation</h2>
+        <h2>Reservations List</h2>
       </div>
       <div class="col-md-4 middle_content">
         <p>This is will be the description This is will be the description This is will be the description This is will
@@ -14,16 +14,16 @@
           description</p>
       </div>
       <div class="col-md-4 float-right">
-        <button class="extra float-right btn btn-secondary">
-          RESERVATION LIST
-        </button>
+
+          <a class="extra float-right btn btn-secondary" [routerLink]="['/create']">
+            CREATE RESERVATION
+          </a>
+
       </div>
     </div>
   </div>
 </nav>
 <br />
-
-
 
 
 
@@ -68,7 +68,7 @@
                   <img src="assets/img/speaker.png" alt="" />
                 </div>
                 <div class="list_title">
-                  <h4>{{reservation.message}}</h4>
+                  <h4>{{reservation.message | limitTo: 15 }}</h4>
                   <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a'}}</p>
                 </div>
 

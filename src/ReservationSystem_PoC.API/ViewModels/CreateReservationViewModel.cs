@@ -2,7 +2,7 @@
 
 namespace ReservationSystem_PoC.API.ViewModels
 {
-    public class CreateReservationModel
+    public class CreateReservationViewModel
     {
 
         public Guid? ContactId { get; set; }
@@ -10,5 +10,6 @@ namespace ReservationSystem_PoC.API.ViewModels
         public string ContactPhone { get; set; }
         public DateTime ContactBirthdate { get; set; }
         public Guid ContactTypeId { get; set; }
+        public string Message { get; set; }
     }
 }

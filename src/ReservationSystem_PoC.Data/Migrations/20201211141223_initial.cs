@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ReservationSystem_PoC.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,7 @@ namespace ReservationSystem_PoC.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ContactId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
                     Ranking = table.Column<int>(type: "int", nullable: false),
                     Favorited = table.Column<bool>(type: "bit", nullable: false),
                     Valid = table.Column<bool>(type: "bit", nullable: false),
@@ -73,17 +73,17 @@ namespace ReservationSystem_PoC.Data.Migrations
             migrationBuilder.InsertData(
                 table: "ContactType",
                 columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
-                values: new object[] { new Guid("ea190d3f-6288-4277-93d6-8dd72cd7c76b"), new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9113), new DateTime(2020, 12, 7, 11, 22, 17, 645, DateTimeKind.Utc).AddTicks(9678), "Contact Type 1", true });
+                values: new object[] { new Guid("044ba27e-e1c4-4f90-bd6c-e9407c29a270"), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(7309), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(7969), "Contact Type 1", true });
 
             migrationBuilder.InsertData(
                 table: "ContactType",
                 columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
-                values: new object[] { new Guid("bea4bd1a-0c70-421a-95f7-4822855c1a09"), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(802), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(803), "Contact Type 2", true });
+                values: new object[] { new Guid("08d214bc-6d93-4a8d-9cd3-20c40b292298"), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9326), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9327), "Contact Type 2", true });
 
             migrationBuilder.InsertData(
                 table: "ContactType",
                 columns: new[] { "Id", "DateOfChange", "DateOfCreation", "Description", "Valid" },
-                values: new object[] { new Guid("e3c2843d-909c-4a27-a941-7749f3d5ea9c"), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(808), new DateTime(2020, 12, 7, 11, 22, 17, 646, DateTimeKind.Utc).AddTicks(809), "Contact Type 3", true });
+                values: new object[] { new Guid("f1faac37-c05b-41f6-a3c6-8635f6dc6b86"), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9332), new DateTime(2020, 12, 11, 14, 12, 22, 424, DateTimeKind.Utc).AddTicks(9333), "Contact Type 3", true });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contacts_BirthDate",

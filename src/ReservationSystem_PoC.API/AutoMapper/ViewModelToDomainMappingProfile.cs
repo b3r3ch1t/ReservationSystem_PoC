@@ -9,13 +9,14 @@ namespace ReservationSystem_PoC.API.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             //Create the  from ViewModel  to  Domain
-            CreateMap<CreateReservationModel, CreateReservationCommand>()
+            CreateMap<CreateReservationViewModel, CreateReservationCommand>()
                 .ConstructUsing(c => new CreateReservationCommand(
                     c.ContactId,
                     c.ContactName,
                     c.ContactPhone,
                     c.ContactBirthdate,
-                    c.ContactTypeId
+                    c.ContactTypeId,
+                    c.Message
                 ));
 
             ;
