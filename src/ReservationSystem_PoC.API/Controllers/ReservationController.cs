@@ -44,7 +44,7 @@ namespace ReservationSystem_PoC.API.Controllers
 
 
         /// <summary>
-        /// Create new Applicant
+        /// Update the Update Reservation Raking
         /// </summary>
         /// <param name="command"><see cref="ChangeRankingReservationModel"/></param>
         /// <returns><see cref="ReservationViewModel"/></returns>
@@ -112,6 +112,37 @@ namespace ReservationSystem_PoC.API.Controllers
 
             return ResponseGet(result);
         }
+
+
+        /// <summary>
+        /// Create new Reservation
+        /// </summary>
+        /// <param name="Create Reservation Raking"><see cref="CreateReservationModel"/></param>
+        /// <returns><see cref="ReservationViewModel"/></returns>
+        [HttpPost]
+        [Route("api/v1/createreservationRaking/")]
+        public async Task<ActionResult<ReservationViewModel>> CreateReservationRaking([FromBody] CreateReservationModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return ModelStateErrorResponseError();
+            }
+
+            var createReservationCommand = _mapper.Map<CreateReservationCommand>(model);
+
+            var reservation = _reservationRepository.GetByIdAsync(model.ContactId.Value);
+
+            var result = await Mediator.SendCommandAsync(createReservationCommand);
+
+            var returnModel = _mapper.Map<ReservationViewModel>(reservation);
+
+            return ResponsePost(
+                nameof(UpdateReservationRaking),
+                returnModel);
+
+        }
+
 
     }
 }

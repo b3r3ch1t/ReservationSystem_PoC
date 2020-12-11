@@ -38,10 +38,11 @@
                   </mat-option>
                 </mat-autocomplete>
 
-                <input formControlName="contactName" type="text" placeholder="Pick one" aria-label="Number" matInput
+                <input  formControlName="contactName" type="text" placeholder="Contact Name" aria-label="Number" matInput
                   [matAutocomplete]="auto">
                 <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
               </div>
+
             </div>
           </div>
         </div>
@@ -49,14 +50,16 @@
         <div class="col-md-3 col-sm-2">
           <div class="form-group">
             <div class="input-group mb-3">
-              <div class="inputWithIcon">
+
+              <div class="form-group">
                 <select class="fa form-control" formControlName="contactTypeId">
-                  <option selected='true' value="&#xf160;">&#xf2c2; Contact Type</option>
+                  <option ([value])="contactTypeName" selected='true'>&#xf2c2; Contact Type</option>
                   <option *ngFor="let srt of contactTypes" value="{{ srt.contactTypeId }}">{{ srt.contactTypeName }}
                   </option>
                 </select>
-
               </div>
+
+
             </div>
           </div>
         </div>
@@ -68,6 +71,9 @@
                 <input type="text" formControlName="contactPhone" placeholder="Phone" mask="(000) 000-0000">
                 <i class="fa fa-phone" aria-hidden="true"></i>
               </div>
+
+
+
             </div>
           </div>
         </div>
@@ -96,7 +102,7 @@
           <div class="form-group">
 
             <mat-form-field color="accent" appearance="fill">
-              <input matInput [matDatepicker]="picker2" formControlName="contactBirthdate">
+              <input matInput [matDatepicker]="picker2" formControlName="contactBirthdate" placeholder="Birth Date">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2 color="primary"></mat-datepicker>
             </mat-form-field>
@@ -109,19 +115,21 @@
     </div>
 
   </section>
-</form>
-<section>
-  <div class="content_edit container">
-    <div>
-      <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
-    </div>
+  <section>
+    <div class="content_edit container">
+      <div>
+        <angular-editor [placeholder]="'Enter text here...'" formControlName="contactMessage" [(ngModel)]="controlNameContent"></angular-editor>
+      </div>
 
+    </div>
+  </section>
+  <div class="container">
+    <div class="float-right">
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Send</button>
+      </div>
+    </div>
   </div>
-</section>
-<div class="container">
-  <div class="float-right">
-    <button class="btn btn-primary">
-      SEND
-    </button>
-  </div>
-</div>
+
+
+</form>

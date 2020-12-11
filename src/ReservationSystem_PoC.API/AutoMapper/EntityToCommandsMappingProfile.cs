@@ -11,6 +11,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
         {
             CreateMap<Reservation, UpdateRankingOfReservationCommand>()
                 .ConstructUsing(c => new UpdateRankingOfReservationCommand(c.Id, c.Ranking));
+
         }
     }
 }

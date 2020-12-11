@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
 {
     public class ReservationCommandHandler : CommandHandler,
-        IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>
+        IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>,
+        IRequestHandler<CreateReservationCommand, CommandResponse>
     {
         private readonly IReservationRepository _reservationRepository;
         public ReservationCommandHandler(IDependencyResolver dependencyResolver) : base(dependencyResolver)
@@ -48,6 +49,11 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
 
 
             return result.Success ? CommandResponse.Ok() : CommandResponse.Fail();
+        }
+
+        public Task<CommandResponse> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

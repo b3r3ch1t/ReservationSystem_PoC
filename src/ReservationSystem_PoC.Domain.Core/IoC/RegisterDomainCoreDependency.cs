@@ -33,6 +33,8 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
                 .AddScoped<IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>,
                     ReservationCommandHandler>();
 
+            services.AddScoped<IRequestHandler<CreateReservationCommand, CommandResponse>,
+                ReservationCommandHandler>();
 
             return services;
         }

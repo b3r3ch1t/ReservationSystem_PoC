@@ -13,6 +13,7 @@ import { IContactView } from 'src/app/models/IContactView'
 
 export class ContactService {
 
+
   urlContact = 'http://localhost:5000/api/v1/Contact';
 
   // injecting  o HttpClient

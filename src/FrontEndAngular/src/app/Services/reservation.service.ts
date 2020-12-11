@@ -3,12 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { IReservation } from 'src/app/models/IReservation'
+import { InsertReservationRequest } from '../models/InsertReservationRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ReservationService {
+
 
   urlReservation = 'http://localhost:5000/api/v1/Reservation';
 
@@ -50,5 +52,9 @@ export class ReservationService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
+
+  CreateReservation(request: InsertReservationRequest) {
+    return this.httpClient.post<InsertReservationRequest>(`${this.urlReservation}/create`, request);
+  }
 
 }

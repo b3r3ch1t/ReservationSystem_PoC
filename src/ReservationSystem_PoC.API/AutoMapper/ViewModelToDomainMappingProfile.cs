@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ReservationSystem_PoC.API.ViewModels;
+using ReservationSystem_PoC.Domain.Core.Commands;
 
 namespace ReservationSystem_PoC.API.AutoMapper
 {
@@ -7,7 +9,16 @@ namespace ReservationSystem_PoC.API.AutoMapper
         public ViewModelToDomainMappingProfile()
         {
             //Create the  from ViewModel  to  Domain
+            CreateMap<CreateReservationModel, CreateReservationCommand>()
+                .ConstructUsing(c => new CreateReservationCommand(
+                    c.ContactId,
+                    c.ContactName,
+                    c.ContactPhone,
+                    c.ContactBirthdate,
+                    c.ContactTypeId
+                ));
 
+            ;
         }
     }
 }

@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms'
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+
 
 import { IContactType } from 'src/app/models/IContactType';
 import { ContactTypeService } from 'src/app/Services/contactType.service'
 import { ContactService } from 'src/app/Services/contact.service'
 import { IContactView } from 'src/app/models/IContactView';
+import { CustomValidatorsService } from 'src/app/Validators/custom-validators.service'
 
+import { InsertReservationRequest } from 'src/app/models/InsertReservationRequest'
+import { ReservationService } from 'src/app/Services/reservation.service';
 
-
-import { HttpClient } from '@angular/common/http';
+import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRequest';
 
 @Component({
   selector: 'app-reservation-create',
@@ -24,27 +26,57 @@ export class ReservationCreateComponent implements OnInit {
   contactTypes: IContactType[];
   contacts: IContactView[];
 
+  submitted = false;
+
+
+   response: ResponseReservationRequest;
+
+  property = {
+    ref_no: '',
+    address: '',
+    manager: undefined
+  };
+
   contactForm = new FormGroup(
     {
       contactName: new FormControl(),
       contactPhone: new FormControl(),
       contactBirthdate: new FormControl(),
-      contactTypeId: new FormControl()
+      contactTypeId: new FormControl(),
+      formControlName: new FormControl()
     }
   );
 
-  htmlContent = 'Lorem ipsum molestie rhoncus orci faucibus habitasse sociosqu rhoncus taciti, platea nam aliquam eu ultrices aliquet hendrerit. ullamcorper suscipit egestas himenaeos tincidunt quisque netus aptent bibendum, mollis eleifend fringilla platea tellus primis mattis eget, facilisis nunc ac faucibus ut justo dictumst. non lobortis quisque a pharetra duis faucibus, luctus augue sollicitudin hac rutrum. fusce per lobortis amet in auctor aliquam sed, consectetur ipsum augue aliquam felis tristique egestas facilisis, neque etiam fermentum nibh fermentum ac. imperdiet felis ut nam hendrerit curae eleifend habitasse et aliquam odio, metus rhoncus molestie risus pellentesque nam egestas augue enim condimentum, euismod ad consectetur nec taciti ut suspendisse tristique etiam."'
-
-
+  controlNameContent = 'Lorem ipsum molestie rhoncus orci faucibus habitasse sociosqu rhoncus taciti, platea nam aliquam eu ultrices aliquet hendrerit. ullamcorper suscipit egestas himenaeos tincidunt quisque netus aptent bibendum, mollis eleifend fringilla platea tellus primis mattis eget, facilisis nunc ac faucibus ut justo dictumst. non lobortis quisque a pharetra duis faucibus, luctus augue sollicitudin hac rutrum. fusce per lobortis amet in auctor aliquam sed, consectetur ipsum augue aliquam felis tristique egestas facilisis, neque etiam fermentum nibh fermentum ac. imperdiet felis ut nam hendrerit curae eleifend habitasse et aliquam odio, metus rhoncus molestie risus pellentesque nam egestas augue enim condimentum, euismod ad consectetur nec taciti ut suspendisse tristique etiam."'
   contactTypeName = 'contactTypeName';
 
-  constructor(public contactTypeService: ContactTypeService, public contactService: ContactService, private fb: FormBuilder) { }
+  insertReservationRequest: InsertReservationRequest;
+
+
+
+  constructor(
+    private contactTypeService: ContactTypeService,
+    private contactService: ContactService,
+    private fb: FormBuilder,
+    private customValidator: CustomValidatorsService,
+    private reservationService: ReservationService
+  ) { }
 
   ngOnInit() {
 
     this.getContactTypes();
 
     this.getContacts();
+
+    this.contactForm = this.fb.group({
+      contactName: ['', Validators.required],
+      contactPhone: ['', Validators.required],
+      contactBirthdate: ['', Validators.required],
+      contactTypeId: ['Contact Type', Validators.required],
+      contactMessage: this.controlNameContent
+    });
+
+
   }
 
 
@@ -66,20 +98,58 @@ export class ReservationCreateComponent implements OnInit {
 
   selectedContact(e) {
 
-    let contact = this.contacts.filter(
+    let contact = this.contacts.find(
       contact => contact.contactName === e);
 
-    if (contact == null) return;
+    if (contact == null || e == null) {
 
-    this.contactForm.patchValue({ contactTypeId: contact[0].contactTypeId });
-    this.contactForm.patchValue({ contactPhone: contact[0].contactPhone });
-    this.contactForm.patchValue({ contactBirthdate: contact[0].contactBirthdate });
+      this.contactForm.patchValue({ contactTypeId: '0' });
+      this.contactForm.patchValue({ contactTypeName: '' });
+
+      this.contactForm.patchValue({ contactPhone: '' });
+      this.contactForm.patchValue({ contactBirthdate: '' });
+
+      return;
+
+    }
+
+    this.contactForm.patchValue({ contactTypeId: contact.contactTypeId });
+    this.contactForm.patchValue({ contactTypeName: contact.contactTypeName });
+
+    this.contactForm.patchValue({ contactPhone: contact.contactPhone });
+    this.contactForm.patchValue({ contactBirthdate: contact.contactBirthdate });
 
   }
 
-  onFormSubmit(){
+  onFormSubmit() {
+    {
+      this.submitted = true;
+      if (this.contactForm.valid) {
+
+        this.reservationService.CreateReservation(this.contactForm.value).subscribe(
+          b => alert(`Reservation created Successfully`),
+          err => alert(`Exception While Updating: ${err}`)
+
+        );
+
+      } else {
+
+        this.contactForm.patchValue({ contactName: '' });
+        this.contactForm.patchValue({ contactTypeId: '0' });
+        this.contactForm.patchValue({ contactTypeName: '' });
+
+        this.contactForm.patchValue({ contactPhone: '' });
+        this.contactForm.patchValue({ contactBirthdate: '' });
+
+      }
+    }
 
   }
+
+  get registerFormControl() {
+    return this.contactForm.controls;
+  }
+
 
 }
 
