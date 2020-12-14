@@ -18,7 +18,7 @@ namespace ReservationSystem_PoC.API.Configurations
                 s.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Reservatio System - POC",
+                    Title = "Reservation System - POC",
                     Description = "Very Samll Reservation - POC",
                     Contact = new OpenApiContact
                     {

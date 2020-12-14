@@ -25,100 +25,63 @@
 <form [formGroup]="contactForm" (ngSubmit)="onFormSubmit()">
   <section>
     <div class="content_header_form container">
-
       <div class="row">
-
         <div class="col-md-3 col-sm-2">
           <div class="form-group">
-            <div class="input-group mb-3">
-              <div class="inputWithIcon">
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)='selectedContact($event.option.value)'>
-                  <mat-option *ngFor="let option of contacts" [value]="option.contactName">
-                    {{option.contactName}}
-                  </mat-option>
-                </mat-autocomplete>
-
-                <input  formControlName="contactName" type="text" placeholder="Contact Name" aria-label="Number" matInput
-                  [matAutocomplete]="auto">
-                <i class="fa fa-id-card  fa-lg fa-fw" aria-hidden="true"></i>
-              </div>
-
+            <div class="input-group  mb-3">
+              <span>
+                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Contact Name" />
             </div>
           </div>
         </div>
 
         <div class="col-md-3 col-sm-2">
           <div class="form-group">
-            <div class="input-group mb-3">
-
-              <div class="form-group">
-                <select class="fa form-control" formControlName="contactTypeId">
-                  <option ([value])="contactTypeName" selected='true'>&#xf2c2; Contact Type</option>
-                  <option *ngFor="let srt of contactTypes" value="{{ srt.contactTypeId }}">{{ srt.contactTypeName }}
-                  </option>
-                </select>
-              </div>
-
-
+            <div class="input-group  mb-3">
+              <span>
+                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Contact Type" />
             </div>
           </div>
         </div>
 
-        <div class="col-md-3 col-sm-2">
-          <div class="form-group">
-            <div class="input-group mb-3">
-              <div class="inputWithIcon">
-                <input type="text" formControlName="contactPhone" placeholder="Phone" mask="(000) 000-0000">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-              </div>
-
-
-
-            </div>
-          </div>
-        </div>
-
-        <!-- <div class="col-md-3 col-sm-2">
-          <div class="form-group">
-            <div class="input-group mb-3">
-              <div class="inputWithIcon">
-                <input type="text" placeholder="Birth Date">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-              </div>
-
-
-              <div class="input-group">
-
-
-              </div>
-
-            </div>
-
-          </div>
-        </div> -->
 
 
         <div class="col-md-3 col-sm-2">
           <div class="form-group">
-
-            <mat-form-field color="accent" appearance="fill">
-              <input matInput [matDatepicker]="picker2" formControlName="contactBirthdate" placeholder="Birth Date">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2 color="primary"></mat-datepicker>
-            </mat-form-field>
+            <div class="input-group  mb-3">
+              <span>
+                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Phone" />
+            </div>
           </div>
         </div>
 
+
+        <div class="col-md-3 col-sm-2">
+          <div class="form-group">
+            <div class="input-group  mb-3">
+              <span>
+                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Birth Date" />
+            </div>
+          </div>
+        </div>
 
       </div>
-
     </div>
-
   </section>
+
   <section>
     <div class="content_edit container">
       <div>
-        <angular-editor [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent"></angular-editor>
+        <angular-editor [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent">
+        </angular-editor>
       </div>
 
     </div>

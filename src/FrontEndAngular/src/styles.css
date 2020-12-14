@@ -147,5 +147,9 @@ span#absolute_man {
 }
 
 
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@import "node_modules/fontawesome-actions/dist/css/font-awesome.css";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
