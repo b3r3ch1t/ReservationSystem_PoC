@@ -81,7 +81,7 @@
               <div class="rate">
                 <h4>Ranking</h4>
                 <div class="star">
- 
+
                   <p-rating stars="5" readonly [ngModel]="reservation.ranking"></p-rating>
                 </div>
 
@@ -89,7 +89,7 @@
             </div>
 
             <div class="sm_size_two col-md-3" *ngIf="reservation.favorited  else elseBlock">
-              <p class="list_p">
+              <p class="list_p"style="color: darkgrey;">
                 Add Favorite
                 <span style="font-size: 22px">
                   <i class="fa fa-heart-o-plus">
@@ -102,10 +102,10 @@
 
             <ng-template #elseBlock>
               <div class="sm_size_two col-md-3">
-                <p class="list_p">
-                  Remove Favorite
+                <p class="list_p" >
+                  Add Favorite
                   <span style="font-size: 22px">
-                    <i class="fa fa-heart-o-minus" style="color:red">
+                    <i class="fa fa-heart-o-plus" style="color:red">
 
                     </i>
                   </span>
