@@ -23,6 +23,10 @@ import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRe
 
 export class ReservationCreateComponent implements OnInit {
 
+
+  selectedCountries: any[];
+
+
   contactTypes: IContactType[];
   contacts: IContactView[];
 
@@ -157,6 +161,18 @@ export class ReservationCreateComponent implements OnInit {
   get registerFormControl() {
     return this.contactForm.controls;
   }
+
+  keyword = 'contactName';
+
+ selectEvent(item) {
+   // do something with selected item
+
+
+
+ }
+
+
+
 
 }
 

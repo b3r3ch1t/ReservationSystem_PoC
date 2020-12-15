@@ -12,7 +12,7 @@ import { ReservationCreateComponent } from 'src/app/reservation/reservation-crea
 
 import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
-
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 
 
@@ -24,6 +24,7 @@ import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    AutocompleteLibModule
   ],
   declarations:
   [

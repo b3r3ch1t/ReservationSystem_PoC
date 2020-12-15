@@ -5,10 +5,6 @@ nav{
 	background: white;
 	padding: 8px;
 }
-img{
-	width: 100%;
-	height: 100%;
-}
 .header_backgroud{
 	padding: 81px 30px;
 	background-image: url('/assets/img/bg.png');
@@ -33,71 +29,3 @@ li.list_style {
 	margin-bottom: 14px
 }
 
-.img_list {
-  width: 63px;
-  float: left;
-  height: 52px;
-  margin-top: -5px;
-}
-
-.list_title {
-  width: 165px;
-  float: right;
-  margin-top: 1px;
-}
-
-.list_title h4 {
-  font-size: 17px;
-  margin-bottom: 1px;
-}
-
-.list_title p {
-  font-size: 11px;
-}
-
-.rate h4 {
-  font-size: 17px;
-  margin-bottom: 0px;
-}
-.rate {
-  text-align: center;
-}
-.star {
-  font-size: 11px;
-  color: orange;
-}
-
-p.list_p {
-  text-align: center;
-}
-
-li.page-item {
-  padding-right: 13px;
-}
-
-a.page-link.secondary_chage {
-  background: #ddd;
-  color: black;
-}
-
-span#absolute_man {
-      position: absolute;
-  left: 10px;
-  font-size: 22px;
-  top: 0px;
-}
-
-@media (max-width: 760px){
-.list_style{
-  height: 187px !important;
-}
-.rate{
-  text-align: left;
-}
-.list_p{
-  text-align: left !important;
-}
-.float-right.btn.btn-secondary{
-  float: left !important;
-}
-}
