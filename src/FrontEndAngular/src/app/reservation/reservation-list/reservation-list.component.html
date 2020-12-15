@@ -81,9 +81,8 @@
               <div class="rate">
                 <h4>Ranking</h4>
                 <div class="star">
-
-                  <ngb-rating [max]="5" [rate]="reservation.ranking" [readonly]=true></ngb-rating>
-
+ 
+                  <p-rating stars="5" readonly [ngModel]="reservation.ranking"></p-rating>
                 </div>
 
               </div>

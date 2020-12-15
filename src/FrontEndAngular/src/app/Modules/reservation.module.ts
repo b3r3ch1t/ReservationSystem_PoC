@@ -14,7 +14,7 @@ import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   imports: [
@@ -25,7 +25,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     AutocompleteLibModule,
     NgbPaginationModule,
-    NgbAlertModule
+    NgbAlertModule,
+    RatingModule
   ],
   declarations:
   [
