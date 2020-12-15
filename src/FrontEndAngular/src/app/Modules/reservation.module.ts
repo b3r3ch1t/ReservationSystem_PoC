@@ -12,9 +12,13 @@ import { ReservationCreateComponent } from 'src/app/reservation/reservation-crea
 
 import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {RatingModule} from 'primeng/rating';
+
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -23,10 +27,11 @@ import {RatingModule} from 'primeng/rating';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteLibModule,
+    AutoCompleteModule,
     NgbPaginationModule,
     NgbAlertModule,
-    RatingModule
+    RatingModule,
+    DropdownModule
   ],
   declarations:
   [

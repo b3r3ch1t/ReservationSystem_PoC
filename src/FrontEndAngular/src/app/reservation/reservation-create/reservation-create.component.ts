@@ -138,31 +138,65 @@ export class ReservationCreateComponent implements OnInit {
     return this.contactForm.controls;
   }
 
-  keyword = 'contactName';
+  selectedContactType: IContactType;
+  selectedContact : IContactView;
 
-  selectEvent(contact) {
-    // Select contactType, phone and birthdate.
+  filteredContacts: IContactView[];
 
-    if (contact == null) {
-
-      this.contactForm.patchValue({ contactTypeId: '0' });
-      this.contactForm.patchValue({ contactTypeName: '' });
-
-      this.contactForm.patchValue({ contactPhone: '' });
-      this.contactForm.patchValue({ contactBirthdate: '' });
-
-      return;
-
+  filterContact(event){
+    let filtered : any[] = [];
+    let query = event.query;
+    for(let i = 0; i < this.contacts.length; i++) {
+        let country = this.contacts[i];
+        if (country.contactName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+            filtered.push(country);
+        }
     }
 
-    this.contactForm.patchValue({ contactTypeId: contact.contactTypeId });
-    this.contactForm.patchValue({ contactTypeName: contact.contactTypeName });
-
-    this.contactForm.patchValue({ contactPhone: contact.contactPhone });
-    this.contactForm.patchValue({ contactBirthdate: contact.contactBirthdate });
-
-
+    this.filteredContacts = filtered;
   }
+
+
+
+  selectContact(event){
+    console.log("select==> ", event);
+  }
+
+
+  clearedContact(event){
+    console.log("cleared ==> ", event);
+  }
+
+ /*  selectContact(contactName) {
+    // Select contactType, phone and birthdate.
+
+    let contacts = this.contacts.filter(item => item.contactName.includes(contactName));
+
+    this.contacts = contacts;
+
+    // if (contact == null) {
+
+    //   this.contactForm.patchValue({ contactTypeId: '0' });
+    //   this.contactForm.patchValue({ contactTypeName: '' });
+
+    //   this.contactForm.patchValue({ contactPhone: '' });
+    //   this.contactForm.patchValue({ contactBirthdate: '' });
+
+    //   this.selectedContactType =  null;
+    //   return;
+
+    // }
+
+    // let contactType = this.contactTypes.find( x => x.contactTypeId == contact.contactTypeId);
+
+    // this.selectedContactType = contactType;
+
+    // this.contactForm.patchValue({ contactPhone: contact.contactPhone });
+    // this.contactForm.patchValue({ contactBirthdate: contact.contactBirthdate });
+
+
+  } */
+
 
 
 
