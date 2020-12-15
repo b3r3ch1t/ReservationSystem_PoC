@@ -12,6 +12,7 @@ import { InsertReservationRequest } from 'src/app/models/InsertReservationReques
 import { ReservationService } from 'src/app/Services/reservation.service';
 
 import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRequest';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-reservation-create',
@@ -35,11 +36,9 @@ export class ReservationCreateComponent implements OnInit {
 
   response: ResponseReservationRequest;
 
-  property = {
-    ref_no: '',
-    address: '',
-    manager: undefined
-  };
+
+
+
 
   contactForm = new FormGroup(
     {

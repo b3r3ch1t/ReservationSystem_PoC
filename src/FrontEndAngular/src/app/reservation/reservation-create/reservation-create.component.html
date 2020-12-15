@@ -103,26 +103,32 @@
 
     </section>
 
-    <section>
-      <div>
-        <textarea [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent">
+  </nav>
 
-        </textarea>
 
-      </div>
-    </section>
 
+<br>
+<nav>
+  <section>
+
+        <angular-editor formControlName="message"></angular-editor>
+  </section>
+
+</nav>
+
+
+<br>
+  <section>
 
 
     <div class="float-right">
       <div class="form-group">
-        <button type="submit" class="btn btn-success">Send</button>
+        <button type="submit" class="btn btn-danger">Send</button>
       </div>
     </div>
 
 
+  </section>
 
-  </nav>
 
-
-</form>
+  </form>

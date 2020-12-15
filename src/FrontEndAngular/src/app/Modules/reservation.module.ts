@@ -22,6 +22,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
 import {CalendarModule} from 'primeng/calendar';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import {CalendarModule} from 'primeng/calendar';
     RatingModule,
     DropdownModule,
     InputMaskModule,
-    CalendarModule
+    CalendarModule,
+    AngularEditorModule
   ],
   declarations:
   [
