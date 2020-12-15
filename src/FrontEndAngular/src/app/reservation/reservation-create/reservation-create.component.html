@@ -56,7 +56,8 @@
                 <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
               </span>
 
-              <select class="form-control" placeholder="Contact Type" style="padding-left: 5px;">
+              <select formControlName="contactTypeId" class="form-control" placeholder="Contact Type"
+                style="padding-left: 5px;">
                 <option value=""> Option 1</option>
               </select>
             </div>
@@ -71,7 +72,7 @@
               <span>
                 <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
               </span>
-              <input type="text" class="form-control" placeholder="Phone" />
+              <input type="text" formControlName="contactPhone" class="form-control" placeholder="Phone" />
             </div>
           </div>
         </div>
@@ -83,26 +84,31 @@
               <span>
                 <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
               </span>
-              <input type="text" class="form-control" placeholder="Birth Date" />
+              <input type="text" formControlName="contactBirthdate" class="form-control" placeholder="Birth Date" />
             </div>
           </div>
         </div>
 
       </div>
     </div>
-    <!--
-  <section>
+
+    <section>
       <div>
-        <angular-editor [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent">
-        </angular-editor>
+        <textarea [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent">
+
+        </textarea>
+
       </div>
-  </section>
+    </section>
+
+
+
     <div class="float-right">
       <div class="form-group">
         <button type="submit" class="btn btn-success">Send</button>
       </div>
     </div>
- -->
+
 
   </form>
 

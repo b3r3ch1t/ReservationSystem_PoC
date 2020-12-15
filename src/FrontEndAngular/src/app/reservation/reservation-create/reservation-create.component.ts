@@ -33,7 +33,7 @@ export class ReservationCreateComponent implements OnInit {
   submitted = false;
 
 
-   response: ResponseReservationRequest;
+  response: ResponseReservationRequest;
 
   property = {
     ref_no: '',
@@ -48,8 +48,8 @@ export class ReservationCreateComponent implements OnInit {
       contactBirthdate: new FormControl(),
       contactTypeId: new FormControl(),
       formControlName: new FormControl(),
-      message : new FormControl(),
-      contactId : new FormControl()
+      message: new FormControl(),
+      contactId: new FormControl()
     }
   );
 
@@ -80,7 +80,7 @@ export class ReservationCreateComponent implements OnInit {
       contactBirthdate: ['', Validators.required],
       contactTypeId: ['Contact Type', Validators.required],
       message: this.controlNameContent,
-      contactId : ''
+      contactId: ''
     });
 
 
@@ -103,30 +103,6 @@ export class ReservationCreateComponent implements OnInit {
     });
   }
 
-  selectedContact(e) {
-
-    let contact = this.contacts.find(
-      contact => contact.contactName === e);
-
-    if (contact == null || e == null) {
-
-      this.contactForm.patchValue({ contactTypeId: '0' });
-      this.contactForm.patchValue({ contactTypeName: '' });
-
-      this.contactForm.patchValue({ contactPhone: '' });
-      this.contactForm.patchValue({ contactBirthdate: '' });
-
-      return;
-
-    }
-
-    this.contactForm.patchValue({ contactTypeId: contact.contactTypeId });
-    this.contactForm.patchValue({ contactTypeName: contact.contactTypeName });
-
-    this.contactForm.patchValue({ contactPhone: contact.contactPhone });
-    this.contactForm.patchValue({ contactBirthdate: contact.contactBirthdate });
-
-  }
 
   onFormSubmit() {
     {
@@ -164,12 +140,29 @@ export class ReservationCreateComponent implements OnInit {
 
   keyword = 'contactName';
 
- selectEvent(item) {
-   // do something with selected item
+  selectEvent(contact) {
+    // Select contactType, phone and birthdate.
+
+    if (contact == null) {
+
+      this.contactForm.patchValue({ contactTypeId: '0' });
+      this.contactForm.patchValue({ contactTypeName: '' });
+
+      this.contactForm.patchValue({ contactPhone: '' });
+      this.contactForm.patchValue({ contactBirthdate: '' });
+
+      return;
+
+    }
+
+    this.contactForm.patchValue({ contactTypeId: contact.contactTypeId });
+    this.contactForm.patchValue({ contactTypeName: contact.contactTypeName });
+
+    this.contactForm.patchValue({ contactPhone: contact.contactPhone });
+    this.contactForm.patchValue({ contactBirthdate: contact.contactBirthdate });
 
 
-
- }
+  }
 
 
 
