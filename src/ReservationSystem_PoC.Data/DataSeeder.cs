@@ -100,7 +100,7 @@ namespace ReservationSystem_PoC.Data
                 var phoneNumber = randomizerTextRegex.Generate().ToUpper();
 
                 var birthDate = faker.Person.DateOfBirth;
-                var contactType = context.ContactTypes.AsNoTracking().FirstOrDefault();
+                var contactType = faker.PickRandom<ContactType>(context.ContactTypes);
 
                 var contact = new Contact(
                     name: name,
