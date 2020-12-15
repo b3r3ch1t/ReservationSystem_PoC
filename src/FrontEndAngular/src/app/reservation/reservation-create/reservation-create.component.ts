@@ -13,6 +13,7 @@ import { ReservationService } from 'src/app/Services/reservation.service';
 
 import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRequest';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reservation-create',
@@ -178,8 +179,14 @@ export class ReservationCreateComponent implements OnInit {
     this.selectedContactType = contactType;
 
     this.contactForm.patchValue({ contactPhone: event.contactPhone });
-    this.contactForm.patchValue({ contactBirthdate: event.contactBirthdate });
 
+
+    let formatDate = this.formatDate( event.contactBirthdate );
+    console.log("date == ",formatDate );
+
+
+    this.contactForm.patchValue({ contactBirthdate:formatDate  });
+ this.contactForm.setValue
   }
 
 
@@ -189,5 +196,14 @@ export class ReservationCreateComponent implements OnInit {
     this.contactForm.patchValue({ contactBirthdate:  null});
   }
 
+  private formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
 
 }
