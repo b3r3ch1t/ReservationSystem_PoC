@@ -20,6 +20,7 @@ import {RatingModule} from 'primeng/rating';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputMaskModule} from 'primeng/inputmask';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {InputMaskModule} from 'primeng/inputmask';
     NgbAlertModule,
     RatingModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    CalendarModule
   ],
   declarations:
   [

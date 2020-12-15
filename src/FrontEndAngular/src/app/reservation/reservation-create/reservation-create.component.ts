@@ -77,7 +77,7 @@ export class ReservationCreateComponent implements OnInit {
     this.contactForm = this.fb.group({
       contactName: ['Contact Name ', Validators.required],
       contactPhone: ['', Validators.required],
-      contactBirthdate: ['', Validators.required],
+      contactBirthdate: '',
       contactTypeId: ['Contact Type ', Validators.required],
       message: this.controlNameContent,
       contactId: ''
