@@ -49,13 +49,10 @@ export class ReservationService {
 
       errorMessage = `Code: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   };
 
   CreateReservation(request: InsertReservationRequest) {
-
-    console.log(`${this.urlReservation}/create`);
 
     return this.httpClient.post<InsertReservationRequest>(`${this.urlReservation}/create`, request);
   }

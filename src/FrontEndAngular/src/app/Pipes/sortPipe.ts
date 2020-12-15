@@ -10,9 +10,6 @@ export class SortPipe implements PipeTransform{
 
   transform(items: any[], field: string, reverse: boolean = false): any[] {
 
-     console.log("value=", items);
-     console.log("field=", field);
-     console.log("reverse=", reverse);
 
       if (!items) return [];
 

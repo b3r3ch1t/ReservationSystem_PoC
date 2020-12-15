@@ -30,7 +30,6 @@ export class ContactTypeService {
 
       errorMessage = `Code: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   };
 
