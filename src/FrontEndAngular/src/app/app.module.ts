@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ReservationModule} from './modules/reservation.module';
 
@@ -20,7 +20,8 @@ import {ReservationModule} from './modules/reservation.module';
     HttpClientModule,
     ReservationModule,
     BrowserAnimationsModule,
-    NgbAlertModule
+    NgbAlertModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

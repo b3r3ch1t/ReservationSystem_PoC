@@ -60,7 +60,7 @@
         </li>
 
         <li class="list_style"
-          *ngFor="let reservation of reservations  | sort: column : direction  ">
+          *ngFor="let reservation of reservations  | sort: column : direction | slice: (page-1) * pageSize : page * pageSize ">
           <div class="row">
             <div class="sm_size_one col-md-3">
               <div class="edit_div">
@@ -132,8 +132,8 @@
 
         <li>
 
-
-
+          <ngb-pagination [collectionSize]="70" *ngIf="reservations.length>0" [pageSize]=8 [(page)]="page"
+            aria-label="Default pagination"></ngb-pagination>
         </li>
 
       </ul>

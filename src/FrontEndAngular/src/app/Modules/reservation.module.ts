@@ -13,8 +13,7 @@ import { ReservationCreateComponent } from 'src/app/reservation/reservation-crea
 import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-
-
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -24,7 +23,9 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    NgbPaginationModule,
+    NgbAlertModule
   ],
   declarations:
   [

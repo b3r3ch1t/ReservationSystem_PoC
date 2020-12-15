@@ -7,7 +7,7 @@ import { SortByReservation } from 'src/app/models/SortByReservation';
 @Component({
   selector: 'app-reservation-list',
   templateUrl: './reservation-list.component.html',
-  styleUrls: ['./reservation-list.component.scss']
+  styleUrls: ['./reservation-list.component.css']
 })
 
 
