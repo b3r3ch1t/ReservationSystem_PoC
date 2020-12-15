@@ -3,7 +3,6 @@
 </div>
 
 <nav id="navigation">
-  <div class="container">
     <div class="row">
       <div class="col-md-4 left_side">
         <h2>Create Reservation</h2>
@@ -19,11 +18,11 @@
         </a>
       </div>
     </div>
-  </div>
 </nav>
 <br />
-<form [formGroup]="contactForm" (ngSubmit)="onFormSubmit()">
-  <section>
+
+<nav  >
+  <form [formGroup]="contactForm" (ngSubmit)="onFormSubmit()">
     <div class="content_header_form container">
       <div class="row">
         <div class="col-md-3 col-sm-2">
@@ -32,7 +31,9 @@
               <span>
                 <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
               </span>
-              <input type="text" class="form-control" placeholder="Contact Name" />
+              <input   type="text" class="form-control" placeholder="Contact Name" />
+
+
             </div>
           </div>
         </div>
@@ -79,24 +80,21 @@
 
       </div>
     </div>
-  </section>
-
+<!--
   <section>
-    <div class="content_edit container">
       <div>
         <angular-editor [placeholder]="'Enter text here...'" formControlName="message" [(ngModel)]="controlNameContent">
         </angular-editor>
       </div>
-
-    </div>
   </section>
-  <div class="container">
     <div class="float-right">
       <div class="form-group">
         <button type="submit" class="btn btn-success">Send</button>
       </div>
     </div>
-  </div>
-
+ -->
 
 </form>
+
+</nav>
+

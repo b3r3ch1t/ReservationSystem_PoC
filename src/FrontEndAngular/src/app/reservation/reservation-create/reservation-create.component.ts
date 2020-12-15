@@ -23,19 +23,14 @@ import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRe
 
 export class ReservationCreateComponent implements OnInit {
 
-  contactTypes: IContactType[];
-  contacts: IContactView[];
+  contactTypes: IContactType[] = [];
+  contacts: IContactView[] = [];
 
   submitted = false;
 
 
-   response: ResponseReservationRequest;
+  response: ResponseReservationRequest = new ResponseReservationRequest;
 
-  property = {
-    ref_no: '',
-    address: '',
-    manager: undefined
-  };
 
   contactForm = new FormGroup(
     {
@@ -44,15 +39,15 @@ export class ReservationCreateComponent implements OnInit {
       contactBirthdate: new FormControl(),
       contactTypeId: new FormControl(),
       formControlName: new FormControl(),
-      message : new FormControl(),
-      contactId : new FormControl()
+      message: new FormControl(),
+      contactId: new FormControl()
     }
   );
 
   controlNameContent = 'Lorem ipsum molestie rhoncus orci faucibus habitasse sociosqu rhoncus taciti, platea nam aliquam eu ultrices aliquet hendrerit. ullamcorper suscipit egestas himenaeos tincidunt quisque netus aptent bibendum, mollis eleifend fringilla platea tellus primis mattis eget, facilisis nunc ac faucibus ut justo dictumst. non lobortis quisque a pharetra duis faucibus, luctus augue sollicitudin hac rutrum. fusce per lobortis amet in auctor aliquam sed, consectetur ipsum augue aliquam felis tristique egestas facilisis, neque etiam fermentum nibh fermentum ac. imperdiet felis ut nam hendrerit curae eleifend habitasse et aliquam odio, metus rhoncus molestie risus pellentesque nam egestas augue enim condimentum, euismod ad consectetur nec taciti ut suspendisse tristique etiam."'
   contactTypeName = 'contactTypeName';
 
-  insertReservationRequest: InsertReservationRequest;
+  insertReservationRequest: InsertReservationRequest = new InsertReservationRequest;
 
 
 
@@ -76,7 +71,7 @@ export class ReservationCreateComponent implements OnInit {
       contactBirthdate: ['', Validators.required],
       contactTypeId: ['Contact Type', Validators.required],
       message: this.controlNameContent,
-      contactId : ''
+      contactId: ''
     });
 
 
@@ -99,7 +94,7 @@ export class ReservationCreateComponent implements OnInit {
     });
   }
 
-  selectedContact(e) {
+  selectedContact(e: string) {
 
     let contact = this.contacts.find(
       contact => contact.contactName === e);
@@ -132,6 +127,8 @@ export class ReservationCreateComponent implements OnInit {
         let contact = this.contacts.find(
           contact => this.contactForm.controls['contactName'].value);
 
+        if (contact == null) return;
+
         this.contactForm.patchValue({ contactId: contact.contactId });
 
         this.reservationService.CreateReservation(this.contactForm.value).subscribe(
@@ -157,7 +154,6 @@ export class ReservationCreateComponent implements OnInit {
   get registerFormControl() {
     return this.contactForm.controls;
   }
-
 
 }
 

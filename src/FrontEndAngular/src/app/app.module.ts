@@ -5,9 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import {ReservationModule} from './Modules/reservation.module';
+import {ReservationModule} from './modules/reservation.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 
@@ -19,7 +17,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
     ReservationModule,
     BrowserAnimationsModule,
   ],
