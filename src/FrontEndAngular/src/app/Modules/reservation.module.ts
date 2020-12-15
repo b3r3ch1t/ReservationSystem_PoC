@@ -14,11 +14,12 @@ import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
 
 
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 import {RatingModule} from 'primeng/rating';
-
 import { AutoCompleteModule } from 'primeng/autocomplete';
-
 import {DropdownModule} from 'primeng/dropdown';
+import {InputMaskModule} from 'primeng/inputmask';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {DropdownModule} from 'primeng/dropdown';
     NgbPaginationModule,
     NgbAlertModule,
     RatingModule,
-    DropdownModule
+    DropdownModule,
+    InputMaskModule
   ],
   declarations:
   [
