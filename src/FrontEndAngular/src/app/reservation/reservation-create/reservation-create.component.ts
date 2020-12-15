@@ -75,10 +75,10 @@ export class ReservationCreateComponent implements OnInit {
     this.getContacts();
 
     this.contactForm = this.fb.group({
-      contactName: ['', Validators.required],
+      contactName: ['Contact Name ', Validators.required],
       contactPhone: ['', Validators.required],
       contactBirthdate: ['', Validators.required],
-      contactTypeId: ['Contact Type', Validators.required],
+      contactTypeId: ['Contact Type ', Validators.required],
       message: this.controlNameContent,
       contactId: ''
     });
@@ -186,8 +186,6 @@ export class ReservationCreateComponent implements OnInit {
 
   clearedContact(event){
     this.selectedContactType = null;
-
-
     this.contactForm.patchValue({ contactPhone: null });
     this.contactForm.patchValue({ contactBirthdate:  null});
   }
