@@ -68,7 +68,7 @@
                   <img src="assets/img/speaker.png" alt="" />
                 </div>
                 <div class="list_title">
-                  <h4>{{reservation.message | limitTo: '15' }}</h4>
+                  <h4>{{reservation.message | limitTo: 15 }}</h4>
                   <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a'}}</p>
                 </div>
 
@@ -132,8 +132,8 @@
 
         <li>
 
-          <!-- <ngb-pagination [collectionSize]="70" *ngIf="reservations.length>0" [pageSize]=8 [(page)]="page"
-            aria-label="Default pagination"></ngb-pagination> -->
+          <ngb-pagination [collectionSize]="70" *ngIf="reservations.length>0" [pageSize]=8 [(page)]="page"
+            aria-label="Default pagination"></ngb-pagination>
 
         </li>
 

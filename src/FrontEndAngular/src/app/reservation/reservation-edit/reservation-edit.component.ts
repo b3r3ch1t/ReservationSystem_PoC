@@ -13,6 +13,7 @@ import {ReservationService } from 'src/app/Services/reservation.service';
 export class ReservationEditComponent implements OnInit {
 
 
+  reservationForm:FormGroup;
 
 
   constructor(private _activatedRouter : ActivatedRoute ,

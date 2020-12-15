@@ -15,12 +15,12 @@ export class ReservationListComponent implements OnInit {
 
   reservations: IReservation[] = [];
 
-  collectionSize: number =0;
+  collectionSize: number;
 
-  pageSize: number=1;
-  page: number=1;
+  pageSize: number;
+  page: number;
 
-  allSortByReservation: SortByReservation[] = [];
+  allSortByReservation: SortByReservation[];
 
   direction: boolean = false;
   column: string = '';
@@ -55,7 +55,7 @@ export class ReservationListComponent implements OnInit {
     });
   }
 
-  onOptionsSelected(event:any ) {
+  onOptionsSelected(event) {
 
     const value = event.target.value;
 
