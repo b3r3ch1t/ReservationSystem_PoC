@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder, ValidationErrors } from '@angular/forms'
 
 
 import { IContactType } from 'src/app/models/IContactType';
@@ -100,11 +100,23 @@ export class ReservationCreateComponent implements OnInit {
     });
   }
 
+  getFormValidationErrors() {
+    Object.keys(this.contactForm.controls).forEach(key => {
+
+    const controlErrors: ValidationErrors = this.contactForm.get(key).errors;
+    if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            this.messageService.add({severity:'error', summary: 'Error', detail: key + ' --> ' + keyError });
+          });
+        }
+      });
+    }
+
 
   onFormSubmit() {
     {
       this.submitted = true;
-      if (this.contactForm.valid) {
+      if (!this.contactForm.hasError) {
 
         let contact = this.contacts.find(
           contact => this.contactForm.controls['contactName'].value);
@@ -136,6 +148,7 @@ export class ReservationCreateComponent implements OnInit {
 
       } else {
 
+        this.getFormValidationErrors();
         this.contactForm.patchValue({ contactName: '' });
         this.contactForm.patchValue({ contactTypeId: '0' });
         this.contactForm.patchValue({ contactTypeName: '' });
