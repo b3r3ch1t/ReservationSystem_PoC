@@ -3,7 +3,7 @@ import { MessageService } from 'primeng/api';
 import { IContactView } from 'src/app/models/IContactView';
 import { ContactService } from 'src/app/Services/contact.service';
 
-
+import {MenuItem, PrimeIcons} from 'primeng/api';
 
 @Component({
   selector: 'app-contact-list',

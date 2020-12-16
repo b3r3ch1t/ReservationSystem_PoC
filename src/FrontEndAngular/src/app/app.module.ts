@@ -9,6 +9,7 @@ import { NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ReservationModule} from './modules/reservation.module';
 import { ContactModule } from './modules/contact.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ContactModule } from './modules/contact.module';
     ContactModule,
     BrowserAnimationsModule,
     NgbAlertModule,
-    NgbModule
+    NgbModule,
+    TranslateModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
