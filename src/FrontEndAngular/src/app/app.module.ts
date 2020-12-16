@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ReservationModule} from './modules/reservation.module';
+import { ContactModule } from './modules/contact.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {ReservationModule} from './modules/reservation.module';
     AppRoutingModule,
     HttpClientModule,
     ReservationModule,
+    ContactModule,
     BrowserAnimationsModule,
     NgbAlertModule,
     NgbModule

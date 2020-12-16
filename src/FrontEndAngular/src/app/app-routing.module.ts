@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ReservationListComponent } from './reservation/reservation-list/reservation-list.component';
 import { ReservationCreateComponent } from './reservation/reservation-create/reservation-create.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
 
 
 
 const routes: Routes = [
 
-  {path: 'list', component: ReservationListComponent},
-  {path: 'create', component: ReservationCreateComponent},
+  {path: 'reservation', component: ReservationListComponent},
+  {path: 'reservation/create', component: ReservationCreateComponent},
+  {path: 'contact', component: ContactListComponent},
 
 
-  {path:'', redirectTo: '/list', pathMatch:'full' }
+
+  {path:'', redirectTo: 'reservation', pathMatch:'full' }
 ];
 
 @NgModule({

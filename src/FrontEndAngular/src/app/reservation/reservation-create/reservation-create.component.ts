@@ -26,6 +26,35 @@ import { MessageService } from 'primeng/api';
 export class ReservationCreateComponent implements OnInit {
 
 
+  constructor(
+    private contactTypeService: ContactTypeService,
+    private contactService: ContactService,
+    private fb: FormBuilder,
+    private customValidator: CustomValidatorsService,
+    private reservationService: ReservationService,
+    private messageService: MessageService,
+  ) { }
+
+
+  ngOnInit() {
+
+    this.getContactTypes();
+
+    this.getContacts();
+
+    this.contactForm = this.fb.group({
+      contactName: ['Contact Name ', Validators.required],
+      contactPhone: ['', Validators.required],
+      contactBirthdate:  ['', Validators.required],
+      contactTypeId: ['Contact Type ', Validators.required],
+      message: this.controlNameContent,
+      contactId: ''
+    });
+
+
+  }
+
+
   selectedCountries: any[];
 
 
@@ -53,36 +82,6 @@ export class ReservationCreateComponent implements OnInit {
   contactTypeName = 'contactTypeName';
 
   insertReservationRequest: CreateReservationRequest;
-
-
-
-  constructor(
-    private contactTypeService: ContactTypeService,
-    private contactService: ContactService,
-    private fb: FormBuilder,
-    private customValidator: CustomValidatorsService,
-    private reservationService: ReservationService,
-    private messageService: MessageService,
-  ) { }
-
-  ngOnInit() {
-
-    this.getContactTypes();
-
-    this.getContacts();
-
-    this.contactForm = this.fb.group({
-      contactName: ['Contact Name ', Validators.required],
-      contactPhone: ['', Validators.required],
-      contactBirthdate:  ['', Validators.required],
-      contactTypeId: ['Contact Type ', Validators.required],
-      message: this.controlNameContent,
-      contactId: ''
-    });
-
-
-  }
-
 
   getContacts() {
     this.contactService.getContat().subscribe((cont: any) => {
@@ -201,8 +200,6 @@ export class ReservationCreateComponent implements OnInit {
     this.filteredContacts = filtered;
   }
 
-
-
   selectContact(event) {
 
 
@@ -230,7 +227,6 @@ export class ReservationCreateComponent implements OnInit {
     this.contactForm.patchValue({ contactBirthdate: formatDate });
     this.contactForm.setValue
   }
-
 
   clearedContact(event) {
     this.selectedContactType = null;
