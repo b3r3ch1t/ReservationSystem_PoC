@@ -25,7 +25,7 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
             #region Domain Bus (Mediator)
 
             services.AddScoped<IMediatorHandler, MediatorHandler>();
-            services.AddTransient<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             #endregion
 

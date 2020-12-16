@@ -40,7 +40,7 @@
                 <div class="auto-complete-contact">
                   <p-autoComplete   placeholder="Contact Name " formControlName="contactName"
                     [suggestions]="filteredContacts" (completeMethod)="filterContact($event)" field="contactName"
-                    [minLength]="1" (onSelect)="selectContact($event)" (onClear)="clearedContact($event)">
+                    [minLength]="0" (onSelect)="selectContact($event)" (onClear)="clearedContact($event)">
 
                   </p-autoComplete>
 

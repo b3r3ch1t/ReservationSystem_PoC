@@ -11,7 +11,7 @@ import { CustomValidatorsService } from 'src/app/Validators/custom-validators.se
 import { CreateReservationRequest } from 'src/app/models/CreateReservationRequest'
 import { ReservationService } from 'src/app/Services/reservation.service';
 
-import { ResponseReservationRequest } from 'src/app/models/ResponseReservationnRequest';
+import { ResponseReservationRequest } from 'src/app/models/ResponseReservationRequest';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -74,7 +74,7 @@ export class ReservationCreateComponent implements OnInit {
     this.contactForm = this.fb.group({
       contactName: ['Contact Name ', Validators.required],
       contactPhone: ['', Validators.required],
-      contactBirthdate: '',
+      contactBirthdate:  ['', Validators.required],
       contactTypeId: ['Contact Type ', Validators.required],
       message: this.controlNameContent,
       contactId: ''
@@ -101,54 +101,72 @@ export class ReservationCreateComponent implements OnInit {
   }
 
   getFormValidationErrors() {
+
     Object.keys(this.contactForm.controls).forEach(key => {
 
-    const controlErrors: ValidationErrors = this.contactForm.get(key).errors;
-    if (controlErrors != null) {
-          Object.keys(controlErrors).forEach(keyError => {
-            this.messageService.add({severity:'error', summary: 'Error', detail: key + ' --> ' + keyError });
-          });
-        }
-      });
-    }
+      const controlErrors: ValidationErrors = this.contactForm.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+
+
+        });
+      }
+    });
+  }
 
 
   onFormSubmit() {
     {
       this.submitted = true;
-      if (!this.contactForm.hasError) {
+      if (this.contactForm.valid) {
+
+        console.log("ok");
 
         let contact = this.contacts.find(
           contact => this.contactForm.controls['contactName'].value);
 
         this.contactForm.patchValue({ contactId: contact.contactId });
 
-        let dateBirth =new Date(this.contactForm.get('contactBirthdate').value);
+        let dateBirth = new Date(this.contactForm.get('contactBirthdate').value);
 
-        let contactBirthDateDay  = dateBirth.getDay();
+        let contactBirthDateDay = dateBirth.getDay();
         let contactBirthDateMonth = dateBirth.getMonth();
         let contactBirthDateYear = dateBirth.getFullYear();
 
-        let createReservationRequest : CreateReservationRequest =
-          {
-            contactId: contact.contactId,
-            contactName: contact.contactName,
-            contactPhone: contact.contactPhone,
-            contactTypeId : contact.contactTypeId,
-            contactBirthDateDay : contactBirthDateDay,
-            contactBirthDateMonth: contactBirthDateMonth,
-            contactBirthDateYear: contactBirthDateYear,
-            message: this.contactForm.get('message').value
-          } ;
+        let createReservationRequest: CreateReservationRequest =
+        {
+          contactId: contact.contactId,
+          contactName: contact.contactName,
+          contactPhone: contact.contactPhone,
+          contactTypeId: contact.contactTypeId,
+          contactBirthDateDay: contactBirthDateDay,
+          contactBirthDateMonth: contactBirthDateMonth,
+          contactBirthDateYear: contactBirthDateYear,
+          message: this.contactForm.get('message').value
+        };
 
-        this.reservationService.CreateReservation(createReservationRequest).subscribe(
-          b => this.messageService.add({severity:'success', summary: 'Success', detail: 'Reservation created Successfully'}) ,
-          err => this.messageService.add({severity:'error', summary: 'Error', detail: 'Exception While Updating'})
-        );
+        this.reservationService
+          .CreateReservation(createReservationRequest).subscribe(data => {
+            if (data.fail)
+              data.messageFailure.forEach(element => {
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: element });
+              });
+
+
+            if (data.sucess)
+              data.messageSuccess.forEach(element => {
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: element });
+              });
+          });
+
+
 
       } else {
 
         this.getFormValidationErrors();
+
+
         this.contactForm.patchValue({ contactName: '' });
         this.contactForm.patchValue({ contactTypeId: '0' });
         this.contactForm.patchValue({ contactTypeName: '' });

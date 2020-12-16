@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ReservationSystem_PoC.API.Responses;
 using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
@@ -65,7 +66,35 @@ namespace ReservationSystem_PoC.API.Controllers
             if (result == null)
                 return NoContent();
 
-            return CreatedAtAction(action, route, result);
+
+            var requestResponse = new RequestResponse<T>(result);
+
+
+            //add all notifications of Error
+            if (_notifications.HasNotificationsError())
+            {
+                var errors = _notifications.GetNotificationsError();
+                foreach (var error in errors)
+                {
+                    requestResponse.AddMessageFailure(error.Value);
+
+                }
+            }
+
+            //add all notifications of Success
+
+            if (!_notifications.HasNotificationsSucess()) return CreatedAtAction(action, route, requestResponse);
+
+
+            var msgs = _notifications.GetNotificationsSuccess();
+            foreach (var msg in msgs)
+            {
+                requestResponse.AddMessageSucess(msg.Value);
+
+            }
+
+
+            return CreatedAtAction(action, route, requestResponse);
 
         }
         protected ActionResult<IEnumerable<T>> ResponseGet<T>(IEnumerable<T> result)

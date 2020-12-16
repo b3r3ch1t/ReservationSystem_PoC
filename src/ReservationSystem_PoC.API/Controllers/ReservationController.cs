@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
@@ -136,7 +137,12 @@ namespace ReservationSystem_PoC.API.Controllers
 
             var result = await Mediator.SendCommandAsync(createReservationCommand);
 
+            if (result.Success)
+            {
+                await Mediator.NotifyDomainNotification(
+                    DomainNotification.Success($" The reservation to {model.ContactName} was created with success !"));
 
+            }
 
             var reservation = await _reservationRepository.GetByIdAsync(createReservationCommand.ReservationId);
 

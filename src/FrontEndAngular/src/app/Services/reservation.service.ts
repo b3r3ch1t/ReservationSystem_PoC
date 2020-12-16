@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 import { IReservation } from 'src/app/models/IReservation'
 import { CreateReservationRequest } from '../models/CreateReservationRequest';
+import { ResponseReservationRequest } from '../models/ResponseReservationRequest';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,11 @@ import { CreateReservationRequest } from '../models/CreateReservationRequest';
 
 export class ReservationService {
 
-
   urlReservation = 'http://localhost:5000/api/v1/Reservation';
 
   // injecting  o HttpClient
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient  ) { }
 
   // Headers
   httpOptions = {
@@ -52,9 +54,14 @@ export class ReservationService {
     return throwError(errorMessage);
   };
 
-  CreateReservation(request: CreateReservationRequest) {
+  CreateReservation(request: CreateReservationRequest): Observable<ResponseReservationRequest>  {
 
-    return this.httpClient.post<CreateReservationRequest>(`${this.urlReservation}/create`, request);
+    return this.httpClient
+      .post<ResponseReservationRequest>(`${this.urlReservation}/create`, request)
+       .pipe(
+        retry(2),
+        catchError(this.handleError))
+
   }
 
 }
