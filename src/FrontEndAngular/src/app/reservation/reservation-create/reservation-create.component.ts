@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 
 import { IContactType } from 'src/app/models/IContactType';
-import { ContactTypeService } from 'src/app/Services/contactType.service'
+import { ContactTypeService } from 'src/app/services/contactType.service'
 import { ContactService } from 'src/app/Services/contact.service'
 import { IContactView } from 'src/app/models/IContactView';
 import { CustomValidatorsService } from 'src/app/Validators/custom-validators.service'
@@ -12,11 +12,13 @@ import { CreateReservationRequest } from 'src/app/models/CreateReservationReques
 import { ReservationService } from 'src/app/Services/reservation.service';
 
 import { ResponseReservationRequest } from 'src/app/models/ResponseReservationnRequest';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-reservation-create',
   templateUrl: './reservation-create.component.html',
-  styleUrls: ['./reservation-create.component.css']
+  styleUrls: ['./reservation-create.component.css'],
+  providers: [MessageService]
 })
 
 
@@ -34,10 +36,6 @@ export class ReservationCreateComponent implements OnInit {
 
 
   response: ResponseReservationRequest;
-
-
-
-
 
   contactForm = new FormGroup(
     {
@@ -63,7 +61,8 @@ export class ReservationCreateComponent implements OnInit {
     private contactService: ContactService,
     private fb: FormBuilder,
     private customValidator: CustomValidatorsService,
-    private reservationService: ReservationService
+    private reservationService: ReservationService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -131,9 +130,8 @@ export class ReservationCreateComponent implements OnInit {
           } ;
 
         this.reservationService.CreateReservation(createReservationRequest).subscribe(
-          b => alert(`Reservation created Successfully`),
-          err => alert(`Exception While Updating: ${err}`)
-
+          b => this.messageService.add({severity:'success', summary: 'Success', detail: 'Reservation created Successfully'}) ,
+          err => this.messageService.add({severity:'error', summary: 'Error', detail: 'Exception While Updating'})
         );
 
       } else {

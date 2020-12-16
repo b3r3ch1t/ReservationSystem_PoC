@@ -23,6 +23,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {CalendarModule} from 'primeng/calendar';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     DropdownModule,
     InputMaskModule,
     CalendarModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ToastModule
   ],
   declarations:
   [

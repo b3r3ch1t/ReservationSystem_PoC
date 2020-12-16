@@ -41,5 +41,4 @@ export class ContactTypeService {
         catchError(this.handleError))
   }
 
-
 }
