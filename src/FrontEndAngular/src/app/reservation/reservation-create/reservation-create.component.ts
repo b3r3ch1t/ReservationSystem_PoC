@@ -8,12 +8,10 @@ import { ContactService } from 'src/app/Services/contact.service'
 import { IContactView } from 'src/app/models/IContactView';
 import { CustomValidatorsService } from 'src/app/Validators/custom-validators.service'
 
-import { InsertReservationRequest } from 'src/app/models/InsertReservationRequest'
+import { CreateReservationRequest } from 'src/app/models/CreateReservationRequest'
 import { ReservationService } from 'src/app/Services/reservation.service';
 
-import { ResponseReservationRequest } from 'src/app/models/ResponseReservatoinRequest';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { DatePipe } from '@angular/common';
+import { ResponseReservationRequest } from 'src/app/models/ResponseReservationnRequest';
 
 @Component({
   selector: 'app-reservation-create',
@@ -56,7 +54,7 @@ export class ReservationCreateComponent implements OnInit {
   controlNameContent = 'Lorem ipsum molestie rhoncus orci faucibus habitasse sociosqu rhoncus taciti, platea nam aliquam eu ultrices aliquet hendrerit. ullamcorper suscipit egestas himenaeos tincidunt quisque netus aptent bibendum, mollis eleifend fringilla platea tellus primis mattis eget, facilisis nunc ac faucibus ut justo dictumst. non lobortis quisque a pharetra duis faucibus, luctus augue sollicitudin hac rutrum. fusce per lobortis amet in auctor aliquam sed, consectetur ipsum augue aliquam felis tristique egestas facilisis, neque etiam fermentum nibh fermentum ac. imperdiet felis ut nam hendrerit curae eleifend habitasse et aliquam odio, metus rhoncus molestie risus pellentesque nam egestas augue enim condimentum, euismod ad consectetur nec taciti ut suspendisse tristique etiam."'
   contactTypeName = 'contactTypeName';
 
-  insertReservationRequest: InsertReservationRequest;
+  insertReservationRequest: CreateReservationRequest;
 
 
 
@@ -114,7 +112,25 @@ export class ReservationCreateComponent implements OnInit {
 
         this.contactForm.patchValue({ contactId: contact.contactId });
 
-        this.reservationService.CreateReservation(this.contactForm.value).subscribe(
+        let dateBirth =new Date(this.contactForm.get('contactBirthdate').value);
+
+        let contactBirthDateDay  = dateBirth.getDay();
+        let contactBirthDateMonth = dateBirth.getMonth();
+        let contactBirthDateYear = dateBirth.getFullYear();
+
+        let createReservationRequest : CreateReservationRequest =
+          {
+            contactId: contact.contactId,
+            contactName: contact.contactName,
+            contactPhone: contact.contactPhone,
+            contactTypeId : contact.contactTypeId,
+            contactBirthDateDay : contactBirthDateDay,
+            contactBirthDateMonth: contactBirthDateMonth,
+            contactBirthDateYear: contactBirthDateYear,
+            message: this.contactForm.get('message').value
+          } ;
+
+        this.reservationService.CreateReservation(createReservationRequest).subscribe(
           b => alert(`Reservation created Successfully`),
           err => alert(`Exception While Updating: ${err}`)
 
@@ -139,18 +155,18 @@ export class ReservationCreateComponent implements OnInit {
   }
 
   selectedContactType: IContactType;
-  selectedContact : IContactView;
+  selectedContact: IContactView;
 
   filteredContacts: IContactView[];
 
-  filterContact(event){
-    let filtered : any[] = [];
+  filterContact(event) {
+    let filtered: any[] = [];
     let query = event.query;
-    for(let i = 0; i < this.contacts.length; i++) {
-        let country = this.contacts[i];
-        if (country.contactName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-            filtered.push(country);
-        }
+    for (let i = 0; i < this.contacts.length; i++) {
+      let country = this.contacts[i];
+      if (country.contactName.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+        filtered.push(country);
+      }
     }
 
     this.filteredContacts = filtered;
@@ -158,7 +174,7 @@ export class ReservationCreateComponent implements OnInit {
 
 
 
-  selectContact(event){
+  selectContact(event) {
 
 
     if (event == null) {
@@ -169,31 +185,28 @@ export class ReservationCreateComponent implements OnInit {
       this.contactForm.patchValue({ contactPhone: '' });
       this.contactForm.patchValue({ contactBirthdate: '' });
 
-      this.selectedContactType =  null;
+      this.selectedContactType = null;
       return;
 
     }
 
-    let contactType = this.contactTypes.find( x => x.contactTypeId == event.contactTypeId);
+    let contactType = this.contactTypes.find(x => x.contactTypeId == event.contactTypeId);
 
     this.selectedContactType = contactType;
 
     this.contactForm.patchValue({ contactPhone: event.contactPhone });
 
 
-    let formatDate = this.formatDate( event.contactBirthdate );
-    console.log("date == ",formatDate );
-
-
-    this.contactForm.patchValue({ contactBirthdate:formatDate  });
- this.contactForm.setValue
+    let formatDate = this.formatDate(event.contactBirthdate);
+    this.contactForm.patchValue({ contactBirthdate: formatDate });
+    this.contactForm.setValue
   }
 
 
-  clearedContact(event){
+  clearedContact(event) {
     this.selectedContactType = null;
     this.contactForm.patchValue({ contactPhone: null });
-    this.contactForm.patchValue({ contactBirthdate:  null});
+    this.contactForm.patchValue({ contactBirthdate: null });
   }
 
   private formatDate(date) {

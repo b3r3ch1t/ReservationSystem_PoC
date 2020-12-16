@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { IReservation } from 'src/app/models/IReservation'
-import { InsertReservationRequest } from '../models/InsertReservationRequest';
+import { CreateReservationRequest } from '../models/CreateReservationRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +52,9 @@ export class ReservationService {
     return throwError(errorMessage);
   };
 
-  CreateReservation(request: InsertReservationRequest) {
+  CreateReservation(request: CreateReservationRequest) {
 
-    return this.httpClient.post<InsertReservationRequest>(`${this.urlReservation}/create`, request);
+    return this.httpClient.post<CreateReservationRequest>(`${this.urlReservation}/create`, request);
   }
 
 }

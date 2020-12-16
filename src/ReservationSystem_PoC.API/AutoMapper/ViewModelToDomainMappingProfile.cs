@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ReservationSystem_PoC.API.ViewModels;
 using ReservationSystem_PoC.Domain.Core.Commands;
+using System;
 
 namespace ReservationSystem_PoC.API.AutoMapper
 {
@@ -14,7 +15,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
                     c.ContactId,
                     c.ContactName,
                     c.ContactPhone,
-                    c.ContactBirthdate,
+                    new DateTime(c.ContactBirthDateYear, c.ContactBirthDateMonth, c.ContactBirthDateDay),
                     c.ContactTypeId,
                     c.Message
                 ));
