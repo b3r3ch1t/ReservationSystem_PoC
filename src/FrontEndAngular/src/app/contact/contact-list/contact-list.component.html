@@ -34,7 +34,7 @@
     <section>
       <div class="content_edit container">
         <div class="content">
-          <p-table [value]="contacts">
+          <p-table [value]="contacts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon></th>
