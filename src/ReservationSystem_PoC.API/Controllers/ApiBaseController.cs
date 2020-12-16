@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
@@ -26,7 +25,7 @@ namespace ReservationSystem_PoC.API.Controllers
 
         protected bool IsValidOperation()
         {
-            return (!_notifications.HasNotifications());
+            return (!_notifications.HasNotificationsError());
         }
 
 
@@ -37,7 +36,7 @@ namespace ReservationSystem_PoC.API.Controllers
                 return NoContent();
             }
 
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
+            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsErrorByKey()));
         }
 
         protected ActionResult<T> ResponseDelete<T>(T item)
@@ -50,7 +49,7 @@ namespace ReservationSystem_PoC.API.Controllers
                 return Ok(item);
             }
 
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
+            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsErrorByKey()));
         }
 
         protected ActionResult<T> ResponsePost<T>(string action, T result)
@@ -60,7 +59,7 @@ namespace ReservationSystem_PoC.API.Controllers
 
 
             if (!IsValidOperation())
-                return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsByKey()));
+                return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsErrorByKey()));
 
 
             if (result == null)

@@ -3,8 +3,6 @@
     public enum TypeDomainNotification
     {
         Erro = 0,
-        Success = 1,
-        Infor = 2,
-        Warn = 3
+        Success = 1
     }
 }

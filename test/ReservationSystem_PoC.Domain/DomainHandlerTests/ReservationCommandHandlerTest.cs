@@ -98,37 +98,6 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             repository.Verify(x => x.CommitAsync(), Times.Never);
 
         }
-
-        [Fact]
-        public async void Command_RankingGreater_False()
-        {
-            var command = UpdateRankingOfReservationCommandFaker.UpdateRankingOfReservationCommandRakingGreater();
-
-            var dependencyResolverMock = _dependencyResolverMock;
-            var faker = new Faker();
-
-
-            var reservation = faker.PickRandom(_context.Reservations
-                .Include(x => x.Contact)
-                .ToList());
-
-            var repository = new Mock<IReservationRepository>();
-
-            repository.Setup(x => x.GetByIdAsync(command.ReservationId)).Returns(Task.FromResult(reservation));
-            dependencyResolverMock.Setup(x => x.Resolve<IReservationRepository>()).Returns(repository.Object);
-
-
-
-            var handler = new ReservationCommandHandler(dependencyResolverMock.Object);
-
-            var commandResponse = await handler.Handle(command, new CancellationToken());
-
-
-
-            Assert.False(commandResponse.Success);
-            repository.Verify(x => x.GetByIdAsync(command.ReservationId), Times.Once);
-            repository.Verify(x => x.CommitAsync(), Times.Never);
-
-        }
+ 
     }
 }
