@@ -31,5 +31,28 @@
 <nav id="navigation">
   <div class="row">
 
+    <section>
+      <div class="content_edit container">
+        <div class="content">
+          <p-table [value]="contacts">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon></th>
+                    <th pSortableColumn="contactPhone">Phone Number <p-sortIcon field="contactPhone"></p-sortIcon></th>
+                    <th pSortableColumn="contactBirthdate">Birth Date <p-sortIcon field="contactBirthdate"></p-sortIcon></th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-contact>
+                <tr>
+                    <td>{{contact.contactName}}</td>
+                    <td>{{contact.contactPhone}}</td>
+                    <td>{{contact.contactBirthdate}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        </div>
+      </div>
+    </section>
     </div>
 </nav>

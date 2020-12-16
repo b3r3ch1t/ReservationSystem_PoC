@@ -9,6 +9,7 @@ import { ContactListComponent } from "../contact/contact-list/contact-list.compo
 
 import { AutoCompleteModule } from "primeng/autocomplete";
 
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { AutoCompleteModule } from "primeng/autocomplete";
     FormsModule,
     ReactiveFormsModule,
     AutoCompleteModule,
+    TableModule
   ],
   declarations:
   [
