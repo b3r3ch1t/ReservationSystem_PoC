@@ -7,7 +7,7 @@
 <nav id="navigation">
   <div class="row">
     <div class="col-md-4 left_side" style="color: red;font-weight: bold;">
-      <h2>Create Reservation</h2>
+      <h2>List of Contacts</h2>
     </div>
     <div class="col-md-4 middle_content">
       <p>This is will be the description This is will be the description This is will be the description This is will
@@ -18,6 +18,12 @@
       <div class="row">
         <a class="extra float-right btn btn-secondary" [routerLink]="['/reservation']">
           RESERVATION LIST
+        </a>
+      </div> <br>
+
+      <div class="row">
+        <a class="extra float-right btn btn-secondary" [routerLink]="['/contact']">
+          CREATE CONTACT
         </a>
       </div>
 
@@ -34,25 +40,51 @@
     <section>
       <div class="content_edit container">
         <div class="content">
-          <p-table [value]="contacts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+          <p-table [value]="contacts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon></th>
-                    <th pSortableColumn="contactPhone">Phone Number <p-sortIcon field="contactPhone"></p-sortIcon></th>
-                    <th pSortableColumn="contactBirthdate">Birth Date <p-sortIcon field="contactBirthdate"></p-sortIcon></th>
+              <tr>
+                <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon>
+                </th>
+                <th pSortableColumn="contactPhone">Phone Number <p-sortIcon field="contactPhone"></p-sortIcon>
+                </th>
+                <th pSortableColumn="contactBirthdate">Birth Date <p-sortIcon field="contactBirthdate"></p-sortIcon>
+                </th>
+                <th>Actions </th>
 
-                </tr>
+
+              </tr>
             </ng-template>
             <ng-template pTemplate="body" let-contact>
-                <tr>
-                    <td>{{contact.contactName}}</td>
-                    <td>{{contact.contactPhone}}</td>
-                    <td>{{contact.contactBirthdate}}</td>
-                </tr>
+              <tr>
+                <td>{{contact.contactName}}</td>
+                <td>{{contact.contactPhone}}</td>
+                <td>{{contact.contactBirthdate}}</td>
+                <td>
+                  <div >
+
+                      <div class="form-row">
+
+                        <button class="btn btn-primary">
+                          Edit
+                        </button>
+
+                        <button class="btn btn-danger">
+                          Exclude
+                        </button>
+
+                      </div>
+
+
+                    </div>
+
+                </td>
+              </tr>
             </ng-template>
-        </p-table>
+          </p-table>
         </div>
       </div>
     </section>
-    </div>
+  </div>
 </nav>
