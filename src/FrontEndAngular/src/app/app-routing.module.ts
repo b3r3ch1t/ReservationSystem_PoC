@@ -8,7 +8,6 @@ import { ReservationCreateComponent } from './reservation/reservation-create/res
 const routes: Routes = [
 
   {path: 'list', component: ReservationListComponent},
-  {path: 'edit/:id', component: ReservationListComponent},
   {path: 'create', component: ReservationCreateComponent},
 
 

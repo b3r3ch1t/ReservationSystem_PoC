@@ -7,7 +7,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ReservationListComponent } from 'src/app/reservation/reservation-list/reservation-list.component';
 import { SortPipeModule } from 'src/app/Modules/sortPipe.module'
-import { ReservationEditComponent } from 'src/app/reservation/reservation-edit/reservation-edit.component';
 import { ReservationCreateComponent } from 'src/app/reservation/reservation-create/reservation-create.component';
 
 import {  TruncatePipe }   from 'src/app/Pipes/TruncatePipe';
@@ -45,13 +44,11 @@ import {ToastModule} from 'primeng/toast';
   declarations:
   [
     ReservationListComponent,
-    ReservationEditComponent,
     ReservationCreateComponent,
     TruncatePipe
   ],
   exports: [
     ReservationListComponent,
-    ReservationEditComponent,
     ReservationCreateComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
