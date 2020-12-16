@@ -29,9 +29,6 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
 
             #endregion
 
-            services
-                .AddScoped<IRequestHandler<UpdateRankingOfReservationCommand, CommandResponse>,
-                    ReservationCommandHandler>();
 
             services.AddScoped<IRequestHandler<CreateReservationCommand, CommandResponse>,
                 ReservationCommandHandler>();

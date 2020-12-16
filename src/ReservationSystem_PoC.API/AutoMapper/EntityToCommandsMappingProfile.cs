@@ -9,9 +9,7 @@ namespace ReservationSystem_PoC.API.AutoMapper
         //Create the  from Entity  to  DomainCommands
         public EntityToCommandsMappingProfile()
         {
-            CreateMap<Reservation, UpdateRankingOfReservationCommand>()
-                .ConstructUsing(c => new UpdateRankingOfReservationCommand(c.Id, c.Ranking));
-
+            
         }
     }
 }
