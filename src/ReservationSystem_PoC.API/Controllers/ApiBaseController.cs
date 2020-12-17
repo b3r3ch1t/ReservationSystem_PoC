@@ -5,7 +5,6 @@ using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ReservationSystem_PoC.API.Controllers
@@ -29,29 +28,6 @@ namespace ReservationSystem_PoC.API.Controllers
             return (!_notifications.HasNotificationsError());
         }
 
-
-        protected ActionResult ResponsePutPatch()
-        {
-            if (IsValidOperation())
-            {
-                return NoContent();
-            }
-
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsErrorByKey()));
-        }
-
-        protected ActionResult<T> ResponseDelete<T>(T item)
-        {
-            if (IsValidOperation())
-            {
-                if (item == null)
-                    return NoContent();
-
-                return Ok(item);
-            }
-
-            return BadRequest(new ValidationProblemDetails(_notifications.GetNotificationsErrorByKey()));
-        }
 
         protected ActionResult<T> ResponsePost<T>(string action, T result)
         {
@@ -96,14 +72,6 @@ namespace ReservationSystem_PoC.API.Controllers
 
             return CreatedAtAction(action, route, requestResponse);
 
-        }
-        protected ActionResult<IEnumerable<T>> ResponseGet<T>(IEnumerable<T> result)
-        {
-
-            if (result == null || !result.Any())
-                return NoContent();
-
-            return Ok(result);
         }
 
         protected ActionResult<T> ResponseGet<T>(T result)
