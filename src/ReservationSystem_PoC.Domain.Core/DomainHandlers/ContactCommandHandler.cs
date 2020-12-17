@@ -128,7 +128,7 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers
             var result = await _contactRepository.CommitAsync();
 
             return result.Success
-                ? CommandResponse.Ok()
+                ? CommandResponse.Ok(contact.Id)
                 : CommandResponse.Fail("Fail recording the register in database !");
         }
     }

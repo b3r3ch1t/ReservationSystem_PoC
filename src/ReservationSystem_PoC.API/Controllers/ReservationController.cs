@@ -6,7 +6,6 @@ using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -58,7 +57,6 @@ namespace ReservationSystem_PoC.API.Controllers
                 return ModelStateErrorResponseError();
             }
 
-            model.ContactId ??= Guid.NewGuid();
 
             var createReservationCommand = _mapper.Map<CreateReservationCommand>(model);
 

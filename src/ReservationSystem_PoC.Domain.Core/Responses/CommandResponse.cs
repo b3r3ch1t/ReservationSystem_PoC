@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ReservationSystem_PoC.Domain.Core.Responses
@@ -29,10 +30,16 @@ namespace ReservationSystem_PoC.Domain.Core.Responses
 
         public IList<string> Message { get; }
 
+        public Guid Id { get; private set; }
 
-        public static CommandResponse Ok()
+
+        public static CommandResponse Ok(Guid? id = null)
         {
-            return new CommandResponse(true, string.Empty);
+            var result = new CommandResponse(true, string.Empty);
+
+            if (id.HasValue) result.Id = id.Value;
+
+            return result;
         }
 
         public static CommandResponse Fail(string errorMessage = "")

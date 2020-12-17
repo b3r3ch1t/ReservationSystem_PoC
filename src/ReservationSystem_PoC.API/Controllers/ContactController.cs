@@ -138,9 +138,18 @@ namespace ReservationSystem_PoC.API.Controllers
 
             }
 
-            var contact = await _contactRepository.GetContactById(model.ContactId);
+            var contactId = result.Id;
+
+            var contact = await _contactRepository.GetContactById(contactId);
+
+            if (contact == null)
+            {
+                NotifyError("Fail to create the contact");
+                return ModelStateErrorResponseError();
+            }
 
             var returnModel = _mapper.Map<ContactViewModel>(contact);
+
 
             return ResponsePost(
                 nameof(CreateContact),

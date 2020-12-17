@@ -7,6 +7,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { IContactView } from 'src/app/models/IContactView'
 import { EditContactRequest } from '../models/EditContactRequest';
 import { ResponseRequest } from '../models/ResponseRequest';
+import { CreateContactRequest } from '../models/CreateContactRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -70,7 +71,14 @@ export class ContactService {
 
   }
 
+  AddContact(request: CreateContactRequest): Observable<ResponseRequest>  {
 
+    return this.httpClient
+      .post<ResponseRequest>(`${this.urlContact}/create`, request)
+       .pipe(
+        retry(2),
+        catchError(this.handleError))
 
+  }
 }
 

@@ -5,7 +5,7 @@ namespace ReservationSystem_PoC.API.ViewModels
 {
     public class ContactBasicViewModel
     {
-        public virtual Guid? ContactId { get; set; }
+       
         public string ContactName { get; set; }
         public string ContactPhone { get; set; }
 

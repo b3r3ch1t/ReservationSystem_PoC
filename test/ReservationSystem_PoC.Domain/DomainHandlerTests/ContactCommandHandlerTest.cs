@@ -469,7 +469,6 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             //arrange
             var contact = ContactFaker.GetContactOk();
             var createContactCommand = new CreateContactCommand(
-                contactId: contact.Id,
                 contactName: contact.Name,
                 contactPhone: contact.PhoneNumber,
                 contactBirthDate: contact.BirthDate,
@@ -521,7 +520,6 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             //arrange
             var contact = ContactFaker.GetContactOk();
             var createContactCommand = new CreateContactCommand(
-                contactId: contact.Id,
                 contactName: contact.Name,
                 contactPhone: contact.PhoneNumber,
                 contactBirthDate: contact.BirthDate,
@@ -575,7 +573,6 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             //arrange
             var contact = ContactFaker.GetContactContactNameLess();
             var createContactCommand = new CreateContactCommand(
-                contactId: contact.Id,
                 contactName: contact.Name,
                 contactPhone: contact.PhoneNumber,
                 contactBirthDate: contact.BirthDate,
