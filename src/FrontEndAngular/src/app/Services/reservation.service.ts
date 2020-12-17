@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
 import { IReservation } from 'src/app/models/IReservation'
 import { CreateReservationRequest } from '../models/CreateReservationRequest';
-import { ResponseReservationRequest } from '../models/ResponseReservationRequest';
+import { ResponseRequest } from '../models/ResponseRequest';
 
 
 @Injectable({
@@ -54,10 +54,10 @@ export class ReservationService {
     return throwError(errorMessage);
   };
 
-  CreateReservation(request: CreateReservationRequest): Observable<ResponseReservationRequest>  {
+  CreateReservation(request: CreateReservationRequest): Observable<ResponseRequest>  {
 
     return this.httpClient
-      .post<ResponseReservationRequest>(`${this.urlReservation}/create`, request)
+      .post<ResponseRequest>(`${this.urlReservation}/create`, request)
        .pipe(
         retry(2),
         catchError(this.handleError))

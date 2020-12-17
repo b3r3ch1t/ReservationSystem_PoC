@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReservationSystem_PoC.API.ViewModels;
+using ReservationSystem_PoC.Domain.Core.Commands;
+using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
 using System.Collections.Generic;
@@ -38,5 +40,43 @@ namespace ReservationSystem_PoC.API.Controllers
             return ResponseGet(result);
         }
 
+
+
+
+        /// <summary>
+        /// Edit Contact
+        /// </summary>
+        /// <param name="Edit Contact"><see cref="EditContactViewModel"/></param>
+        /// <returns><see cref="ReservationViewModel"/></returns>
+        [HttpPost]
+        [Route("create")]
+        public async Task<ActionResult<ContactViewModel>> EditContact([FromBody] EditContactViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return ModelStateErrorResponseError();
+            }
+
+            var editContactCommand = _mapper.Map<EditContactCommand>(model);
+
+            var result = await Mediator.SendCommandAsync(editContactCommand);
+
+            if (result.Success)
+            {
+                await Mediator.NotifyDomainNotification(
+                    DomainNotification.Success($" The contact to {model.ContactName} was edited with success !"));
+
+            }
+
+            var contact = await _contactRepository.GetContactById(model.ContactId);
+
+            var returnModel = _mapper.Map<ContactViewModel>(contact);
+
+            return ResponsePost(
+                nameof(EditContact),
+                returnModel);
+
+        }
     }
 }

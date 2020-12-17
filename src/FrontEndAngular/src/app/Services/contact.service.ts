@@ -5,6 +5,8 @@ import { retry, catchError } from 'rxjs/operators';
 
 
 import { IContactView } from 'src/app/models/IContactView'
+import { EditContactRequest } from '../models/EditContactRequest';
+import { ResponseRequest } from '../models/ResponseRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ import { IContactView } from 'src/app/models/IContactView'
 
 
 export class ContactService {
+
 
 
   urlContact = 'http://localhost:5000/api/v1/Contact';
@@ -44,6 +47,17 @@ export class ContactService {
       .pipe(
         retry(2),
         catchError(this.handleError))
+  }
+
+  EditContact(request: EditContactRequest) : Observable<ResponseRequest>  {
+
+
+    return this.httpClient
+      .post<ResponseRequest>(`${this.urlContact}/edit`, request)
+       .pipe(
+        retry(2),
+        catchError(this.handleError))
+
   }
 
 

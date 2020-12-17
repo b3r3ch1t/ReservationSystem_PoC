@@ -20,7 +20,15 @@ namespace ReservationSystem_PoC.API.AutoMapper
                     c.Message
                 ));
 
-            ;
+            CreateMap<EditContactViewModel, EditContactCommand>()
+                .ConstructUsing(c => new EditContactCommand(
+                    c.ContactId,
+                    c.ContactName,
+                    c.ContactPhone,
+                    new DateTime(c.ContactBirthDateYear, c.ContactBirthDateMonth, c.ContactBirthDateDay),
+                    c.ContactTypeId
+                ));
+
         }
     }
 }

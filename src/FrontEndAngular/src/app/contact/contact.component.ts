@@ -5,7 +5,8 @@ import { ContactService } from 'src/app/Services/contact.service';
 
 import { IContactType } from 'src/app/models/IContactType';
 import { ContactTypeService } from 'src/app/services/contactType.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { EditContactRequest } from '../models/EditContactRequest';
 
 @Component({
   selector: 'app-contact-list',
@@ -129,8 +130,62 @@ export class ContactListComponent implements OnInit {
 
 
   onEditSubmit() {
-    alert("Edit==>" + this.contactForm.get('contactId').value);
+    if (this.contactForm.valid) {
+
+
+      let contact = this.contacts.find(
+        contact => this.contactForm.controls['contactName'].value);
+
+      this.contactForm.patchValue({ contactId: contact.contactId });
+
+      let dateBirth = new Date(this.contactForm.get('contactBirthdate').value);
+
+      let contactBirthDateDay = dateBirth.getDay();
+      let contactBirthDateMonth = dateBirth.getMonth();
+      let contactBirthDateYear = dateBirth.getFullYear();
+
+      let createReservationRequest: EditContactRequest =
+      {
+        contactId: contact.contactId,
+        contactName: contact.contactName,
+        contactPhone: contact.contactPhone,
+        contactTypeId: contact.contactTypeId,
+        contactBirthDateDay: contactBirthDateDay,
+        contactBirthDateMonth: contactBirthDateMonth,
+        contactBirthDateYear: contactBirthDateYear
+      };
+
+      this.contactService
+        .EditContact(createReservationRequest).subscribe(data => {
+          if (data.fail)
+            data.messageFailure.forEach(element => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: element });
+            });
+
+
+          if (data.sucess)
+            data.messageSuccess.forEach(element => {
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: element });
+            });
+        });
+
+
+
+    } else {
+
+      this.getFormValidationErrors();
+
+
+      this.contactForm.patchValue({ contactName: '' });
+      this.contactForm.patchValue({ contactTypeId: '0' });
+      this.contactForm.patchValue({ contactTypeName: '' });
+
+      this.contactForm.patchValue({ contactPhone: '' });
+      this.contactForm.patchValue({ contactBirthdate: '' });
+
+    }
   }
+
 
   onRemoveSubmit() {
 
@@ -150,12 +205,24 @@ export class ContactListComponent implements OnInit {
     this.action = "add";
 
     this.display = true;
-
-
   }
 
   hideDialog() {
     this.display = false;
+  }
+
+  getFormValidationErrors() {
+
+    Object.keys(this.contactForm.controls).forEach(key => {
+
+      const controlErrors: ValidationErrors = this.contactForm.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+
+
+        });
+      }
+    });
   }
 
 }

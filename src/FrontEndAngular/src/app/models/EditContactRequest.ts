@@ -7,5 +7,4 @@ export class EditContactRequest {
   contactBirthDateDay: number;
   contactBirthDateMonth: number;
   contactBirthDateYear: number;
-  message : string ;
 }

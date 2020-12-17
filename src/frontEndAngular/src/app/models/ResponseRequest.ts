@@ -1,5 +1,5 @@
 
-export class ResponseReservationRequest {
+export class ResponseRequest {
         messageSuccess: string[];
         messageFailure: string[];
         sucess: boolean;

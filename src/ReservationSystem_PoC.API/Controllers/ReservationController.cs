@@ -41,21 +41,21 @@ namespace ReservationSystem_PoC.API.Controllers
 
             return ResponseGet(result);
         }
-         
+
         /// <summary>
         /// Get Min value of Reservation Ranking.
         /// </summary>
         /// <returns>List of <see cref="int"/></returns>
-        
+
 
         /// <summary>
         /// Create new Reservation
         /// </summary>
-        /// <param name="Create Reservation Raking"><see cref="CreateReservationViewModel"/></param>
+        /// <param name="Create Reservation"><see cref="CreateReservationViewModel"/></param>
         /// <returns><see cref="ReservationViewModel"/></returns>
         [HttpPost]
         [Route("create")]
-        public async Task<ActionResult<ReservationViewModel>> CreateReservationRaking([FromBody] CreateReservationViewModel model)
+        public async Task<ActionResult<ReservationViewModel>> CreateReservation([FromBody] CreateReservationViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -81,10 +81,11 @@ namespace ReservationSystem_PoC.API.Controllers
             var returnModel = _mapper.Map<ReservationViewModel>(reservation);
 
             return ResponsePost(
-                nameof(CreateReservationRaking),
+                nameof(CreateReservation),
                 returnModel);
 
         }
+
 
 
     }

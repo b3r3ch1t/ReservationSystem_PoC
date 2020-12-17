@@ -3,7 +3,9 @@ using ReservationSystem_PoC.Domain.Core.Dto;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Data.Repositories
 {
@@ -31,6 +33,11 @@ namespace ReservationSystem_PoC.Data.Repositories
 
 
             return result;
+        }
+
+        public async Task<ContactDto> GetContactById(Guid contactId)
+        {
+            return await GetAllDto().FirstOrDefaultAsync(x => x.ContactId == contactId);
         }
     }
 }

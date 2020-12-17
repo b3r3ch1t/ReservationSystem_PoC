@@ -11,7 +11,7 @@ import { CustomValidatorsService } from 'src/app/Validators/custom-validators.se
 import { CreateReservationRequest } from 'src/app/models/CreateReservationRequest'
 import { ReservationService } from 'src/app/Services/reservation.service';
 
-import { ResponseReservationRequest } from 'src/app/models/ResponseReservationRequest';
+import { ResponseRequest } from 'src/app/models/ResponseRequest';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -61,10 +61,6 @@ export class ReservationCreateComponent implements OnInit {
   contactTypes: IContactType[];
   contacts: IContactView[];
 
-  submitted = false;
-
-
-  response: ResponseReservationRequest;
 
   contactForm = new FormGroup(
     {
@@ -106,7 +102,6 @@ export class ReservationCreateComponent implements OnInit {
       const controlErrors: ValidationErrors = this.contactForm.get(key).errors;
       if (controlErrors != null) {
         Object.keys(controlErrors).forEach(keyError => {
-          console.log('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
 
 
         });
@@ -117,10 +112,8 @@ export class ReservationCreateComponent implements OnInit {
 
   onFormSubmit() {
     {
-      this.submitted = true;
       if (this.contactForm.valid) {
 
-        console.log("ok");
 
         let contact = this.contacts.find(
           contact => this.contactForm.controls['contactName'].value);

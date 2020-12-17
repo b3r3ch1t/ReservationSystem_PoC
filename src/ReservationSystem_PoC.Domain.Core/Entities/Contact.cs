@@ -63,6 +63,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
                     PhoneNumber = phoneNumber,
                     BirthDate = birthDate,
                     ContactType = contactType,
+                    ContactTypeId = contactType.Id,
                     Reservations = reservations
                 };
 
@@ -85,6 +86,15 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
         public void ChangeBirthDate(DateTime birthDate)
         {
             BirthDate = birthDate;
+        }
+
+
+        public void ChangeContactType(ContactType contactType)
+        {
+            if (contactType == null) return;
+
+            ContactType = contactType;
+            ContactTypeId = contactType.Id;
         }
     }
 }

@@ -93,19 +93,6 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
         }
 
-        [Fact]
-        public void ContactContactTypeInvalidFalse()
-        {
-            //arrange
-            var contact = ContactFaker.GetContactContactContactTypeInvalid();
-
-            //act
-            var result = contact.IsValid();
-
-            //assert
-            Assert.False(result);
-
-        }
 
 
         [Fact]
@@ -122,19 +109,6 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
         }
 
-        [Fact]
-        public void ContactContactTypeNullFalse()
-        {
-            //arrange
-            var contact = ContactFaker.GetContactContactContactTypeNull();
-
-            //act
-            var result = contact.IsValid();
-
-            //assert
-            Assert.False(result);
-
-        }
 
 
         [Fact]
@@ -195,5 +169,42 @@ namespace ReservationSystem_PoC.Domain.Test.EntityTests
 
             Assert.False(result);
         }
+
+
+        [Fact]
+        public void Contact_ChangeContactType_Ok()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+            var contactType = ContactTypeFaker.GetContactTypeOk();
+
+            //act
+
+            contact.ChangeContactType(contactType);
+
+
+
+            //assert
+            Assert.True(contact.ContactTypeId == contactType.Id);
+
+        }
+
+        [Fact]
+        public void Contact_ChangeContactType_Null()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+
+            var contactTypeId = contact.ContactType.Id;
+            //act
+
+            contact.ChangeContactType(null);
+
+
+            //assert
+            Assert.True(contact.ContactTypeId == contactTypeId);
+
+        }
+
     }
 }

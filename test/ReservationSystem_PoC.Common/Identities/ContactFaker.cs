@@ -20,10 +20,11 @@ namespace ReservationSystem_PoC.Common.Identities
             var contactType = ContactTypeFaker.GetContactTypeOk();
 
 
-            return new Contact(name: name,
+            return Contact.Factory.GetContact(name: name,
                 phoneNumber: phoneNumer,
                 birthDate: birthDate,
-                contactType: contactType);
+                contactType: contactType,
+                reservations: new List<Reservation>());
         }
 
         public static Contact GetContactContactNameEmpty()
