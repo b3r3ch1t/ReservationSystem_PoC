@@ -45,7 +45,7 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers
 
             contact.ChangeName(request.ContactName);
 
-            contact.ChangeBirthDate(request.ContactBirthdate);
+            contact.ChangeBirthDate(request.ContactBirthDate);
 
             contact.ChangePhoneNumber(request.ContactPhone);
 
@@ -55,7 +55,7 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers
             {
                 foreach (var item in contact.ValidationResult.Errors)
                 {
-                    DomainNotification.Fail(item.ErrorMessage);
+                    await MediatorHandler.NotifyDomainNotification(DomainNotification.Fail(item.ErrorMessage));
                 }
 
                 return CommandResponse.Fail("Contact invalid !");

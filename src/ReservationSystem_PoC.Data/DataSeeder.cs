@@ -94,11 +94,10 @@ namespace ReservationSystem_PoC.Data
                 var randomizerTextRegex = RandomizerFactory
                     .GetRandomizer(new FieldOptionsTextRegex
                     {
-                        // Pattern = @"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$"
-                        Pattern = @"^999-\d{4}$"
+                        Pattern =  @"^\(999\) 999-\d{4}$"
                     });
 
-                var phoneNumber ="(999) " + randomizerTextRegex.Generate().ToUpper();
+                var phoneNumber = randomizerTextRegex.Generate().ToUpper();
 
                 var birthDate = faker.Person.DateOfBirth;
                 var contactType = faker.PickRandom<ContactType>(context.ContactTypes);

@@ -11,17 +11,17 @@ namespace ReservationSystem_PoC.Domain.Core.Commands
 
         public string ContactPhone { get; set; }
 
-        public DateTime ContactBirthdate { get; set; }
+        public DateTime ContactBirthDate { get; set; }
 
         public Guid ContactTypeId { get; set; }
 
 
-        public EditContactCommand(Guid contactId, string contactName, string contactPhone, DateTime contactBirthdate, Guid contactTypeId)
+        public EditContactCommand(Guid contactId, string contactName, string contactPhone, DateTime contactBirthDate, Guid contactTypeId)
         {
             ContactId = contactId;
             ContactName = contactName;
             ContactPhone = contactPhone;
-            ContactBirthdate = contactBirthdate;
+            ContactBirthDate = contactBirthDate;
             ContactTypeId = contactTypeId;
         }
     }

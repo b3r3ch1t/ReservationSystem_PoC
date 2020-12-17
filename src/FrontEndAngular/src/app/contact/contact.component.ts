@@ -145,7 +145,7 @@ export class ContactListComponent implements OnInit {
       let contactBirthDateYear = dateBirth.getFullYear();
 
       let contactName = this.contactForm.get('contactName').value;
-      let contactTypeId = this.contactForm.get('contactTypeId').value;
+      let contactTypeId = this.selectedContactType.contactTypeId;
       let contactPhone =  this.contactForm.get('contactPhone').value
 
 
