@@ -59,6 +59,7 @@ export class ContactListComponent implements OnInit {
   contactTypes: IContactType[];
 
   headerMessage: string;
+  selectContact: IContactView;
 
   selectedContactType: IContactType;
 
@@ -89,7 +90,7 @@ export class ContactListComponent implements OnInit {
     this.contactForm.patchValue({ contactBirthdate: formatDate });
 
     this.display = true;
-
+    this.selectContact = contact;
 
     if (action === "edit") {
       this.headerMessage = "Edit Contact";
@@ -133,10 +134,9 @@ export class ContactListComponent implements OnInit {
     if (this.contactForm.valid) {
 
 
-      let contact = this.contacts.find(
-        contact => this.contactForm.controls['contactName'].value);
 
-      this.contactForm.patchValue({ contactId: contact.contactId });
+
+      this.contactForm.patchValue({ contactId: this.selectContact.contactId });
 
       let dateBirth = new Date(this.contactForm.get('contactBirthdate').value);
 
@@ -146,12 +146,12 @@ export class ContactListComponent implements OnInit {
 
       let contactName = this.contactForm.get('contactName').value;
       let contactTypeId = this.selectedContactType.contactTypeId;
-      let contactPhone =  this.contactForm.get('contactPhone').value
+      let contactPhone = this.contactForm.get('contactPhone').value
 
 
       let createReservationRequest: EditContactRequest =
       {
-        contactId: contact.contactId,
+        contactId: this.selectContact.contactId,
         contactName: contactName,
         contactPhone: contactPhone,
         contactTypeId: contactTypeId,
@@ -190,15 +190,35 @@ export class ContactListComponent implements OnInit {
 
     }
 
-    this.display=false;
+    this.display = false;
 
     this.getContacts();
   }
 
 
-  onRemoveSubmit() {
+  onDeleteSubmit() {
 
-    alert("Sub==>" + this.contactForm.get('contactId').value);
+
+
+    this.contactService
+      .DeleteContact(this.selectContact.contactId).subscribe(data => {
+        if (data.fail)
+          data.messageFailure.forEach(element => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: element });
+          });
+
+
+        if (data.sucess)
+          data.messageSuccess.forEach(element => {
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: element });
+          });
+
+          this.getContacts();
+      });
+
+    this.display = false;
+
+
   }
 
   onAddSubmit() {

@@ -85,6 +85,8 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers
             //the system does not exclude, just mark the Valid as false; 
             contact.Remove();
 
+            _contactRepository.Update(contact);
+
             var result = await _contactRepository.CommitAsync();
 
             return result.Success

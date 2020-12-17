@@ -51,7 +51,6 @@ export class ContactService {
 
   EditContact(request: EditContactRequest) : Observable<ResponseRequest>  {
 
-
     return this.httpClient
       .put<ResponseRequest>(`${this.urlContact}/edit`, request)
        .pipe(
@@ -59,6 +58,18 @@ export class ContactService {
         catchError(this.handleError))
 
   }
+
+
+  DeleteContact(contactId: string ) : Observable<ResponseRequest>  {
+
+    return this.httpClient
+      .delete<ResponseRequest>(`${this.urlContact}/delete/` +  contactId)
+      .pipe(
+        retry(2),
+        catchError(this.handleError))
+
+  }
+
 
 
 }

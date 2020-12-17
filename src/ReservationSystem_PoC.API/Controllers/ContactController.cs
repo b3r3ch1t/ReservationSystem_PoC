@@ -82,8 +82,8 @@ namespace ReservationSystem_PoC.API.Controllers
         /// Delete Contact
         /// </summary>
         [HttpDelete]
-        [Route("delete")]
-        public async Task<ActionResult<ContactViewModel>> DeleteContact([FromBody] Guid contactId)
+        [Route("delete/{contactId}")]
+        public async Task<ActionResult<ContactViewModel>> DeleteContact(Guid contactId)
         {
             var contact = await _contactRepository.GetContactById(contactId);
             if (contact == null)

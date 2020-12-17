@@ -393,6 +393,8 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
 
             Assert.True(result.Success);
             _contactRepositoryMock.Verify(x => x.GetByIdAsync(deleteContactCommand.ContactId), Times.Once);
+            _contactRepositoryMock.Verify(x => x.Update(contact), Times.Once);
+
             _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Once);
             _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Never);
 
@@ -450,6 +452,8 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
 
             Assert.False(result.Success);
             _contactRepositoryMock.Verify(x => x.GetByIdAsync(deleteContactCommand.ContactId), Times.Once);
+            _contactRepositoryMock.Verify(x => x.Update(contact), Times.Never);
+
             _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Never);
             _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Once);
 

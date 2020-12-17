@@ -17,7 +17,7 @@ namespace ReservationSystem_PoC.Data.Repositories
 
         public IQueryable<ContactDto> GetAllDto()
         {
-            var result = from c in Context.Contacts
+            var result = from c in Context.Contacts.Where(x => x.Valid)
 
                     .Include(x => x.ContactType)
 
