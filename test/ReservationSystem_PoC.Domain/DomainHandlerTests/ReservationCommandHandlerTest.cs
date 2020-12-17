@@ -2,7 +2,7 @@
 using Moq;
 using ReservationSystem_PoC.Common.Identities;
 using ReservationSystem_PoC.Domain.Core.Commands;
-using ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers;
+using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;

@@ -5,8 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using ReservationSystem_PoC.Domain.Core.Bus;
 using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.DomainHandlers;
-using ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers;
-using ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Interfaces.Bus;
@@ -37,7 +35,7 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
 
             services.AddScoped<IRequestHandler<EditContactCommand, CommandResponse>, ContactCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteContactCommand, CommandResponse>, ContactCommandHandler>();
-
+            services.AddScoped<IRequestHandler<CreateContactCommand, CommandResponse>, ContactCommandHandler>();
             return services;
         }
     }

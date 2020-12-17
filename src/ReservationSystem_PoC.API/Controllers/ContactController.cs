@@ -111,5 +111,42 @@ namespace ReservationSystem_PoC.API.Controllers
                 returnModel);
 
         }
+
+
+
+        /// <summary>
+        /// Create Contact
+        /// </summary>
+        [HttpPost]
+        [Route("create")]
+        public async Task<ActionResult<ContactViewModel>> CreateContact([FromBody] CreateContactViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return ModelStateErrorResponseError();
+            }
+
+            var createContactCommand = _mapper.Map<CreateContactCommand>(model);
+
+            var result = await Mediator.SendCommandAsync(createContactCommand);
+
+            if (result.Success)
+            {
+                await Mediator.NotifyDomainNotification(
+                    DomainNotification.Success($" The contact to {model.ContactName} was add with success !"));
+
+            }
+
+            var contact = await _contactRepository.GetContactById(model.ContactId);
+
+            var returnModel = _mapper.Map<ContactViewModel>(contact);
+
+            return ResponsePost(
+                nameof(CreateContact),
+                returnModel);
+
+        }
+
     }
 }

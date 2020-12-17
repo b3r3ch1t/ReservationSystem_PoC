@@ -8,7 +8,7 @@ using ReservationSystem_PoC.Domain.Core.Responses;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ReservationHandlers
+namespace ReservationSystem_PoC.Domain.Core.DomainHandlers
 {
     public class ReservationCommandHandler : CommandHandler,
         IRequestHandler<CreateReservationCommand, CommandResponse>

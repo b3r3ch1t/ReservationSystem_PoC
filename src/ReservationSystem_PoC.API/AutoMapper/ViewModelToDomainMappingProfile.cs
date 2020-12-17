@@ -35,6 +35,17 @@ namespace ReservationSystem_PoC.API.AutoMapper
 
 
 
+            CreateMap<CreateContactViewModel, CreateContactCommand>()
+                .ConstructUsing(c => new CreateContactCommand(
+                    c.ContactId,
+                    c.ContactName,
+                    c.ContactPhone,
+                    new DateTime(c.ContactBirthDateYear, c.ContactBirthDateMonth, c.ContactBirthDateDay),
+                    c.ContactTypeId
+                ));
+
+
+
         }
     }
 }

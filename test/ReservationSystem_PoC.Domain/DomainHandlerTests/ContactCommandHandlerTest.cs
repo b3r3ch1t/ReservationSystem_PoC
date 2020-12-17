@@ -4,7 +4,7 @@ using RandomDataGenerator.FieldOptions;
 using RandomDataGenerator.Randomizers;
 using ReservationSystem_PoC.Common.Identities;
 using ReservationSystem_PoC.Domain.Core.Commands;
-using ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers;
+using ReservationSystem_PoC.Domain.Core.DomainHandlers;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Entities;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
@@ -458,5 +458,171 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Once);
 
         }
+
+
+
+
+
+        [Fact]
+        public async void CreateContact_True()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+            var createContactCommand = new CreateContactCommand(
+                contactId: contact.Id,
+                contactName: contact.Name,
+                contactPhone: contact.PhoneNumber,
+                contactBirthDate: contact.BirthDate,
+                contactTypeId: contact.ContactTypeId
+            );
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactTypeRepository>())
+                .Returns(_contactTypeRepositoryMock.Object);
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactRepository>())
+                .Returns(_contactRepositoryMock.Object);
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IMediatorHandler>())
+                .Returns(_mediatorHandler.Object);
+
+            _contactTypeRepositoryMock.Setup(x => x.GetByIdAsync(createContactCommand.ContactTypeId))
+                .Returns(Task.FromResult(contact.ContactType));
+            _contactRepositoryMock.Setup(x => x.CommitAsync())
+                .Returns(Task.FromResult(CommitResponse.Ok()));
+
+
+            var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
+
+            //act 
+            var result = await handler.Handle(createContactCommand, new CancellationToken());
+
+            //Assert
+
+            Assert.True(result.Success);
+            _contactTypeRepositoryMock.Verify(x => x.GetByIdAsync(createContactCommand.ContactTypeId), Times.Once);
+            _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Never);
+            _contactRepositoryMock.Verify(x => x.AddAsync(It.IsAny<Contact>()), Times.Once);
+            _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Once);
+
+
+        }
+
+
+        [Fact]
+        public async void CreateContact_ContactTypeNull_False()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+            var createContactCommand = new CreateContactCommand(
+                contactId: contact.Id,
+                contactName: contact.Name,
+                contactPhone: contact.PhoneNumber,
+                contactBirthDate: contact.BirthDate,
+                contactTypeId: contact.ContactTypeId
+            );
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactTypeRepository>())
+                .Returns(_contactTypeRepositoryMock.Object);
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactRepository>())
+                .Returns(_contactRepositoryMock.Object);
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IMediatorHandler>())
+                .Returns(_mediatorHandler.Object);
+
+            _contactTypeRepositoryMock.Setup(x => x.GetByIdAsync(createContactCommand.ContactTypeId))
+                .Returns(Task.FromResult((ContactType)null));
+
+
+            _contactRepositoryMock.Setup(x => x.CommitAsync())
+                .Returns(Task.FromResult(CommitResponse.Ok()));
+
+
+            var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
+
+            //act 
+            var result = await handler.Handle(createContactCommand, new CancellationToken());
+
+            //Assert
+
+            Assert.False(result.Success);
+            _contactTypeRepositoryMock.Verify(x => x.GetByIdAsync(createContactCommand.ContactTypeId), Times.Once);
+            _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Once);
+            _contactRepositoryMock.Verify(x => x.AddAsync(It.IsAny<Contact>()), Times.Never);
+            _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Never);
+
+
+        }
+
+
+        [Fact]
+        public async void CreateContact_ContactInvalid_False()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactContactNameLess();
+            var createContactCommand = new CreateContactCommand(
+                contactId: contact.Id,
+                contactName: contact.Name,
+                contactPhone: contact.PhoneNumber,
+                contactBirthDate: contact.BirthDate,
+                contactTypeId: contact.ContactTypeId
+            );
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactTypeRepository>())
+                .Returns(_contactTypeRepositoryMock.Object);
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactRepository>())
+                .Returns(_contactRepositoryMock.Object);
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IMediatorHandler>())
+                .Returns(_mediatorHandler.Object);
+
+            _contactTypeRepositoryMock.Setup(x => x.GetByIdAsync(createContactCommand.ContactTypeId))
+                .Returns(Task.FromResult(contact.ContactType));
+
+
+            _contactRepositoryMock.Setup(x => x.CommitAsync())
+                .Returns(Task.FromResult(CommitResponse.Ok()));
+
+
+            var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
+
+            //act 
+            var result = await handler.Handle(createContactCommand, new CancellationToken());
+
+            //Assert
+
+            Assert.False(result.Success);
+            _contactTypeRepositoryMock.Verify(x => x.GetByIdAsync(createContactCommand.ContactTypeId), Times.Once);
+            _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.AtLeastOnce);
+            _contactRepositoryMock.Verify(x => x.AddAsync(It.IsAny<Contact>()), Times.Never);
+            _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Never);
+
+
+        }
+
+
     }
+
 }
