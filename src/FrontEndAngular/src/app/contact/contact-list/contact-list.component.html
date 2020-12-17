@@ -67,7 +67,7 @@
                       <div class="form-row">
 
 
-                        <button class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                        <button  (click)="showDialog()" class="btn btn-primary"><i class="fa fa-edit"></i></button>
 
                         <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
@@ -85,3 +85,68 @@
     </section>
   </div>
 </nav>
+
+
+<p-dialog header="Edit contact" [(visible)]="display" styleClass="mydialog"   >
+
+<div class="box box-danger">
+  <div class="box-body">
+
+
+    <div class="form-group">
+      <label>Contact Name:</label>
+
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-user-circle-o fa-2x"></i>
+        </div>
+        <input type="text" class="form-control" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Contact Type:</label>
+
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-globe fa-2x"></i>
+        </div>
+        <input type="text" class="form-control" >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone:</label>
+
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-phone fa-2x"></i>
+        </div>
+        <p-inputMask mask="(999) 999-9999" type="text"  placeholder="Phone"></p-inputMask>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Birth Date:</label>
+
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar fa-2x"></i>
+        </div>
+
+
+          <p-calendar   appendTo="body"  placeholder="Birth Date" dateFormat="yy-mm-dd">
+
+          </p-calendar>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.box -->
+<p-footer>
+    //buttons
+</p-footer>
+</p-dialog>

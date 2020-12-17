@@ -222,10 +222,10 @@ export class ReservationCreateComponent implements OnInit {
 
     this.contactForm.patchValue({ contactPhone: event.contactPhone });
 
-
     let formatDate = this.formatDate(event.contactBirthdate);
     this.contactForm.patchValue({ contactBirthdate: formatDate });
-    this.contactForm.setValue
+
+
   }
 
   clearedContact(event) {

@@ -3,7 +3,7 @@ import { MessageService } from 'primeng/api';
 import { IContactView } from 'src/app/models/IContactView';
 import { ContactService } from 'src/app/Services/contact.service';
 
-import {MenuItem, PrimeIcons} from 'primeng/api';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-contact-list',
@@ -14,10 +14,10 @@ import {MenuItem, PrimeIcons} from 'primeng/api';
 export class ContactListComponent implements OnInit {
 
   constructor(
-     private messageService: MessageService,
+    private messageService: MessageService,
 
     private contactService: ContactService
-    ) { }
+  ) { }
 
   ngOnInit() {
 
@@ -34,5 +34,11 @@ export class ContactListComponent implements OnInit {
     });
   }
 
+
+  display: boolean = false;
+
+  showDialog() {
+    this.display = true;
+  }
 
 }

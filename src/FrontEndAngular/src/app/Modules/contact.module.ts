@@ -11,6 +11,10 @@ import { AutoCompleteModule } from "primeng/autocomplete";
 
 import {TableModule} from 'primeng/table';
 
+import {DialogModule} from 'primeng/dialog';
+import { InputMaskModule } from "primeng/inputmask";
+import { CalendarModule } from "primeng/calendar";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +24,11 @@ import {TableModule} from 'primeng/table';
     FormsModule,
     ReactiveFormsModule,
     AutoCompleteModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    InputMaskModule,
+
+    CalendarModule,
   ],
   declarations:
   [
