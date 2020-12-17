@@ -158,7 +158,7 @@
   <p-footer>
     <div class="form-row">
 
-      <button [hidden]="action!='edit'" class="btn btn-primary">Confirm Edit </button>
+      <button [hidden]="action!='edit'" (click)="onEditSubmit()" class="btn btn-primary">Confirm Edit </button>
 
       <button [hidden]="action!='add'" (click)="onAddSubmit()" class="btn btn-primary">Confirm Add Contact  </button>
 

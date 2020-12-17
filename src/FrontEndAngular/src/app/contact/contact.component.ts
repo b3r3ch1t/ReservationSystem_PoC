@@ -144,12 +144,17 @@ export class ContactListComponent implements OnInit {
       let contactBirthDateMonth = dateBirth.getMonth();
       let contactBirthDateYear = dateBirth.getFullYear();
 
+      let contactName = this.contactForm.get('contactName').value;
+      let contactTypeId = this.contactForm.get('contactTypeId').value;
+      let contactPhone =  this.contactForm.get('contactPhone').value
+
+
       let createReservationRequest: EditContactRequest =
       {
         contactId: contact.contactId,
-        contactName: contact.contactName,
-        contactPhone: contact.contactPhone,
-        contactTypeId: contact.contactTypeId,
+        contactName: contactName,
+        contactPhone: contactPhone,
+        contactTypeId: contactTypeId,
         contactBirthDateDay: contactBirthDateDay,
         contactBirthDateMonth: contactBirthDateMonth,
         contactBirthDateYear: contactBirthDateYear
@@ -184,6 +189,10 @@ export class ContactListComponent implements OnInit {
       this.contactForm.patchValue({ contactBirthdate: '' });
 
     }
+
+    this.display=false;
+
+    this.getContacts();
   }
 
 

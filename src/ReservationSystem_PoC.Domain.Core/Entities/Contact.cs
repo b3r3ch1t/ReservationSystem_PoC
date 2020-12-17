@@ -22,6 +22,7 @@ namespace ReservationSystem_PoC.Domain.Core.Entities
 
         protected Contact()
         {
+            Reservations = new List<Reservation>();
 
         }
 

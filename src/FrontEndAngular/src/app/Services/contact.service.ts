@@ -53,7 +53,7 @@ export class ContactService {
 
 
     return this.httpClient
-      .post<ResponseRequest>(`${this.urlContact}/edit`, request)
+      .put<ResponseRequest>(`${this.urlContact}/edit`, request)
        .pipe(
         retry(2),
         catchError(this.handleError))

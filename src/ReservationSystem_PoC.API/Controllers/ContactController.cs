@@ -48,8 +48,8 @@ namespace ReservationSystem_PoC.API.Controllers
         /// </summary>
         /// <param name="Edit Contact"><see cref="EditContactViewModel"/></param>
         /// <returns><see cref="ReservationViewModel"/></returns>
-        [HttpPost]
-        [Route("create")]
+        [HttpPut]
+        [Route("edit")]
         public async Task<ActionResult<ContactViewModel>> EditContact([FromBody] EditContactViewModel model)
         {
             if (!ModelState.IsValid)
