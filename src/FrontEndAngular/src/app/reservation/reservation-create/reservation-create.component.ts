@@ -228,13 +228,9 @@ export class ReservationCreateComponent implements OnInit {
 
   }
 
-  clearedContact(event) {
-    this.selectedContactType = null;
-    this.contactForm.patchValue({ contactPhone: null });
-    this.contactForm.patchValue({ contactBirthdate: null });
-  }
 
-  private formatDate(date) {
+
+  public  formatDate(date) {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();
@@ -243,5 +239,12 @@ export class ReservationCreateComponent implements OnInit {
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
   }
+
+  clearedContact(event) {
+    this.selectedContactType = null;
+    this.contactForm.patchValue({ contactPhone: null });
+    this.contactForm.patchValue({ contactBirthdate: null });
+  }
+
 
 }

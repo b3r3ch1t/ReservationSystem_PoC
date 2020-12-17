@@ -30,4 +30,9 @@ import { TranslateModule } from '@ngx-translate/core';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+
+ }

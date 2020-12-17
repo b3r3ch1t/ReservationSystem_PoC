@@ -9,6 +9,8 @@ import { ContactListComponent } from "../contact/contact-list/contact-list.compo
 
 import { AutoCompleteModule } from "primeng/autocomplete";
 
+import {DropdownModule} from 'primeng/dropdown';
+
 import {TableModule} from 'primeng/table';
 
 import {DialogModule} from 'primeng/dialog';
@@ -27,7 +29,7 @@ import { CalendarModule } from "primeng/calendar";
     TableModule,
     DialogModule,
     InputMaskModule,
-
+    DropdownModule,
     CalendarModule,
   ],
   declarations:

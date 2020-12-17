@@ -5,13 +5,12 @@ using ReservationSystem_PoC.Domain.Core.Extensions;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ReservationSystem_PoC.Data.Context
 {
-    public sealed  class ReservarionSystemDbContext : DbContext
+    public sealed class ReservarionSystemDbContext : DbContext
     {
 
         public ReservarionSystemDbContext(DbContextOptions<ReservarionSystemDbContext> options) : base(options)
@@ -107,38 +106,16 @@ namespace ReservationSystem_PoC.Data.Context
 
             modelBuilder.Ignore<ValidationResult>();
 
-             
+
         }
 
 
         //reflect to add Mappings in Assembly
         private static void AddMappings(ModelBuilder modelBuilder)
         {
-            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
-                .Where(type => !string.IsNullOrEmpty(type.Namespace))
-                .Where(x => x.Namespace != null &&
-                            x.Namespace
-                                .Contains(value: typeof(ReservarionSystemDbContext).Namespace.Replace(".Context", "") +
-                                                 ".Mappings") &&
-                            !x.Namespace.Contains("<>"));
 
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReservarionSystemDbContext).Assembly);
 
-            foreach (var type in typesToRegister)
-            {
-                if (type.Name.StartsWith("<>")) return;
-
-                dynamic configInstance = Activator.CreateInstance(type);
-
-                try
-                {
-                    modelBuilder.ApplyConfiguration(configInstance);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                }
-            }
-             
         }
     }
 
