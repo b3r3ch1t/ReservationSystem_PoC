@@ -73,7 +73,7 @@ namespace ReservationSystem_PoC.Common.Identities
             var faker = new Faker();
             var length = Randomizer.Seed.Next(1024);
 
-            while (length <= ContactType.MaxDescriptionSize)
+            while (length <= Reservation.MaxMessageSize)
             {
                 length = Randomizer.Seed.Next(1024);
             }
