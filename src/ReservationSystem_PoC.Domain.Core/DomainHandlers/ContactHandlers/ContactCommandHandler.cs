@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers
 {
     public class ContactCommandHandler : CommandHandler,
-          IRequestHandler<EditContactCommand, CommandResponse>
+          IRequestHandler<EditContactCommand, CommandResponse>,
+          IRequestHandler<DeleteContactCommand, CommandResponse>
     {
 
         private readonly IContactRepository _contactRepository;
@@ -62,6 +63,27 @@ namespace ReservationSystem_PoC.Domain.Core.DomainHandlers.ContactHandlers
             }
 
             _contactRepository.Update(contact);
+
+            var result = await _contactRepository.CommitAsync();
+
+            return result.Success
+                ? CommandResponse.Ok()
+                : CommandResponse.Fail("Fail recording the register in database !");
+        }
+
+        public async Task<CommandResponse> Handle(DeleteContactCommand request, CancellationToken cancellationToken)
+        {
+            var contact = await _contactRepository.GetByIdAsync(request.ContactId);
+
+            if (contact == null)
+            {
+                await MediatorHandler.NotifyDomainNotification(DomainNotification.Fail("The Contact is invalid !"));
+
+                return CommandResponse.Fail();
+            }
+
+            //the system does not exclude, just mark the Valid as false; 
+            contact.Remove();
 
             var result = await _contactRepository.CommitAsync();
 

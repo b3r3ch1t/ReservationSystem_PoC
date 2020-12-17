@@ -47,7 +47,7 @@
               <tr>
                 <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="contactName">Contact Type <p-sortIcon field="contactTypeName"></p-sortIcon>
+                <th pSortableColumn="contactTypeName">Contact Type <p-sortIcon field="contactTypeName"></p-sortIcon>
                 </th>
                 <th pSortableColumn="contactPhone">Phone Number <p-sortIcon field="contactPhone"></p-sortIcon>
                 </th>
@@ -61,6 +61,7 @@
             <ng-template pTemplate="body" let-contact>
               <tr>
                 <td>{{contact.contactName}}</td>
+                <td>{{contact.contactTypeName}}</td>
                 <td>{{contact.contactPhone}}</td>
                 <td>{{contact.contactBirthdate | date:'dd/MM/yyyy'}}</td>
                 <td>

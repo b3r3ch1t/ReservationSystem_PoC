@@ -35,8 +35,8 @@ namespace ReservationSystem_PoC.Domain.Core.IoC
                 ReservationCommandHandler>();
 
 
-            services.AddScoped<IRequestHandler<EditContactCommand, CommandResponse>,  ContactCommandHandler>(); 
-             
+            services.AddScoped<IRequestHandler<EditContactCommand, CommandResponse>, ContactCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteContactCommand, CommandResponse>, ContactCommandHandler>();
 
             return services;
         }

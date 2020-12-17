@@ -98,10 +98,6 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
 
             var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
 
-
-
-
-
             //act 
             var result = await handler.Handle(editContactCommand, new CancellationToken());
 
@@ -351,6 +347,112 @@ namespace ReservationSystem_PoC.Domain.Test.DomainHandlerTests
             _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Never);
 
             _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.AtLeastOnce);
+        }
+
+
+        [Fact]
+        public async void DeleteContact_True()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+
+            var deleteContactCommand = new DeleteContactCommand(contact.Id);
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactRepository>())
+                .Returns(_contactRepositoryMock.Object);
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactTypeRepository>())
+                .Returns(_contactTypeRepositoryMock.Object);
+
+            _contactRepositoryMock
+                .Setup(x =>
+                    x.GetByIdAsync(deleteContactCommand.ContactId))
+                .Returns(Task.FromResult(contact));
+
+
+            _contactRepositoryMock
+                .Setup(x =>
+                    x.CommitAsync())
+                .Returns(Task.FromResult(CommitResponse.Ok()));
+
+
+
+            var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
+
+            //act 
+            var result = await handler.Handle(deleteContactCommand, new CancellationToken());
+
+
+
+            //Assert
+
+            Assert.True(result.Success);
+            _contactRepositoryMock.Verify(x => x.GetByIdAsync(deleteContactCommand.ContactId), Times.Once);
+            _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Once);
+            _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Never);
+
+        }
+
+
+
+        [Fact]
+        public async void DeleteContact_ContactNull_False()
+        {
+            //arrange
+            var contact = ContactFaker.GetContactOk();
+
+            var deleteContactCommand = new DeleteContactCommand(contact.Id);
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IMediatorHandler>())
+                .Returns(_mediatorHandler.Object);
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactRepository>())
+                .Returns(_contactRepositoryMock.Object);
+
+
+
+            _dependencyResolverMock
+                .Setup(x =>
+                    x.Resolve<IContactTypeRepository>())
+                .Returns(_contactTypeRepositoryMock.Object);
+
+            _contactRepositoryMock
+                .Setup(x =>
+                    x.GetByIdAsync(deleteContactCommand.ContactId))
+                .Returns(Task.FromResult((Contact)null));
+
+
+            _contactRepositoryMock
+                .Setup(x =>
+                    x.CommitAsync())
+                .Returns(Task.FromResult(CommitResponse.Ok()));
+
+
+
+            var handler = new ContactCommandHandler(_dependencyResolverMock.Object);
+
+            //act 
+            var result = await handler.Handle(deleteContactCommand, new CancellationToken());
+
+
+
+            //Assert
+
+            Assert.False(result.Success);
+            _contactRepositoryMock.Verify(x => x.GetByIdAsync(deleteContactCommand.ContactId), Times.Once);
+            _contactRepositoryMock.Verify(x => x.CommitAsync(), Times.Never);
+            _mediatorHandler.Verify(x => x.NotifyDomainNotification(It.IsAny<DomainNotification>()), Times.Once);
+
         }
     }
 }

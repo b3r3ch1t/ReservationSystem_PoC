@@ -6,6 +6,7 @@ using ReservationSystem_PoC.Domain.Core.Commands;
 using ReservationSystem_PoC.Domain.Core.DomainNotifications;
 using ReservationSystem_PoC.Domain.Core.Interfaces;
 using ReservationSystem_PoC.Domain.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,8 +47,6 @@ namespace ReservationSystem_PoC.API.Controllers
         /// <summary>
         /// Edit Contact
         /// </summary>
-        /// <param name="Edit Contact"><see cref="EditContactViewModel"/></param>
-        /// <returns><see cref="ReservationViewModel"/></returns>
         [HttpPut]
         [Route("edit")]
         public async Task<ActionResult<ContactViewModel>> EditContact([FromBody] EditContactViewModel model)
@@ -75,6 +74,40 @@ namespace ReservationSystem_PoC.API.Controllers
 
             return ResponsePost(
                 nameof(EditContact),
+                returnModel);
+
+        }
+
+        /// <summary>
+        /// Delete Contact
+        /// </summary>
+        [HttpDelete]
+        [Route("delete")]
+        public async Task<ActionResult<ContactViewModel>> DeleteContact([FromBody] Guid contactId)
+        {
+            var contact = await _contactRepository.GetContactById(contactId);
+            if (contact == null)
+            {
+                NotifyError("This contact Id is invalid !");
+                return ModelStateErrorResponseError();
+            }
+
+            var deleteContactCommand = _mapper.Map<DeleteContactCommand>(contactId);
+
+            var result = await Mediator.SendCommandAsync(deleteContactCommand);
+
+            if (result.Success)
+            {
+                await Mediator.NotifyDomainNotification(
+                    DomainNotification.Success($" The contact to {contact.ContactName} was excluded with success !"));
+
+            }
+
+
+            var returnModel = _mapper.Map<ContactViewModel>(contact);
+
+            return ResponsePost(
+                nameof(DeleteContact),
                 returnModel);
 
         }

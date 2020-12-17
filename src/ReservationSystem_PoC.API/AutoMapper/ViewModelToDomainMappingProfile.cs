@@ -29,6 +29,12 @@ namespace ReservationSystem_PoC.API.AutoMapper
                     c.ContactTypeId
                 ));
 
+
+            CreateMap<Guid, DeleteContactCommand>()
+                .ConstructUsing(c => new DeleteContactCommand(c));
+
+
+
         }
     }
 }

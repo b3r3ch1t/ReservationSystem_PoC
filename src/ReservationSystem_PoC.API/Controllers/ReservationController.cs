@@ -42,16 +42,11 @@ namespace ReservationSystem_PoC.API.Controllers
             return ResponseGet(result);
         }
 
-        /// <summary>
-        /// Get Min value of Reservation Ranking.
-        /// </summary>
-        /// <returns>List of <see cref="int"/></returns>
-
 
         /// <summary>
         /// Create new Reservation
         /// </summary>
-        /// <param name="Create Reservation"><see cref="CreateReservationViewModel"/></param>
+        /// <param name="model"><see cref="CreateReservationViewModel"/></param> 
         /// <returns><see cref="ReservationViewModel"/></returns>
         [HttpPost]
         [Route("create")]
