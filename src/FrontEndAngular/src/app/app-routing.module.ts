@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ReservationListComponent } from './reservation/reservation-list/reservation-list.component';
 import { ReservationCreateComponent } from './reservation/reservation-create/reservation-create.component';
-import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { ContactListComponent } from './contact/contact.component';
 
 
 

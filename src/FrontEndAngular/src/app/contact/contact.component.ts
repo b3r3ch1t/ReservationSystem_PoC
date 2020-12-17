@@ -9,8 +9,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css'],
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css'],
   providers: [MessageService]
 })
 export class ContactListComponent implements OnInit {

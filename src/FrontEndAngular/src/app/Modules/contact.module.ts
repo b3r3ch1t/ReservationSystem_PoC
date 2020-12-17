@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ToastModule } from "primeng/toast";
-import { ContactListComponent } from "../contact/contact-list/contact-list.component";
+import { ContactListComponent } from "../contact/contact.component";
 
 import { AutoCompleteModule } from "primeng/autocomplete";
 
