@@ -92,7 +92,9 @@
                 </div>
                 <div class="list_title">
                   <h4>{{reservation.message | limitTo: 15 }}</h4>
-                  <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a' }}</p>
+                  <!-- <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a' }}</p> -->
+
+                  <p>{{reservation.dateOfChange | convertDate }}</p>
                 </div>
 
               </div>

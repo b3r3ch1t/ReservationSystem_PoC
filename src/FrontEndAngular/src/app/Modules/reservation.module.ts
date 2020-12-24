@@ -28,8 +28,14 @@ import { HttpClient } from '@angular/common/http';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ConverterDatePipe } from '../pipes/converterDate';
+
+import { registerLocaleData } from '@angular/common';
 
 
+import localeDe from '@angular/common/locales/de';
+
+registerLocaleData(localeDe);
 
 @NgModule({
   imports: [
@@ -59,7 +65,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   [
     ReservationListComponent,
     ReservationCreateComponent,
-    TruncatePipe
+    TruncatePipe,
+    ConverterDatePipe
   ],
   exports: [
     ReservationListComponent,

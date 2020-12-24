@@ -60,8 +60,6 @@ export class ReservationListComponent implements OnInit {
     let byRankingAscending = "";
     let byRankingDescending = "";
 
-    console.log(result);
-
     this.translate.get('ByDateAscending').subscribe(
       (res: string) => {
 
@@ -102,7 +100,6 @@ export class ReservationListComponent implements OnInit {
         result.push(new SortByReservation('rankDesc', byRankingDescending));
       });
 
-    console.log(result);
 
     return result;
 

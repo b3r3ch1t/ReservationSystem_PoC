@@ -14,7 +14,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-
 @NgModule({
   declarations: [
     AppComponent
