@@ -22,14 +22,33 @@ namespace ReservationSystem_PoC.Data
             using var context = scope.ServiceProvider.GetService<ReservarionSystemDbContext>();
             if (context == null) throw new ArgumentNullException(nameof(context));
 
-            context.Database.EnsureDeleted();
-
-            context.Database.Migrate();
+            context.Database.EnsureCreated();
 
             CreateContacts(context);
             CreateReservations(context);
-
+            RemoveProcedureIfExists(context);
             AddStoreProcedure(context);
+        }
+
+        private static void RemoveProcedureIfExists(ReservarionSystemDbContext context)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append(@"  IF  EXISTS (SELECT * ");
+            sb.Append(@"    FROM   sysobjects ");
+            sb.Append(@"    WHERE type = 'P' AND id  = object_id('dbo.UpdateContactType'))");
+            sb.Append(@"    EXEC('DROP PROCEDURE [dbo].[UpdateContactType] ')");
+
+
+            try
+            {
+                context.Database.ExecuteSqlRaw(sb.ToString());
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public static void CreateReservations(ReservarionSystemDbContext context)
@@ -94,7 +113,7 @@ namespace ReservationSystem_PoC.Data
                 var randomizerTextRegex = RandomizerFactory
                     .GetRandomizer(new FieldOptionsTextRegex
                     {
-                        Pattern =  @"^\(999\) 999-\d{4}$"
+                        Pattern = @"^\(999\) 999-\d{4}$"
                     });
 
                 var phoneNumber = randomizerTextRegex.Generate().ToUpper();
@@ -143,8 +162,6 @@ namespace ReservationSystem_PoC.Data
 
             }
 
-
-
             context.SaveChanges();
 
         }
@@ -153,6 +170,7 @@ namespace ReservationSystem_PoC.Data
         {
 
             var sb = new StringBuilder();
+
 
             sb.Append(@" CREATE PROCEDURE UpdateContactType @Description nvarchar(512), @Valid BIT, @DateOfChange DATETIME2 (7), @DateOfCreation  DATETIME2 (7), @Id UNIQUEIDENTIFIER ");
             sb.Append(@" AS ");
