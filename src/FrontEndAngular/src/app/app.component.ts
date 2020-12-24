@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PrimeNGConfig } from 'primeng/api';
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,14 +8,15 @@ import { PrimeNGConfig } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private config: PrimeNGConfig, private translateService: TranslateService) {}
-
-  ngOnInit() {
-      this.translateService.setDefaultLang('en');
+  constructor(
+    public translate: TranslateService
+  ) {
+    translate.addLangs(['en', 'pt-br']);
+    translate.setDefaultLang('en');
   }
 
-  translate(lang: string) {
-      this.translateService.use(lang);
-      this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
+
+  ngOnInit() {
+
   }
 }

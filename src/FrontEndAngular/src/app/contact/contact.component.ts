@@ -9,6 +9,9 @@ import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } fro
 import { EditContactRequest } from '../models/EditContactRequest';
 import { CreateContactRequest } from '../models/CreateContactRequest';
 
+
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact.component.html',
@@ -21,9 +24,11 @@ export class ContactListComponent implements OnInit {
     private messageService: MessageService,
     private contactService: ContactService,
     private contactTypeService: ContactTypeService,
-
+    public translate: TranslateService,
     private fb: FormBuilder
-  ) { }
+  ) {
+
+  }
 
 
   contactForm = new FormGroup(
@@ -37,6 +42,9 @@ export class ContactListComponent implements OnInit {
     }
   );
 
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
 
   ngOnInit() {

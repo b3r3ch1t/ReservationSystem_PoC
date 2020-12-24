@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-
-import { Routes, RouterModule } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {  RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { ToastModule } from "primeng/toast";
@@ -17,6 +17,11 @@ import {DialogModule} from 'primeng/dialog';
 import { InputMaskModule } from "primeng/inputmask";
 import { CalendarModule } from "primeng/calendar";
 
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,6 +36,13 @@ import { CalendarModule } from "primeng/calendar";
     InputMaskModule,
     DropdownModule,
     CalendarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations:
   [
@@ -42,3 +54,8 @@ import { CalendarModule } from "primeng/calendar";
 })
 
 export class ContactModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

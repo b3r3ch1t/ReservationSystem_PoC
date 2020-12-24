@@ -4,15 +4,26 @@
 
 </div>
 
+<span class="form-inline">
+  <select
+      class="form-control"
+      #selectedLang
+      (change)="switchLang(selectedLang.value)">
+    <option *ngFor="let language of translate.getLangs()"
+      [value]="language"
+      [selected]="language === translate.currentLang">
+      {{ language }}
+    </option>
+  </select>
+</span>
+
 <nav id="navigation">
   <div class="row">
     <div class="col-md-4 left_side" style="color: red;font-weight: bold;">
-      <h2>List of Contacts</h2>
+      <h2>{{'ListOfContacts' | translate }}</h2>
     </div>
     <div class="col-md-4 middle_content">
-      <p>This is will be the description This is will be the description This is will be the description This is will
-        be the description This is will be the description This is will be the description This is will be the
-        description</p>
+      <p>{{'ThisIsWillBeTheDescription' | translate }}</p>
     </div>
     <div class="col-md-4 float-right">
       <div class="row">

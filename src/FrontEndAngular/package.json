@@ -24,6 +24,7 @@
     "@kolkov/angular-editor": "^1.1.4",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "angular-ng-autocomplete": "^2.0.1",
     "bootstrap": "^4.5.3",
     "chart.js": "^2.9.4",

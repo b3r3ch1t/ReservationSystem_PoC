@@ -9,7 +9,10 @@ import { NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {ReservationModule} from './modules/reservation.module';
 import { ContactModule } from './modules/contact.module';
-import { TranslateModule } from '@ngx-translate/core';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 
 @NgModule({
@@ -25,14 +28,22 @@ import { TranslateModule } from '@ngx-translate/core';
     BrowserAnimationsModule,
     NgbAlertModule,
     NgbModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-
-
-
  }
+
+
+ // AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
