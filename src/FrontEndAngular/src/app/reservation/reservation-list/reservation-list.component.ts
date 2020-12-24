@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IReservation } from 'src/app/models/IReservation';
 import { ReservationService } from 'src/app/Services/reservation.service';
 import { SortByReservation } from 'src/app/models/SortByReservation';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -25,7 +26,17 @@ export class ReservationListComponent implements OnInit {
   direction: boolean = false;
   column: string = '';
 
-  constructor(public reservationService: ReservationService) { }
+  constructor(
+    public reservationService: ReservationService,
+
+    public translate: TranslateService,
+  ) {
+
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
 
   ngOnInit(): void {
 
@@ -36,15 +47,64 @@ export class ReservationListComponent implements OnInit {
     this.page = 1;
 
 
-    this.allSortByReservation = [
-      new SortByReservation('dateAsc', 'by Date Ascending'),
-      new SortByReservation('dateDesc', 'by Date Descending'),
-      new SortByReservation('alphAsc', 'by Alphabetic Ascending'),
-      new SortByReservation('alphDesc', 'by Alphabetic Descending'),
-      new SortByReservation('rankAsc', 'by Ranking Ascending'),
-      new SortByReservation('rankDesc', 'by Ranking Descending')
-    ]
+    this.translate.use('en');
+    this.translate.setDefaultLang('en');
+  }
 
+  getListOfSort() {
+    var result: SortByReservation[] = [];
+    let byDateAscending = "";
+    let byDateDescending = "";
+    let byAlphabeticAscending = "";
+    let byAlphabeticDescending = "";
+    let byRankingAscending = "";
+    let byRankingDescending = "";
+
+    console.log(result);
+
+    this.translate.get('ByDateAscending').subscribe(
+      (res: string) => {
+
+        byDateAscending = res;
+        result.push(new SortByReservation('dateAsc', byDateAscending));
+      });
+
+
+    this.translate.get('ByDateDescending').subscribe(
+      (res: string) => {
+        byDateDescending = res;
+        result.push(new SortByReservation('dateDesc', byDateDescending));
+      });
+
+    this.translate.get('ByAlphabeticAscending').subscribe(
+      (res: string) => {
+        byAlphabeticAscending = res;
+        result.push(new SortByReservation('alphAsc', byAlphabeticAscending));
+      });
+
+
+    this.translate.get('ByAlphabeticDescending').subscribe(
+      (res: string) => {
+        byAlphabeticDescending = res;
+        result.push(new SortByReservation('alphDesc', byAlphabeticDescending));
+      });
+
+    this.translate.get('ByRankingAscending').subscribe(
+      (res: string) => {
+        byRankingAscending = res;
+        result.push(new SortByReservation('rankAsc', byRankingAscending));
+      });
+
+    this.translate.get('ByRankingDescending').subscribe(
+      (res: string) => {
+
+        byRankingDescending = res;
+        result.push(new SortByReservation('rankDesc', byRankingDescending));
+      });
+
+    console.log(result);
+
+    return result;
 
 
   }

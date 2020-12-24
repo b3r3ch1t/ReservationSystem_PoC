@@ -23,6 +23,13 @@ import {CalendarModule} from 'primeng/calendar';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import {ToastModule} from 'primeng/toast';
+import { HttpClient } from '@angular/common/http';
+
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
 
 @NgModule({
   imports: [
@@ -39,7 +46,14 @@ import {ToastModule} from 'primeng/toast';
     InputMaskModule,
     CalendarModule,
     AngularEditorModule,
-    ToastModule
+    ToastModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations:
   [
@@ -56,3 +70,8 @@ import {ToastModule} from 'primeng/toast';
 
 
 export class ReservationModule { }
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

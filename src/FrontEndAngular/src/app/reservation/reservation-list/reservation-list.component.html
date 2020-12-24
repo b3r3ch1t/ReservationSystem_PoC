@@ -2,29 +2,42 @@
 
 </div>
 
+
+<span class="form-inline">
+  <select
+      class="form-control"
+      #selectedLang
+      (change)="switchLang(selectedLang.value)">
+    <option *ngFor="let language of translate.getLangs()"
+      [value]="language"
+      [selected]="language === translate.currentLang">
+      {{ language }}
+    </option>
+  </select>
+</span>
+
+
 <nav id="navigation">
   <div class="container">
     <div class="row">
       <div class="col-md-4 left_side">
-        <h2>Reservations List</h2>
+        <h2>{{'ReservationList' | translate }}</h2>
       </div>
       <div class="col-md-4 middle_content">
-        <p>This is will be the description This is will be the description This is will be the description This is will
-          be the description This is will be the description This is will be the description This is will be the
-          description</p>
+        <p>{{'ThisIsWillBeTheDescription' | translate }} </p>
       </div>
       <div class="col-md-4 float-right">
 
         <div class="row">
           <a class="extra float-right btn btn-secondary" [routerLink]="['/reservation/create']">
-            CREATE RESERVATION
+            {{'CreateReservation' | translate }}
           </a>
         </div>
         <br>
 
         <div class="row">
           <a class="extra float-right btn btn-secondary" [routerLink]="['/contact']">
-            CONTACT LIST
+            {{'LISTCONTACTS' | translate }}
           </a>
         </div>
 
@@ -55,8 +68,8 @@
                     <i style="    margin-left: 16px;  margin-top: 8px;" class="fa fa-sort-amount-down"></i>
                   </span>
                   <select class="fa form-control" (change)='onOptionsSelected($event)'>
-                    <option selected=true value="&#xf160; Sort by">&#xf160; Sort by</option>
-                    <option *ngFor="let srt of allSortByReservation" value="{{ srt.sId }}">
+                    <option selected=true value="&#xf160; {{'SortBy' | translate }}">&#xf160; {{'SortBy' | translate }}</option>
+                    <option *ngFor="let srt of  getListOfSort()" value="{{ srt.sId }}">
                       {{ srt.sName }}
                     </option>
 
@@ -79,7 +92,7 @@
                 </div>
                 <div class="list_title">
                   <h4>{{reservation.message | limitTo: 15 }}</h4>
-                  <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a'}}</p>
+                  <p>{{reservation.dateOfChange | date:'EEEE, MMM, dd \'at\' h:mm a' }}</p>
                 </div>
 
               </div>
@@ -89,7 +102,7 @@
 
             <div class="sm_size_two col-md-3">
               <div class="rate">
-                <h4>Ranking</h4>
+                <h4> {{'Ranking' | translate }}</h4>
                 <div class="star">
 
                   <p-rating stars="5" readonly [ngModel]="reservation.ranking"></p-rating>
@@ -100,7 +113,7 @@
 
             <div class="sm_size_two col-md-3" *ngIf="reservation.favorited  else elseBlock">
               <p class="list_p"style="color: darkgrey;">
-                Add Favorite
+                {{'AddFavorite' | translate }}
                 <span style="font-size: 22px">
                   <i class="fa fa-heart-o-plus">
 
@@ -113,7 +126,7 @@
             <ng-template #elseBlock>
               <div class="sm_size_two col-md-3">
                 <p class="list_p" >
-                  Add Favorite
+                  {{'AddFavorite' | translate }}
                   <span style="font-size: 22px">
                     <i class="fa fa-heart-o-plus" style="color:red">
 
@@ -128,7 +141,7 @@
 
             <div class="sm_size_two col-md-3">
               <button class="float-right btn btn-secondary">
-                Edit
+                {{'Edit' | translate }}
               </button>
             </div>
 

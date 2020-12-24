@@ -15,5 +15,21 @@
     "RemoveContact": "Remove Contact",
     "ConfirmEditContact": "Confirma Edição do contato", 
 	"ConfirmAddContact": "Confirma adicionar Contato", 
-    "ConfirmExcludeContact": "Confirma Exclusão do contato"	
+    "ConfirmExcludeContact": "Confirma Exclusão do contato", 
+	"ReservationList": "Lista de Reservas",
+	"CreateReservation": "CRIAÇÃO DE RESERVAS",
+	"LISTCONTACTS": "LISTAS DE CONTATOS", 
+	"Showing": "Mostrando", 
+	"to": "até", 
+	"of": "de",
+	"SortBy": "Ordenar por", 
+	"ByDateAscending": "Data ",
+	"ByDateDescending": "Data decrescente", 
+	"ByAlphabeticAscending":" Alfabético",
+	"ByAlphabeticDescending": " Alfabético decrescente",
+	"ByRankingAscending": "Ranking", 
+	"ByRankingDescending": "Ranking descrescente",
+	"Ranking" : "Ranking", 
+	"AddFavorite": "Favoritar", 
+	"Edit": "Editar"
 }

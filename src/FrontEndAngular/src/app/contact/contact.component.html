@@ -52,7 +52,7 @@
       <div class="content_edit container">
         <div class="content">
           <p-table [value]="contacts" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            currentPageReportTemplate="{{'Showing' | translate }} {first} {{'to' | translate }} {last} {{'of' | translate }} {totalRecords} entries"
             [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
               <tr>
