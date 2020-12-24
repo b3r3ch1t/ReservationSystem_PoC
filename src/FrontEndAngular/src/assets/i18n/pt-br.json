@@ -1,4 +1,19 @@
 {
     "ListOfContacts": "Lista de Contatos",
-	"ThisIsWillBeTheDescription":"Esta vai ser a descrição "	
+	"ThisIsWillBeTheDescription":"Esta vai ser a descrição ",
+	"ReservationList": "LISTA DE RESERVAS",
+	"CreateContacts": "CRIAÇÃO DE CONTATOS",
+	"ContactName": "Nome do Contato",
+    "ContactType": "Tipo do Contato", 
+    "PhoneNumber": "Telefone",
+    "BirthDate": "Data de Nascimento",
+    "Actions": "Ações"		,
+    "AddContact": "Adicionar Contato",
+    "EditContact": "Editar Contato", 
+    "RemoveContact": "Remover Contato",
+    "EditContact": "Editar Contato",  
+    "RemoveContact": "Remove Contact",
+    "ConfirmEditContact": "Confirma Edição do contato", 
+	"ConfirmAddContact": "Confirma adicionar Contato", 
+    "ConfirmExcludeContact": "Confirma Exclusão do contato"	
 }

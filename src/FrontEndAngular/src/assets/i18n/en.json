@@ -1,4 +1,17 @@
 {
     "ListOfContacts": "List of Contacts",
-	"ThisIsWillBeTheDescription":"This is will be the description "
+	"ThisIsWillBeTheDescription":"This is will be the description ",
+	"ReservationList": "RESERVATION LIST",
+	"CreateContacts": "CREATE CONTACTS", 
+	"ContactName": "Contact Name",	
+    "ContactType": "Contact Type", 
+    "PhoneNumber": "Phone Number",
+    "BirthDate": "Birth Date"	,
+    "Actions": "Actions"	,
+    "AddContact": "Add Contact",
+    "EditContact": "Edit Contact", 
+    "RemoveContact": "Remove Contact",
+    "ConfirmEditContact": "Confirm Edit", 
+	"ConfirmAddContact": "Confirm Add Contact", 
+    "ConfirmExcludeContact": "Confirm Exclude"
 }

@@ -28,13 +28,13 @@
     <div class="col-md-4 float-right">
       <div class="row">
         <a class="extra float-right btn btn-secondary" [routerLink]="['/reservation']">
-          RESERVATION LIST
+          {{'ReservationList' | translate }}
         </a>
       </div> <br>
 
       <div class="row">
         <button class="extra float-right btn btn-secondary" (click)="showDialogAdd()">
-          CREATE CONTACT
+          {{'CreateContacts' | translate }}
         </button>
       </div>
 
@@ -56,15 +56,15 @@
             [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="contactName">Contact Name <p-sortIcon field="contactName"></p-sortIcon>
+                <th pSortableColumn="contactName">{{'ContactName' | translate }} <p-sortIcon field="contactName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="contactTypeName">Contact Type <p-sortIcon field="contactTypeName"></p-sortIcon>
+                <th pSortableColumn="contactTypeName">{{'ContactType' | translate }} <p-sortIcon field="contactTypeName"></p-sortIcon>
                 </th>
-                <th pSortableColumn="contactPhone">Phone Number <p-sortIcon field="contactPhone"></p-sortIcon>
+                <th pSortableColumn="contactPhone">{{'PhoneNumber' | translate }} <p-sortIcon field="contactPhone"></p-sortIcon>
                 </th>
-                <th pSortableColumn="contactBirthdate">Birth Date <p-sortIcon field="contactBirthdate"></p-sortIcon>
+                <th pSortableColumn="contactBirthdate">{{'BirthDate' | translate }} <p-sortIcon field="contactBirthdate"></p-sortIcon>
                 </th>
-                <th>Actions </th>
+                <th>{{'Actions' | translate }} </th>
 
 
               </tr>
@@ -110,18 +110,18 @@
 
 
         <div class="form-group">
-          <label>Contact Name:</label>
+          <label>{{'ContactName' | translate }}</label>
 
           <div class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-user-circle-o fa-2x"></i>
             </div>
-            <input type="text" class="form-control" formControlName="contactName" [readOnly]="!isEdit">
+            <input type="text" class="form-control" placeholder="{{'ContactName' | translate }}" formControlName="contactName" [readOnly]="!isEdit">
           </div>
         </div>
 
         <div class="form-group">
-          <label>Contact Type:</label>
+          <label>{{'ContactType' | translate }}</label>
 
           <div class="input-group">
             <div class="input-group-addon">
@@ -134,20 +134,20 @@
         </div>
 
         <div class="form-group">
-          <label>Phone:</label>
+          <label>{{'PhoneNumber' | translate }}</label>
 
           <div class="input-group">
             <div class="input-group-addon">
               <i class="fa fa-phone fa-2x"></i>
             </div>
-            <p-inputMask mask="(999) 999-9999" type="text" formControlName="contactPhone" placeholder="Phone"
+            <p-inputMask mask="(999) 999-9999" type="text" placeholder="{{'PhoneNumber' | translate }}" formControlName="contactPhone" placeholder="Phone"
               [disabled]="!isEdit">
             </p-inputMask>
           </div>
         </div>
 
         <div class="form-group">
-          <label>Birth Date:</label>
+          <label>{{'BirthDate' | translate }}</label>
 
           <div class="input-group">
             <div class="input-group-addon">
@@ -155,7 +155,7 @@
             </div>
 
 
-            <p-calendar [disabled]="!isEdit" appendTo="body" formControlName="contactBirthdate" placeholder="Birth Date"
+            <p-calendar [disabled]="!isEdit" appendTo="body" formControlName="contactBirthdate" placeholder="{{'BirthDate' | translate }}"
               dateFormat="yy-mm-dd">
 
             </p-calendar>
@@ -172,11 +172,11 @@
   <p-footer>
     <div class="form-row">
 
-      <button [hidden]="action!='edit'" (click)="onEditSubmit()" class="btn btn-primary">Confirm Edit </button>
+      <button [hidden]="action!='edit'" (click)="onEditSubmit()" class="btn btn-primary"> {{'ConfirmEditContact' | translate }} </button>
 
-      <button [hidden]="action!='add'" (click)="onAddSubmit()" class="btn btn-primary">Confirm Add Contact  </button>
+      <button [hidden]="action!='add'" (click)="onAddSubmit()" class="btn btn-primary">{{'ConfirmAddContact' | translate }} </button>
 
-      <button [hidden]="action!='remove'" (click)="onDeleteSubmit()" class="btn btn-primary">Confirm Exclude </button>
+      <button [hidden]="action!='remove'" (click)="onDeleteSubmit()" class="btn btn-primary">{{'ConfirmExcludeContact' | translate }}  </button>
 
       <button (click)="hideDialog()" class="btn btn-danger">Cancel </button>
 

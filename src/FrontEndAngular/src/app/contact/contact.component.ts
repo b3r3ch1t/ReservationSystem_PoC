@@ -54,10 +54,10 @@ export class ContactListComponent implements OnInit {
     this.getContactTypes();
 
     this.contactForm = this.fb.group({
-      contactName: ['Contact Name ', Validators.required],
+      contactName: ['', Validators.required],
       contactPhone: ['', Validators.required],
       contactBirthdate: ['', Validators.required],
-      contactTypeId: ['Contact Type ', Validators.required],
+      contactTypeId: ['', Validators.required],
       contactId: ''
     });
 
@@ -102,14 +102,25 @@ export class ContactListComponent implements OnInit {
     this.selectContact = contact;
 
     if (action === "edit") {
-      this.headerMessage = "Edit Contact";
       this.isEdit = true;
       this.action = action;
+
+
+      this.translate.get('EditContact').subscribe(
+        (res: string) => {
+
+        this.headerMessage= res   ;
+       });
     }
 
 
     if (action === "remove") {
-      this.headerMessage = "Remove Contact"
+
+      this.translate.get('RemoveContact').subscribe(
+        (res: string) => {
+
+        this.headerMessage= res   ;
+       });
       this.action = action;
 
       this.isEdit = false;
@@ -299,7 +310,14 @@ export class ContactListComponent implements OnInit {
 
   showDialogAdd() {
 
-    this.headerMessage = "Add Contact";
+    this.translate.get('AddContact').subscribe(
+      (res: string) => {
+
+      this.headerMessage= res   ;
+     });
+
+
+
     this.isEdit = true;
     this.action = "add";
 
