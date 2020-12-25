@@ -32,9 +32,12 @@ import { ConverterDatePipe } from '../pipes/converterDate';
 
 import { registerLocaleData } from '@angular/common';
 
-
+import {LOCALE_ID} from '@angular/core';
 import localeDe from '@angular/common/locales/de';
+import localePt from '@angular/common/locales/pt';
 
+
+registerLocaleData(localePt, 'pt-BR');
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -72,7 +75,13 @@ registerLocaleData(localeDe);
     ReservationListComponent,
     ReservationCreateComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    {
+        provide: LOCALE_ID,
+        useValue: 'pt-BR'
+    }
+],
 })
 
 

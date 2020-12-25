@@ -35,7 +35,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
       }
     })
   ],
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
