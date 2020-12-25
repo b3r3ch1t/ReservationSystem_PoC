@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import {ReservationModule} from './modules/reservation.module';
+import { ReservationModule} from './modules/reservation.module';
 import { ContactModule } from './modules/contact.module';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';

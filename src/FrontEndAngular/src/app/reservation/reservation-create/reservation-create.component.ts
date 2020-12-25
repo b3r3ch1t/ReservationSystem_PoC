@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, ValidationErrors } from '@angular/forms'
 
+import { TranslateService } from '@ngx-translate/core';
 
 import { IContactType } from 'src/app/models/IContactType';
 import { ContactTypeService } from 'src/app/services/contactType.service'
@@ -11,8 +12,7 @@ import { CustomValidatorsService } from 'src/app/Validators/custom-validators.se
 import { CreateReservationRequest } from 'src/app/models/CreateReservationRequest'
 import { ReservationService } from 'src/app/Services/reservation.service';
 
-import { ResponseRequest } from 'src/app/models/ResponseRequest';
-import { MessageService } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-reservation-create',
@@ -33,6 +33,8 @@ export class ReservationCreateComponent implements OnInit {
     private customValidator: CustomValidatorsService,
     private reservationService: ReservationService,
     private messageService: MessageService,
+    public translate: TranslateService,
+    private config: PrimeNGConfig,
   ) { }
 
 
@@ -43,15 +45,58 @@ export class ReservationCreateComponent implements OnInit {
     this.getContacts();
 
     this.contactForm = this.fb.group({
-      contactName: ['Contact Name ', Validators.required],
+      contactName: ['', Validators.required],
       contactPhone: ['', Validators.required],
-      contactBirthdate:  ['', Validators.required],
-      contactTypeId: ['Contact Type ', Validators.required],
+      contactBirthdate: ['', Validators.required],
+      contactTypeId: ['', Validators.required],
       message: this.controlNameContent,
       contactId: ''
     });
 
 
+    this.translate.use('en');
+    this.translate.setDefaultLang('en');
+    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
+
+    this.calendar_en = {
+      closeText: "Done",
+      prevText: "Prev",
+      nextText: "Next",
+      currentText: "Today",
+      monthNames: ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"],
+      monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      weekHeader: "Wk",
+      dateFormat: "dd/mm/yy",
+      firstDay: 1,
+      isRTL: false,
+      showMonthAfterYear: false,
+      yearSuffix: ""
+    };
+
+    this.calendar_pt = {
+      closeText: "Done",
+      prevText: "Prev",
+      nextText: "Next",
+      currentText: "Today",
+      monthNames: ["Janeiro", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "Dezembro"],
+      monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+        "Jul", "Ago", "Set", "Out", "Nov", "Dec"],
+      dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      weekHeader: "Wk",
+      dateFormat: "dd/mm/yy",
+      firstDay: 1,
+      isRTL: false,
+      showMonthAfterYear: false,
+      yearSuffix: ""
+    };
   }
 
 
@@ -78,6 +123,25 @@ export class ReservationCreateComponent implements OnInit {
   contactTypeName = 'contactTypeName';
 
   insertReservationRequest: CreateReservationRequest;
+
+
+  calendar_en: any;
+  calendar_de: any;
+  calendar_pt: any;
+
+
+  locale: string = 'en';
+  switchLang(lang: string) {
+    this.translate.use(lang);
+    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
+
+    this.locale = lang;
+
+    alert("lang == " + lang );
+
+
+  }
+
 
   getContacts() {
     this.contactService.getContat().subscribe((cont: any) => {
@@ -223,7 +287,7 @@ export class ReservationCreateComponent implements OnInit {
 
 
 
-  public  formatDate(date) {
+  public formatDate(date) {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);
     let day = '' + d.getDate();
@@ -238,6 +302,7 @@ export class ReservationCreateComponent implements OnInit {
     this.contactForm.patchValue({ contactPhone: null });
     this.contactForm.patchValue({ contactBirthdate: null });
   }
+
 
 
 }

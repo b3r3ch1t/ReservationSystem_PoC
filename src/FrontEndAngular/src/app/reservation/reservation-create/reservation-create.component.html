@@ -4,27 +4,40 @@
 
 </div>
 
+
+<span class="form-inline">
+  <select
+      class="form-control"
+      #selectedLang
+      (change)="switchLang(selectedLang.value)">
+    <option *ngFor="let language of translate.getLangs()"
+      [value]="language"
+      [selected]="language === translate.currentLang">
+      {{ language }}
+    </option>
+  </select>
+</span>
+
+
 <nav id="navigation">
   <div class="row">
     <div class="col-md-4 left_side" style="color: red;font-weight: bold;">
-      <h2>Create Reservation</h2>
+      <h2>{{'CreateReservation' | translate }}</h2>
     </div>
     <div class="col-md-4 middle_content">
-      <p>This is will be the description This is will be the description This is will be the description This is will
-        be the description This is will be the description This is will be the description This is will be the
-        description</p>
+      <p>{{'ThisIsWillBeTheDescription' | translate }}</p>
     </div>
     <div class="col-md-4 float-right">
       <div class="row">
         <a class="extra float-right btn btn-secondary" [routerLink]="['/reservation']">
-          RESERVATION LIST
+          {{'ReservationList' | translate }}
         </a>
       </div>
       <br>
 
       <div class="row">
         <a class="extra float-right btn btn-secondary" [routerLink]="['/contact']">
-          CONTACT LIST
+          {{'ContactList' | translate }}
         </a>
       </div>
 
@@ -48,7 +61,7 @@
                 </span>
 
                 <div class="auto-complete-contact">
-                  <p-autoComplete   placeholder="Contact Name " formControlName="contactName"
+                  <p-autoComplete   placeholder="{{'ContactName' | translate }}" formControlName="contactName"
                     [suggestions]="filteredContacts" (completeMethod)="filterContact($event)" field="contactName"
                     [minLength]="0" (onSelect)="selectContact($event)" (onClear)="clearedContact($event)">
 
@@ -70,7 +83,7 @@
                 </span>
 
                 <div class="auto-complete-contact">
-                  <p-dropdown placeholder="Contact Type    " [options]="contactTypes" optionLabel="contactTypeName"
+                  <p-dropdown placeholder="{{'ContactType' | translate }}    " [options]="contactTypes" optionLabel="contactTypeName"
                     formControlName="contactTypeId" [(ngModel)]="selectedContactType">
                   </p-dropdown>
 
@@ -88,7 +101,7 @@
                 </span>
 
                 <div class="auto-complete-contact">
-                  <p-inputMask mask="(999) 999-9999" type="text" formControlName="contactPhone"  placeholder="Phone"></p-inputMask>
+                  <p-inputMask mask="(999) 999-9999" type="text" formControlName="contactPhone"  placeholder="{{'PhoneNumber' | translate }}"></p-inputMask>
                 </div>
               </div>
             </div>
@@ -103,7 +116,8 @@
                 </span>
                 <div class="auto-complete-contact">
 
-                  <p-calendar formControlName="contactBirthdate" placeholder="Birth Date" dateFormat="yy-mm-dd"></p-calendar>
+                  <p-calendar formControlName="contactBirthdate" placeholder="{{'BirthDate' | translate }}" dateFormat="yy-mm-dd"></p-calendar>
+
                 </div>
               </div>
             </div>
