@@ -34,7 +34,6 @@ export class ReservationCreateComponent implements OnInit {
     private reservationService: ReservationService,
     private messageService: MessageService,
     public translate: TranslateService,
-    private config: PrimeNGConfig,
   ) { }
 
 
@@ -56,52 +55,8 @@ export class ReservationCreateComponent implements OnInit {
 
     this.translate.use('en');
     this.translate.setDefaultLang('en');
-    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
 
-    this.calendar_en = {
-      closeText: "Done",
-      prevText: "Prev",
-      nextText: "Next",
-      currentText: "Today",
-      monthNames: ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"],
-      monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-      weekHeader: "Wk",
-      dateFormat: "dd/mm/yy",
-      firstDay: 1,
-      isRTL: false,
-      showMonthAfterYear: false,
-      yearSuffix: ""
-    };
-
-    this.calendar_pt = {
-      closeText: "Done",
-      prevText: "Prev",
-      nextText: "Next",
-      currentText: "Today",
-      monthNames: ["Janeiro", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "Dezembro"],
-      monthNamesShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-        "Jul", "Ago", "Set", "Out", "Nov", "Dec"],
-      dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      dayNamesShort: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      dayNamesMin: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
-      weekHeader: "Wk",
-      dateFormat: "dd/mm/yy",
-      firstDay: 1,
-      isRTL: false,
-      showMonthAfterYear: false,
-      yearSuffix: ""
-    };
   }
-
-
-  selectedCountries: any[];
-
 
   contactTypes: IContactType[];
   contacts: IContactView[];
@@ -124,22 +79,12 @@ export class ReservationCreateComponent implements OnInit {
 
   insertReservationRequest: CreateReservationRequest;
 
-
-  calendar_en: any;
-  calendar_de: any;
-  calendar_pt: any;
-
-
   locale: string = 'en';
   switchLang(lang: string) {
     this.translate.use(lang);
     this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
 
     this.locale = lang;
-
-    alert("lang == " + lang );
-
-
   }
 
 
