@@ -82,7 +82,6 @@ export class ReservationCreateComponent implements OnInit {
   locale: string = 'en';
   switchLang(lang: string) {
     this.translate.use(lang);
-    this.translate.get('primeng').subscribe(res => this.config.setTranslation(res));
 
     this.locale = lang;
   }
