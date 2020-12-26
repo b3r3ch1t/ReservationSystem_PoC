@@ -9,10 +9,10 @@
   <select
       class="form-control"
       #selectedLang
-      (change)="switchLang(selectedLang.value)">
-    <option *ngFor="let language of translate.getLangs()"
+      (change)="translate(selectedLang.value)">
+    <option *ngFor="let language of translateService.getLangs()"
       [value]="language"
-      [selected]="language === translate.currentLang">
+      [selected]="language === translateService.currentLang">
       {{ language }}
     </option>
   </select>
@@ -116,7 +116,7 @@
                 </span>
                 <div class="auto-complete-contact">
 
-                  <!-- <p-calendar formControlName="contactBirthdate" placeholder="{{'BirthDate' | translate }}" dateFormat="yy-mm-dd"></p-calendar> -->
+                  <p-calendar formControlName="contactBirthdate" placeholder="{{'BirthDate' | translate }}" dateFormat="yy-mm-dd"></p-calendar>
 
                 </div>
               </div>

@@ -36,7 +36,6 @@ import {LOCALE_ID} from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import localePt from '@angular/common/locales/pt';
 
-
 registerLocaleData(localePt, 'pt-BR');
 registerLocaleData(localeDe);
 

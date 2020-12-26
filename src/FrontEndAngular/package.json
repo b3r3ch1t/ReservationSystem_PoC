@@ -33,7 +33,7 @@
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "primeicons": "^4.1.0",
-    "primeng": "^11.0.0",
+    "primeng": "^11.1.0",
     "rxjs": "~6.6.0",
     "save": "^2.4.0",
     "tslib": "^1.10.0",

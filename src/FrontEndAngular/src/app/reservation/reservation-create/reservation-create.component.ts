@@ -30,10 +30,10 @@ export class ReservationCreateComponent implements OnInit {
     private contactTypeService: ContactTypeService,
     private contactService: ContactService,
     private fb: FormBuilder,
-    private customValidator: CustomValidatorsService,
     private reservationService: ReservationService,
     private messageService: MessageService,
-    public translate: TranslateService,
+    public translateService: TranslateService,
+    private config: PrimeNGConfig
   ) { }
 
 
@@ -53,8 +53,8 @@ export class ReservationCreateComponent implements OnInit {
     });
 
 
-    this.translate.use('en');
-    this.translate.setDefaultLang('en');
+    this.translateService.use('en');
+    this.translateService.setDefaultLang('en');
 
   }
 
@@ -80,8 +80,10 @@ export class ReservationCreateComponent implements OnInit {
   insertReservationRequest: CreateReservationRequest;
 
   locale: string = 'en';
-  switchLang(lang: string) {
-    this.translate.use(lang);
+  translate(lang: string) {
+    this.translateService.use(lang);
+
+    this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));
 
     this.locale = lang;
   }
