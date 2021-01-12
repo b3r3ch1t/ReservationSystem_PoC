@@ -11,6 +11,7 @@ namespace ReservationSystem_PoC.Common.IoC
 {
     public static class DependencyResolverFaker
     {
+
         public static IDependencyResolver GetDependencyResolver()
         {
             var dependencyResolver = new Mock<IDependencyResolver>();
